@@ -10,7 +10,9 @@ import { AptitudesComponent } from './componentes/aptitudes/aptitudes.component'
 import { LogrosComponent } from './componentes/logros/logros.component';
 import { PortfolioService } from './servicios/portfolio.service';
 import {HttpClientModule } from '@angular/common/http';
-
+import {AppRoutingModule} from './app-routing/app-routing.module';
+import { CurriculumComponent } from './componentes/curriculum/curriculum.component';
+import { LoginComponent } from './componentes/login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,11 +21,14 @@ import {HttpClientModule } from '@angular/common/http';
     AcercadeComponent,
     ExperienciaYEducacionComponent,
     AptitudesComponent,
-    LogrosComponent
+    LogrosComponent,
+    CurriculumComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [PortfolioService],
   bootstrap: [AppComponent]
