@@ -6,6 +6,7 @@ import {CurriculumComponent} from '../componentes/curriculum/curriculum.componen
 import {LoginComponent} from '../componentes/login/login.component';
 
 const routes:Routes = [
+  {path: '', redirectTo: '/inicio', pathMatch: 'full'},
   {path:'inicio', component: LoginComponent},
   {path:'perfil', component: CurriculumComponent}
 ];
