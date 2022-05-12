@@ -11,8 +11,8 @@ export class PortfolioService {
     private http:HttpClient
   ) { }
 
-  //obtenerDatos() : Observable<any> {
-    //return this.http.get('./assets/data/data.json');
-  //  return this.http.get<any>('persona/traer');
-  //}
+  obtenerDatos() : Observable<any> {
+    // return this.http.get('./assets/data/data.json');
+   return this.http.get<any>('persona/traer');
+  }
 }

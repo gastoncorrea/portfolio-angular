@@ -12,9 +12,9 @@ export class CabeceraComponent implements OnInit {
   constructor(private portfolioService: PortfolioService) {}
 
   ngOnInit(): void {
-    // this.portfolioService.obtenerDatos().subscribe(data => {
-    //   console.log(data);
-    //   this.cabecera = data;
-    // });
+    this.portfolioService.obtenerDatos().subscribe(data => {
+      console.log(data);
+      this.cabecera = data;
+    });
   }
 }
