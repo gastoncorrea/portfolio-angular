@@ -13,6 +13,7 @@ import { PortfolioService } from './servicios/portfolio.service';
 import {HttpClientModule } from '@angular/common/http';
 import { CurriculumComponent } from './componentes/curriculum/curriculum.component';
 import { LoginComponent } from './componentes/login/login.component';
+import { Error404Component } from './componentes/error404/error404.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { LoginComponent } from './componentes/login/login.component';
     AptitudesComponent,
     LogrosComponent,
     CurriculumComponent,
-    LoginComponent
+    LoginComponent,
+    Error404Component
   ],
   imports: [
     BrowserModule,
