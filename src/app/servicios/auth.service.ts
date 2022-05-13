@@ -12,8 +12,9 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  login(email: string, password: string){
-    this.http.post(this.api,{email: email, password: password}).subscribe((resp:any)=>{
+  login(userName: String, email: string, password: string){
+    this.http.post(this.api,{userName: userName 
+      , email: email, password: password}).subscribe((resp:any)=>{
       //redireccionamos al usuario al perfil de login
       this.router.navigate(["perfil"]);
       //guardamos el token en el localstorage

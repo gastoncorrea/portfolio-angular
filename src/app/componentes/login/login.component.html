@@ -1,4 +1,4 @@
-<form class="m-5" [formGroup]="form" (submit)="mostrarCampos()">
+<form class="m-5" [formGroup]="form" (ngSubmit)="onEnviar($event)">
   <!-- Label + input vinculados -->
     <div class="mb-3">
       <label for="nombreUsuario" class="form-label">Username:</label>

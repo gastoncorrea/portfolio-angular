@@ -29,18 +29,24 @@ export class LoginComponent implements OnInit {
    }
    
 
-   mostrarCampos(){
-     console.log(this.form.value);
+   onEnviar(e: Event){
+     e.preventDefault;
+     if(this.form.valid){
+       console.log("usuario:" + this.form.value.userName);
+       //MANDAR DATOS VALIDADOS DESDE EL FORM AL BACKEND
+       this.authService.login(this.form.value.userName, this.form.value.email, this.form.value.password);  
+     }else{
+       this.form.markAllAsTouched();
+     }
+    
    }
 
-  // login(){
-  //   this.authService.login(this.email, this.password)
-  // }
+
 
   ngOnInit(): void {
   }
 
-  //metodo para obtener el valor que tiene el input email
+  //metodo para obtener el valor que tiene el input userName,email y password
   get User(){
     this.contenedorDatosUserName =  this.form.get("userName");
     console.log(this.contenedorDatosUserName);
