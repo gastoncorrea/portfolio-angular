@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing/app-routing.module';
+import {HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { AppComponent } from './app.component';
 import { CabeceraComponent } from './componentes/cabecera/cabecera.component';
 import { NavbarComponent } from './componentes/navbar/navbar.component';
@@ -10,10 +13,10 @@ import { ExperienciaYEducacionComponent } from './componentes/experiencia-y-educ
 import { AptitudesComponent } from './componentes/aptitudes/aptitudes.component';
 import { LogrosComponent } from './componentes/logros/logros.component';
 import { PortfolioService } from './servicios/portfolio.service';
-import {HttpClientModule } from '@angular/common/http';
 import { CurriculumComponent } from './componentes/curriculum/curriculum.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { Error404Component } from './componentes/error404/error404.component';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +34,9 @@ import { Error404Component } from './componentes/error404/error404.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [PortfolioService],
   bootstrap: [AppComponent]

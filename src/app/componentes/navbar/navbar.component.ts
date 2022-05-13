@@ -9,7 +9,7 @@ import {AuthService} from '../../servicios/auth.service';
 })
 export class NavbarComponent implements OnInit {
   
-  token : boolean = true;
+  token : boolean = false;
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {

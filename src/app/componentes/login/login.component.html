@@ -1,17 +1,42 @@
-<form class="m-5">
+<form class="m-5" [formGroup]="form" (submit)="mostrarCampos()">
+  <!-- Label + input vinculados -->
     <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" >
-      
+      <label for="nombreUsuario" class="form-label">Username:</label>
+      <input type="text" class="form-control" id="nombreUsuario" formControlName="userName">
     </div>
+    <!--Visual para las validacion  -->
+    <div *ngIf="User?.errors && User?.touched">
+      <p *ngIf="User?.hasError('required')" class="error">
+        El usuario es requerido
+      </p>
+      <p *ngIf="User?.errors?.minlength" class="error"> 
+        El Usuario debe tener mas de 5 caracteres
+      </p> 
+      <p *ngIf="User?.errors?.maxlength" class="error"> 
+        El Usuario debe tener menos de 20 caracteres
+      </p> 
+    </div>
+    <!-- formulario email (label + input vinculados) -->
     <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" aria-describedby="emailHelp">
-      <div id="emailHelp" class="form-text">Su contraseña debe tener mas de 8 caracteres</div>
+      <label for="emailUsuario" class="form-label">Email:</label>
+      <input type="email" class="form-control" id="emailUsuario" formControlName="email">
     </div>
-    <div class="mb-3 form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    <!-- validaciones para input email -->
+    <div *ngIf="Mail?.errors && Mail?.touched">
+      <p *ngIf="Mail?.hasError('required')" class="error">Es un campo obligatorio</p>
+      <p *ngIf="Mail?.hasError('email')" class="error">Es un campo para una direccion de email</p>
+    </div>
+    <!-- formulario password -->
+    <div class="mb-3">
+      <label for="passwordUsuario" class="form-label">Password</label>
+      <input type="password" class="form-control" id="passwordUsuario" aria-describedby="emailHelp"
+      formControlName="password">
+      <div id="passwordHelp" class="form-text">Su contraseña debe tener mas de 8 caracteres</div>
+    </div>
+    <!-- Validaciones formulario password -->
+    <div *ngIf="Password?.errors && Password?.touched">
+      <p *ngIf="Password?.hasError('required')" class="error">El campo es obligatorio</p>
+      <p *ngIf="Password?.errors?.minlength" class="error">Debe contener mas de 8 caracteres</p>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
