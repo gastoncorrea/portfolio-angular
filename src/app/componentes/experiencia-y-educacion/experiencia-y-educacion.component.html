@@ -1,61 +1,72 @@
 <section class="border rounded my-3 p-2">
-    <div class="d-flex justify-content-between">
-      <h2>Experiencia</h2>
-      <button class="btn">
-        <i class="fas fa-plus"></i>
-      </button>
-    </div>
-    <div class="d-flex container justify-content-between mt-3">
-      <div class="d-flex">
-        <img
-          src="assets/img/logo-rolling.png"
-          alt="logo-rolling-code-school"
-          class="w-25 me-3 img-fluid mantener-imagen"
-        />
-        <div>
-          <h3>Rolling Code School</h3>
-          <h6>Proyecto final (diario digital)</h6>
-          <p class="leads">Full Stack</p>
-          <ul>
-            <li><em>Arquitectura MERN</em></li>
-          </ul>
+  <div class="d-flex justify-content-between">
+    <h2>Experiencia</h2>
+    <!-- Button trigger modal -->
+    <button
+      class="btn"
+      type="button"
+      data-bs-toggle="modal"
+      data-bs-target="#agregarExperiencia"
+    >
+      <i class="fas fa-plus"></i>
+    </button>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="agregarExperiencia"
+      tabindex="-1"
+      aria-labelledby="ModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="ModalLabel">Nueva Experiencia Laboral</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">...</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
         </div>
       </div>
-      <div class="d-flex align-self-start">
-        <button class="btn pe-0">
-          <i class="fas fa-trash-alt me-1"></i>
-        </button>
-        <button class="btn">
-          <i class="fas fa-pen"></i>
-        </button>
+    </div>
+  </div>
+  <div class="d-flex container justify-content-between mt-3">
+    <div class="d-flex">
+      <img
+        src="assets/img/logo-rolling.png"
+        alt="logo-rolling-code-school"
+        class="w-25 me-3 img-fluid mantener-imagen"
+      />
+      <div>
+        <h3>Rolling Code School</h3>
+        <h6>Proyecto final (diario digital)</h6>
+        <p class="leads">Full Stack</p>
+        <ul>
+          <li><em>Arquitectura MERN</em></li>
+        </ul>
       </div>
     </div>
-    <div class="d-flex justify-content-between mt-3 ps-0">
-      <h2>Educación</h2>
+    <div class="d-flex align-self-start">
+      <button class="btn pe-0">
+        <i class="fas fa-trash-alt me-1"></i>
+      </button>
       <button class="btn">
-        <i class="fas fa-plus"></i>
+        <i class="fas fa-pen"></i>
       </button>
     </div>
-    <div class="d-flex container justify-content-between mt-3">
-      <div class="d-flex">
-        <img
-          src="assets/img/logo-utn.png"
-          alt="logo-rolling-code-school"
-          class="w-25 me-3 img-fluid mantener-imagen"
-        />
-        <div>
-          <h3>Universidad Tecnologica Nacional</h3>
-          <h6>Facultad Regional Tucumán</h6>
-          <p class="leads">2018 - en curso</p>
-        </div>
-      </div>
-      <div class="d-flex align-self-start">
-        <button class="btn pe-0">
-          <i class="fas fa-trash-alt me-1"></i>
-        </button>
-        <button class="btn">
-          <i class="fas fa-pen"></i>
-        </button>
-      </div>
-    </div>
-  </section>
+  </div>
+</section>
