@@ -16,6 +16,7 @@ import { PortfolioService } from './servicios/portfolio.service';
 import { CurriculumComponent } from './componentes/curriculum/curriculum.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { Error404Component } from './componentes/error404/error404.component';
+import { EducacionComponent } from './componentes/educacion/educacion.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { Error404Component } from './componentes/error404/error404.component';
     LogrosComponent,
     CurriculumComponent,
     LoginComponent,
-    Error404Component
+    Error404Component,
+    EducacionComponent
   ],
   imports: [
     BrowserModule,
