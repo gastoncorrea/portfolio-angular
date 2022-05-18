@@ -29,7 +29,39 @@
               aria-label="Close"
             ></button>
           </div>
-          <div class="modal-body">...</div>
+          <div class="modal-body">
+            <form [formGroup]="form">
+              <!-- form nombre empresa -->
+              <div>
+                <label class="form-label" for="nombreEmpresa">Nombre empresa:</label>
+                <input type="text" class="form-control" id="nombreEmpresa" formControlName="nombre">  
+              </div>
+              <!-- validacion nombre empresa -->
+              <div>
+                
+              </div>
+              <div>
+                <label class="form-label" for="puestoEmpresa">Puesto que ocupó:</label>
+                <input type="text" class="form-control" id="puestoEmpresa" formControlName="puesto">  
+              </div>
+              <div>
+                <label class="form-label" for="logoEmpresa">URL logo de la empresa:</label>
+                <input type="text" class="form-control" id="logoEmpresa" formControlName="logo">  
+              </div>
+              <div>
+                <label class="form-label" for="inicioEmpresa">Fecha de inicio:</label>
+                <input type="date" class="form-control" id="inicioEmpresa" formControlName="fecha_incio">  
+              </div>
+              <div>
+                <label class="form-label" for="finEmpresa">Fecha de finalizacion:</label>
+                <input type="date" class="form-control" id="finEmpresa" formControlName="fecha_fin">  
+              </div>
+              <div>
+                <label class="form-label" for="tiempoEmpresa">Tiempo trabajado:</label>
+                <input type="text" class="form-control" id="tiempoEmpresa" formControlName="tiempo_trab">  
+              </div>
+            </form>
+          </div>
           <div class="modal-footer">
             <button
               type="button"
