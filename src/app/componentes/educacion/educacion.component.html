@@ -26,7 +26,59 @@
               aria-label="Close"
             ></button>
           </div>
-          <div class="modal-body">...</div>
+          <div class="modal-body">
+            <form [formGroup]="form">
+              <!-- form nombre -->
+              <div class="mb-3">
+                <label class="form-label" for="nombreEducacion">Nombre de la Institución:</label>
+                <input type="text" id="nombreEducacion" class="form-control" formControlName="nombre_institucion">
+              </div>
+              <!-- validaciones form nombre -->
+              <div *ngIf="Nombre?.errors && Nombre?.touched">
+                <p *ngIf="Nombre?.hasError('required')" class="error">El campo es obligatorio</p>
+                <p *ngIf="Nombre?.errors?.maxlength" class="error">El numero de caracteres debe ser menor a 50</p>
+              </div>
+              <!-- form logo -->
+              <div class="mb-3">
+                <label class="form-label" for="logoEducacion">URL de imagen de logo de la institucion:</label>
+                <input type="text" id="logoEducacion" class="form-control" formControlName="logo">
+              </div>
+              <!-- validacion form logo-->
+              <div *ngIf="Logo?.errors && Logo?.touched">
+                <p *ngIf="Logo?.errors?.maxlength" class="error">El numero de caracteres debe ser menor a 50</p>
+              </div>
+              <!-- form fecha inicio -->
+              <div class="mb-3">
+                <label class="form-label" for="inicioEducacion">Fecha de inicio:</label>
+                <input type="date" id="inicioEducacion" class="form-control" formControlName="fecha_inicio">
+              </div>
+              <!-- validacion form inicio -->
+              <div *ngIf="Inicio?.errors && Inicio?.touched">
+                <p *ngIf="Inicio?.hasError('required')" class="error">El campo es requerido</p>
+                <!-- <p *ngIf="Inicio?.status === 'INVALID' " class="error">El formato de fecha es incorrecto</p> -->
+              </div>
+              <!-- form fecha fin  -->
+              <div class="mb-3">
+                <label class="form-label" for="finEducacion">fecha de finalizacion:</label>
+                <input type="date" id="finEducacion" class="form-control" formControlName="fecha_fin">
+              </div>
+              <!-- validacion form fin -->
+              <div *ngIf="Fin?.errors && Fin?.touched">
+                <p *ngIf="Fin?.hasError('required')" class="error">El campo es requerido</p>
+                <!-- <p *ngIf="Fin?.status === 'INVALID' " class="error">El formato de fecha es incorrecto</p> -->
+              </div>
+              <!-- form titulo -->
+              <div class="mb-3">
+                <label class="form-label" for="tituloEducacion">Nombre de la Institución</label>
+                <input type="text" id="tituloEducacion" class="form-control" formControlName="titulo">
+              </div>
+              <!--Validacion form titulo  -->
+              <div *ngIf="Titulo?.errors && Titulo?.touched">
+                <p *ngIf="Titulo?.hasError('required')" class="error">El campo es requerido</p>
+                <p *ngIf="Titulo?.errors?.maxlength" class="error">El campo debe contener menos de 50 caracteres</p>
+              </div>
+            </form>
+          </div>
           <div class="modal-footer">
             <button
               type="button"

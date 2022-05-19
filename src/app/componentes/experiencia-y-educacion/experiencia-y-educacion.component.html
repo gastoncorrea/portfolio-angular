@@ -32,7 +32,7 @@
           <div class="modal-body">
             <form [formGroup]="form">
               <!-- form nombre empresa -->
-              <div>
+              <div class="mb-3">
                 <label class="form-label" for="nombreEmpresa">Nombre empresa:</label>
                 <input type="text" class="form-control" id="nombreEmpresa" formControlName="nombre">  
               </div>
@@ -42,7 +42,7 @@
                 <p *ngIf="Nombre?.errors?.maxlength" class="error"> Debe contener menos de 50 caracteres </p>
               </div>
               <!-- form Puesto -->
-              <div>
+              <div  class="mb-3">
                 <label class="form-label" for="puestoEmpresa">Puesto que ocupó:</label>
                 <input type="text" class="form-control" id="puestoEmpresa" formControlName="puesto">  
               </div>
@@ -52,7 +52,7 @@
                 <p *ngIf="Puesto?.errors?.maxlength" class="error">Debe contener menos de 20 caracteres</p>
               </div>
               <!-- form Logo -->
-              <div>
+              <div  class="mb-3">
                 <label class="form-label" for="logoEmpresa">URL logo de la empresa:</label>
                 <input type="text" class="form-control" id="logoEmpresa" formControlName="logo">  
               </div>
@@ -61,7 +61,7 @@
                 <p *ngIf="Logo?.errors?.maxlength" class="error">Debe contener menos de 50 caracteres</p>
               </div>
               <!-- form Fecha de inicio -->
-              <div>
+              <div class="mb-3">
                 <label class="form-label" for="inicioEmpresa">Fecha de inicio:</label>
                 <input type="date" class="form-control" id="inicioEmpresa" formControlName="fecha_inicio">  
               </div>
@@ -70,7 +70,7 @@
                 <p *ngIf="Inicio?.status === 'INVALID'" class="error">El campo es requerido</p>
               </div>
               <!-- form fecha de finalizacion -->
-              <div>
+              <div class="mb-3">
                 <label class="form-label" for="finEmpresa">Fecha de finalizacion:</label>
                 <input type="date" class="form-control" id="finEmpresa" formControlName="fecha_fin">  
               </div>
@@ -79,7 +79,7 @@
                 <p *ngIf="Fin?.status === 'INVALID'" class="error">El campo es requerido</p>
               </div>
               <!-- form tiempo de trabajo -->
-              <div>
+              <div class="mb-3">
                 <label class="form-label" for="tiempoEmpresa">Tiempo trabajado:</label>
                 <input type="text" class="form-control" id="tiempoEmpresa" formControlName="tiempo_trab">  
               </div>
