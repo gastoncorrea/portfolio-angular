@@ -46,7 +46,6 @@ export class ExperienciaYEducacionComponent implements OnInit {
 
   get Inicio(){
     this.valorInicio = this.form.get('fecha_inicio');
-    console.log(this.valorInicio.status);
     return this.valorInicio;
   }
 
