@@ -29,7 +29,6 @@ export class AptitudesComponent implements OnInit {
 
   get Nivel(){
     this.valorNivel = this.form.get('nivel');
-    console.log(this.valorNivel);
     return this.valorNivel;
   }
 
