@@ -41,8 +41,11 @@ export class LogrosComponent implements OnInit {
 
   enviar(e:Event){
     e.preventDefault();
-
-    console.log('funciona el boton');
+    if(this.form.valid){
+      console.log('funciona el boton');
+    }else{
+      this.form.markAllAsTouched();
+    }
   }
 
 }

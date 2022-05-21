@@ -30,7 +30,7 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form [formGroup]="form">
+            <form [formGroup]="form" (ngSubmit)="enviar($event)">
               <!-- form nombre empresa -->
               <div class="mb-3">
                 <label class="form-label" for="nombreEmpresa">Nombre empresa:</label>
@@ -88,18 +88,19 @@
                 <p *ngIf="Total?.hasError('required')" class="error">El campo es obligatorio</p>
                 <p *ngIf="Total?.errors?.maxlength" class="error">El campo debe tener menos de 50 caracteres</p>
               </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Cancelar
+                </button>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+              </div>
             </form>
           </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Cancelar
-            </button>
-            <button type="button" class="btn btn-primary">Guardar</button>
-          </div>
+          
         </div>
       </div>
     </div>

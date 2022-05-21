@@ -25,6 +25,16 @@ export class EducacionComponent implements OnInit {
     })
    }
 
+   enviar(e:Event){
+    e.preventDefault();
+
+    if(this.form.valid){
+      console.log('form educacion valido');
+    }else{
+      this.form.markAllAsTouched();
+    }
+   }
+
   ngOnInit(): void {
   }
 

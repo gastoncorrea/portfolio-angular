@@ -30,17 +30,17 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form [formGroup]="form">
+            <form [formGroup]="form" (ngSubmit)="enviar($event)">
               <!-- form nombre -->
               <div class="mb-3">
                 <label for="nombreSkills" class="label-control">Nombre de Skills que desea agregar:</label>
                 <input type="text" class="form-control" id="nombreSkills" formControlName="nombre">
               </div>
               <!-- validacion form nombre -->
-              <!-- <div *ngIf="Nombre?.errors && Nombre?.touched">
+              <div *ngIf="Nombre?.errors && Nombre?.touched">
                 <p *ngIf="Nombre?.hasError('required')" class="error">El campo es requerido</p>
-                <p *ngIf="Nombre?.errors?.maxlength">El campo de contener menos de 50 caracteres</p>
-              </div> -->
+                <p *ngIf="Nombre?.errors?.maxlength"  class="error">El campo de contener menos de 50 caracteres</p>
+              </div>
               <!-- form nivel habilidad -->
               <div class="mb-3">
                 <label for="nivelSkills" class="label-control">Seleccione su nivel de skills</label>
@@ -55,17 +55,17 @@
               <div *ngIf="Nivel?.errors && Nivel?.touched">
                 <p *ngIf="Nivel?.hasError('required')" class="error">El campo es obligatorio</p>
               </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button type="submit" class="btn btn-primary">Guardar Skills</button>
+              </div>
             </form>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-            <button type="button" class="btn btn-primary">Guardar Skills</button>
           </div>
         </div>
       </div>

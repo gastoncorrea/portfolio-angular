@@ -27,7 +27,7 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form [formGroup]="form">
+            <form [formGroup]="form" (ngSubmit)="enviar($event)">
               <!-- form nombre -->
               <div class="mb-3">
                 <label class="form-label" for="nombreEducacion">Nombre de la Institución:</label>
@@ -77,17 +77,17 @@
                 <p *ngIf="Titulo?.hasError('required')" class="error">El campo es requerido</p>
                 <p *ngIf="Titulo?.errors?.maxlength" class="error">El campo debe contener menos de 50 caracteres</p>
               </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Cancelar
+                </button>
+                <button type="submit" class="btn btn-primary">Guardar Educación</button>
+              </div>
             </form>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Cancelar
-            </button>
-            <button type="button" class="btn btn-primary">Guardar Educación</button>
           </div>
         </div>
       </div>

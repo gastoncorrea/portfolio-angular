@@ -56,7 +56,7 @@
               <!-- validacion form descripcion -->
               <div *ngIf="Descripcion?.errors && Descripcion?.touched">
                 <p *ngIf="Descripcion?.hasError('required')" class="error">El campo es obligatorio</p>
-                <p *ngIf="Descripcion?.errors?.maxlength" class="error">El campo debe contener menos de 300 caracteres</p>
+                <p *ngIf="Descripcion?.errors?.maxlength" class="error">El campo debe contener menos de 200 caracteres</p>
               </div>
               <!-- form url -->
               <div class="mb-3">

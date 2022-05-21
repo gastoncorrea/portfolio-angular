@@ -26,6 +26,16 @@ export class ExperienciaYEducacionComponent implements OnInit {
     })
    }
 
+   enviar(e:Event){
+     e.preventDefault();
+    if(this.form.valid){
+      console.log('formulario valido');
+      //llamada al servicio para enviar datos al servidor
+    }else{
+      this.form.markAllAsTouched();
+    }
+   }
+
   ngOnInit(): void {
   }
 

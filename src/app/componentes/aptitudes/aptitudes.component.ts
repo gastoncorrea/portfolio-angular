@@ -19,6 +19,15 @@ export class AptitudesComponent implements OnInit {
     })
    }
 
+   enviar(e:Event){
+     e.preventDefault();
+
+     if(this.form.valid){
+       console.log('form skill valido');
+     }else{
+     }
+   }
+
   ngOnInit(): void {
   }
 
