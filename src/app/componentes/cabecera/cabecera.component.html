@@ -30,41 +30,198 @@
     </div>
     <!-- Modal -->
     <div
-    class="modal fade"
-    id="modificarPersona"
-    tabindex="-1"
-    aria-labelledby="persona"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="persona">Editar datos personales:</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="modal-body">
-          
-        </div>
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-          >
-            Close
-          </button>
-          <button type="button" class="btn btn-primary">
-            Save changes
-          </button>
+      class="modal fade"
+      id="modificarPersona"
+      tabindex="-1"
+      aria-labelledby="persona"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="persona">Editar datos personales:</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="form">
+              <div class="mb-3">
+                <label class="form-label" for="nombrePersona">Nombre:</label>
+                <input
+                  type="text"
+                  id="nombrePersona"
+                  class="form-control"
+                  formControlName="nombre"
+                />
+              </div>
+              <!-- Validacion form Nombre -->
+              <div *ngIf="Nombre?.errors && Nombre?.touched">
+                <p *ngIf="Nombre?.hasError('required')" class="error">
+                  El campo es obligatorio
+                </p>
+                <p *ngIf="Nombre?.errors?.maxlength" class="error">
+                  El campo no debe tener mas 50 caracteres
+                </p>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="apellidoPersona"
+                  >Apellido:</label
+                >
+                <input
+                  type="text"
+                  id="apellidoPersona"
+                  class="form-control"
+                  formControlName="apellido"
+                />
+              </div>
+              <!-- Validacion form apellido --> 
+              <div *ngIf="Apellido?.errors && Apellido?.touched">
+                <p *ngIf="Apellido?.hasError('required')" class="error">El campo es obligatorio</p>
+                <p *ngIf="Apellido?.errors?.maxlength" class="error">El campo no debe tener mas de 50 caracteres</p>
+              </div>
+              <!-- form imagen de perfil -->
+              <div class="mb-3">
+                <label class="form-label" for="perfilPersona"
+                  >Imagen de perfil:</label
+                >
+                <input type="text" id="perfilPersona" class="form-control" formControlName="imagen_perfil"/>
+              </div>
+              <!-- validacion form imagen de perfil -->
+              <div *ngIf="Perfil?.errors && Perfil?.touched">
+                <p *ngIf="Perfil?.hasError('required')" class="error">El campo es obligatorio</p>
+                <p *ngIf="Perfil?.errors?.maxlength" class="error">El campo no debe tener mas de 100 caracteres</p>
+              </div>
+              <!-- form url Linkedin -->
+              <div class="mb-3">
+                <label class="form-label" for="linkedinPersona"
+                  >Url de perfil Linkedin:</label
+                >
+                <input type="text" id="linkedinPersona" class="form-control" formControlName="url_linkedin"/>
+              </div>
+              <!-- validacion form url de linkedin -->
+              <div *ngIf="Url?.errors && Url?.touched">
+                <p *ngIf="Url?.hasError('required')" class="error">El campo es obligatorio</p>
+                <p *ngIf="Url?.errors?.maxlength" class="error">El campo no debe tener mas de 100 caracteres</p>
+              </div>
+              <!-- form celular -->
+              <div class="mb-3">
+                <label class="form-label" for="celularPersona"
+                  >Numero de celular:</label
+                >
+                <input type="number" id="celularPersona" class="form-control" formControlName="num_celular"/>
+              </div>
+              <!-- validacion form celular -->
+              <div *ngIf="Celular?.errors && Celular?.touched">
+                <p *ngIf="Celular?.hasError('required')" class="error">El campo es obligatorio</p>
+                <p *ngIf="Celular?.errors?.maxlength" class="error">El campo no debe tener mas de 20 caracteres</p>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button type="button" class="btn btn-primary">
+                  Save changes
+                </button>
+              </div>
+            </form>
+            <form [formGroup]="formResidencia">
+              <!-- form direccion -->
+              <div class="mb-3">
+                <label class="form-label" for="direccionResidencia">Dirección:</label>
+                <input
+                  type="text"
+                  id="direccionResidencia"
+                  class="form-control"
+                  formControlName="direccion"
+                />
+              </div>
+              <!-- Validacion form direccion -->
+              <div *ngIf="Direccion?.errors && Direccion?.touched">
+                <p *ngIf="Direccion?.hasError('required')" class="error">
+                  El campo es obligatorio
+                </p>
+                <p *ngIf="Direccion?.errors?.maxlength" class="error">
+                  El campo no debe tener mas 50 caracteres
+                </p>
+              </div>
+              <!-- form Localidad -->
+              <div class="mb-3">
+                <label class="form-label" for="localidadResidencia"
+                  >Apellido:</label
+                >
+                <input
+                  type="text"
+                  id="localidadResidencia"
+                  class="form-control"
+                  formControlName="localidad"
+                />
+              </div>
+              <!-- Validacion form localidad --> 
+              <div *ngIf="Localidad?.errors && Localidad?.touched">
+                <p *ngIf="Localidad?.hasError('required')" class="error">El campo es obligatorio</p>
+                <p *ngIf="Localidad?.errors?.maxlength" class="error">El campo no debe tener mas de 50 caracteres</p>
+              </div>
+              <!-- form imagen de provincia -->
+              <div class="mb-3">
+                <label class="form-label" for="provinciaResidencia"
+                  >Imagen de perfil:</label
+                >
+                <input type="text" id="provinciaResidencia" class="form-control" formControlName="provincia"/>
+              </div>
+              <!-- validacion form provincia -->
+              <div *ngIf="Provincia?.errors && Provincia?.touched">
+                <p *ngIf="Provincia?.hasError('required')" class="error">El campo es obligatorio</p>
+                <p *ngIf="Provincia?.errors?.maxlength" class="error">El campo no debe tener mas de 100 caracteres</p>
+              </div>
+              <!-- form pais -->
+              <div class="mb-3">
+                <label class="form-label" for="paisResidencia"
+                  >Url de perfil Linkedin:</label
+                >
+                <input type="text" id="paisResidencia" class="form-control" formControlName="pais"/>
+              </div>
+              <!-- validacion form pais -->
+              <div *ngIf="Pais?.errors && Pais?.touched">
+                <p *ngIf="Pais?.hasError('required')" class="error">El campo es obligatorio</p>
+                <p *ngIf="Pais?.errors?.maxlength" class="error">El campo no debe tener mas de 100 caracteres</p>
+              </div>
+              <!-- form nacionalidad -->
+              <div class="mb-3">
+                <label class="form-label" for="nacionalidadResidencia"
+                  >Numero de celular:</label
+                >
+                <input type="text" id="nacionalidadResidencia" class="form-control" formControlName="nacionalidad"/>
+              </div>
+              <!-- validacion form nacionalidad -->
+              <div *ngIf="Nacionalidad?.errors && Nacionalidad?.touched">
+                <p *ngIf="Nacionalidad?.hasError('required')" class="error">El campo es obligatorio</p>
+                <p *ngIf="Nacionalidad?.errors?.maxlength" class="error">El campo no debe tener mas de 20 caracteres</p>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button type="button" class="btn btn-primary">
+                  Save changes
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
     <div class="row">
       <div class="col-sm-12 col-lg-2">
         <button class="btn btn-primary">Tengo interes en</button>
