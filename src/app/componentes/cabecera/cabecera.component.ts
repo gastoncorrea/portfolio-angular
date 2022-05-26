@@ -14,7 +14,7 @@ export class CabeceraComponent implements OnInit {
   // formulario para persona
   form: FormGroup;
   // formulario para residencia
-  formResidencia: FormGroup;
+  // formResidencia: FormGroup;
 
   // valor que se obtienen del get de los formularios
   valorNombre:any;
@@ -38,16 +38,17 @@ export class CabeceraComponent implements OnInit {
                   apellido: ['',[Validators.required, Validators.maxLength(50)]],
                   imagen_perfil: ['',[Validators.required, Validators.maxLength(100)]],
                   url_linkedin: ['',[Validators.required, Validators.maxLength(100)]],
-                  num_celular: ['',[Validators.required, Validators.maxLength(20)]]
-                })
-
-                this.formResidencia = this.formBuilder.group({
+                  num_celular: ['',[Validators.required, Validators.maxLength(20)]],
                   direccion: ['',[Validators.required, Validators.maxLength(50)]],
                   localidad: ['',[Validators.required, Validators.maxLength(50)]],
                   provincia: ['',[Validators.required, Validators.maxLength(50)]],
                   pais: ['',[Validators.required, Validators.maxLength(50)]],
                   nacionalidad: ['',[Validators.required, Validators.maxLength(50)]]
                 })
+
+                // this.formResidencia = this.formBuilder.group({
+                  
+                // })
               }
   
   // metodos get para traer valores de form Persona
