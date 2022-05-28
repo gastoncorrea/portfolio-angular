@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core'; //importaciones propias de an
 //importaciones propias
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../servicios/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,23 +13,15 @@ import { AuthService } from '../../servicios/auth.service';
 export class LoginComponent implements OnInit {
   //Variable de tipo FormGroup
   form: FormGroup;
-  contenedorDatosUserName: any;
   contenedorDatosPassword: any;
 
   //Cargar datos iniciales
   constructor(
     private authService: AuthService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) {
     this.form = this.formBuilder.group({
-      userName: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(5),
-          Validators.maxLength(20),
-        ],
-      ],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
     });
@@ -37,13 +30,14 @@ export class LoginComponent implements OnInit {
   onEnviar(e: Event) {
     e.preventDefault;
     if (this.form.valid) {
-      console.log('usuario:' + this.form.value.userName);
+      console.log('El boton submit del formulario funciona');
       //MANDAR DATOS VALIDADOS DESDE EL FORM AL BACKEND
-      // this.authService.login(
-      //   this.form.value.userName,
-      //   this.form.value.email,
-      //   this.form.value.password
-      // );
+      this.authService.login(
+        this.form.value
+      ).subscribe(data=>
+        console.log('DATA:' + JSON.stringify(data)));
+        this.router.navigate(['/inicio']);
+
     } else {
       this.form.markAllAsTouched();
     }
@@ -52,10 +46,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   //metodo para obtener el valor que tiene el input userName,email y password
-  get User() {
-    this.contenedorDatosUserName = this.form.get('userName');
-    return this.contenedorDatosUserName;
-  }
 
   get Mail() {
     return this.form.get('email');

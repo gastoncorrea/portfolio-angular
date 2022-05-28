@@ -1,21 +1,4 @@
 <form class="m-5" [formGroup]="form" (ngSubmit)="onEnviar($event)">
-  <!-- Label + input vinculados -->
-    <div class="mb-3">
-      <label for="nombreUsuario" class="form-label">Username:</label>
-      <input type="text" class="form-control" id="nombreUsuario" formControlName="userName">
-    </div>
-    <!--Visual para las validacion  -->
-    <div *ngIf="User?.errors && User?.touched">
-      <p *ngIf="User?.hasError('required')" class="error">
-        El usuario es requerido
-      </p>
-      <p *ngIf="User?.errors?.minlength" class="error"> 
-        El Usuario debe tener mas de 5 caracteres
-      </p> 
-      <p *ngIf="User?.errors?.maxlength" class="error"> 
-        El Usuario debe tener menos de 20 caracteres
-      </p> 
-    </div>
     <!-- formulario email (label + input vinculados) -->
     <div class="mb-3">
       <label for="emailUsuario" class="form-label">Email:</label>

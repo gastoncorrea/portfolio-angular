@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import {Observable, BehaviorSubject} from 'rxjs';
+import {map} from 'rxjs/operators';
 import {Router} from '@angular/router';
 
 @Injectable({
@@ -7,19 +9,23 @@ import {Router} from '@angular/router';
 })
 export class AuthService {
 
-  api = "http://localhost:8080/autenticacion";
+  //api = "curriculum/persona";
+  api = "http://localhost:8080/curriculum/persona";
+  currentUserSubject : BehaviorSubject<any>;
   token: any;
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) {
+    console.log("El servicio de autenticacion esta corriendo");
+    this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(sessionStorage.getItem('currentUser')|| '{}'));
+   }
 
-  login(userName: String, email: string, password: string){
-    this.http.post(this.api,{userName: userName 
-      , email: email, password: password}).subscribe((resp:any)=>{
-      //redireccionamos al usuario al perfil de login
-      this.router.navigate(["perfil"]);
-      //guardamos el token en el localstorage
-      localStorage.setItem('auth_token', resp.token);
-    })
+  login(credenciales:any):Observable<any>{
+    
+      return this.http.post(this.api, credenciales,{responseType:'text'}).pipe(map(data=>{
+        sessionStorage.setItem('currentUser', JSON.stringify(data));
+        console.log("DATA:" + data);
+        return data;
+      }))
   }
 
   //cerrar sesion borro token del localstorage
