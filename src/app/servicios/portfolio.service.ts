@@ -7,6 +7,12 @@ import {AuthService} from './auth.service';
   providedIn: 'root'
 })
 export class PortfolioService {
+  datosPersona:any;
+  datosSobreMi:any;
+  datosEducacion:any;
+  datosExperiencia:any;
+  datosAptitud:any;
+  datosProyectos:any;
 
   url:String = "http://localhost:8080/";
   email = this.auth.UsuarioLogueado;
@@ -18,5 +24,7 @@ export class PortfolioService {
    obtenerDatos() : Observable<any> {
      console.log("*****"+this.email);
    return this.http.get<any>(this.url + "curriculum/persona/"+this.email);
+   
    }
+
 }
