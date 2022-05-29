@@ -1,12 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
+import {EducacionService} from '../../servicios/educacion.service';
+
 @Component({
   selector: 'app-educacion',
   templateUrl: './educacion.component.html',
   styleUrls: ['./educacion.component.css']
 })
 export class EducacionComponent implements OnInit {
+  cabecera:any;
+
   form: FormGroup;
   valorNombre:any;
   valorLogo:any;
@@ -14,7 +18,8 @@ export class EducacionComponent implements OnInit {
   valorFin:any;
   valorTitulo:any;
 
-  constructor(private formBuilder:FormBuilder) {
+  constructor(private formBuilder:FormBuilder,
+              private educacionService:EducacionService) {
     this.form = formBuilder.group({
       nombre_institucion: ['',[Validators.required, Validators.maxLength(50)]],
       logo:['',[Validators.maxLength(50)]],
@@ -36,6 +41,10 @@ export class EducacionComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.educacionService.obtenerDatos().subscribe(data => {
+      console.log(data);
+      this.cabecera = data.educacion;
+    });
   }
 
   get Nombre(){
