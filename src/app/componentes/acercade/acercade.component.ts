@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { PortfolioService } from '../../servicios/portfolio.service';
+import { SobreMiService } from '../../servicios/sobre-mi.service';
 
 @Component({
   selector: 'app-acercade',
@@ -9,12 +9,14 @@ import { PortfolioService } from '../../servicios/portfolio.service';
 })
 export class AcercadeComponent implements OnInit {
   cabecera: any;
-  constructor(private portfolioService: PortfolioService) {}
+  
+  constructor(private sobreMiService : SobreMiService) {}
 
   ngOnInit(): void {
-    this.portfolioService.obtenerDatos().subscribe((data) => {
+    this.sobreMiService.obtenerDatos().subscribe((data) => {
       console.log(data);
-      this.cabecera = data;
+      this.cabecera = data.descripcion_mi;
     });
+  
   }
 }

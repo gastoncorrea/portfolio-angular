@@ -166,17 +166,26 @@
       </div>
     </div>
   </div>
-  <div class="d-flex container justify-content-between mt-3">
+  <div class="d-flex container justify-content-between mt-3" *ngFor="let cabe of cabecera">
     <div class="d-flex">
       <img
+        *ngIf="cabe.logo == ''"
         src="assets/img/logo-rolling.png"
         alt="logo-rolling-code-school"
         class="w-25 me-3 img-fluid mantener-imagen"
       />
+      <img
+        *ngIf="cabe.logo != ''"
+        [src]="cabe.logo"
+        alt="logo-rolling-code-school"
+        class="w-25 me-3 img-fluid mantener-imagen"
+      />
       <div>
-        <h3>Rolling Code School</h3>
-        <h6>Proyecto final (diario digital)</h6>
-        <p class="leads">Full Stack</p>
+        <h3>{{cabe.nombre}}</h3>
+        <h6>{{cabe.puesto}}</h6>
+        <p class="leads">Duracion: {{cabe.tiempo_trab}}</p>
+        <p>Desde: {{cabe.fecha_inicio | date}}</p>
+        <p>Hasta: {{cabe.fecha_fin | date}}</p>
         <ul>
           <li><em>Arquitectura MERN</em></li>
         </ul>
@@ -226,6 +235,7 @@
                     class="form-control"
                     id="nombreEmpresa"
                     formControlName="nombre"
+                    [ngModel]="cabe.nombre"
                   />
                 </div>
                 <!-- validacion nombre empresa -->
@@ -247,6 +257,7 @@
                     class="form-control"
                     id="puestoEmpresa"
                     formControlName="puesto"
+                    [ngModel]="cabe.puesto"
                   />
                 </div>
                 <!-- Validacion Puesto -->
@@ -268,6 +279,7 @@
                     class="form-control"
                     id="logoEmpresa"
                     formControlName="logo"
+                    [ngModel]="cabe.logo"
                   />
                 </div>
                 <!-- validacion Logo -->
@@ -286,6 +298,7 @@
                     class="form-control"
                     id="inicioEmpresa"
                     formControlName="fecha_inicio"
+                    [ngModel]="cabe.fecha_inicio | date"
                   />
                 </div>
                 <!-- Validacion Inicio -->
@@ -304,6 +317,7 @@
                     class="form-control"
                     id="finEmpresa"
                     formControlName="fecha_fin"
+                    [ngModel]="cabe.fecha_fin"
                   />
                 </div>
                 <!-- Validacion form fecha de finalizacion -->
@@ -322,6 +336,7 @@
                     class="form-control"
                     id="tiempoEmpresa"
                     formControlName="tiempo_trab"
+                    [ngModel]="cabe.tiempo_trab"
                   />
                 </div>
                 <!-- validacion form tiempo_trab -->

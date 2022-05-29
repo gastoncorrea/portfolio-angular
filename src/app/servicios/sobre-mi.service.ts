@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {AuthService} from './auth.service';
@@ -6,8 +7,7 @@ import {AuthService} from './auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class PortfolioService {
-
+export class SobreMiService {
   url:String = "http://localhost:8080/";
   email = this.auth.UsuarioLogueado;
   constructor(
@@ -16,8 +16,7 @@ export class PortfolioService {
   ) { }
 
    obtenerDatos() : Observable<any> {
-     console.log("*****"+this.email);
+     console.log("Sobre MI SERVICE:"+this.email);
    return this.http.get<any>(this.url + "curriculum/persona/"+this.email);
    }
-
 }

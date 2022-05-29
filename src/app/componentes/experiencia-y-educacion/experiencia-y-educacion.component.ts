@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ExperienciaService} from '../../servicios/experiencia.service';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-experiencia-y-educacion',
@@ -7,6 +10,8 @@ import { FormBuilder, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./experiencia-y-educacion.component.css']
 })
 export class ExperienciaYEducacionComponent implements OnInit {
+  cabecera: any;
+
   form: FormGroup;
   valorNombre:any;
   valorPuesto:any;
@@ -15,7 +20,8 @@ export class ExperienciaYEducacionComponent implements OnInit {
   valorFin: any;
   valorTotal:any;
 
-  constructor(private formBuilder:FormBuilder) {
+  constructor(private formBuilder:FormBuilder,
+              private experienciaService:ExperienciaService) {
     this.form = formBuilder.group({
       nombre:['',[Validators.maxLength(50),Validators.required]],
       puesto:['',[Validators.maxLength(20),Validators.required]],
@@ -37,6 +43,11 @@ export class ExperienciaYEducacionComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.experienciaService.obtenerDatos().subscribe(data => {
+      console.log(data);
+      this.cabecera = data.experiencia;
+    });
+  
   }
 
   get Nombre(){
