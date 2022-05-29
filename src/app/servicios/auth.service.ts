@@ -12,7 +12,7 @@ export class AuthService {
   //api = "curriculum/persona";
   api = "http://localhost:8080/autenticacion/persona";
   currentUserSubject : BehaviorSubject<any>;
-  token: any;
+  mailUsuarioLogueado:String = "";
 
   constructor(private http: HttpClient, private router: Router) {
     console.log("El servicio de autenticacion esta corriendo");
@@ -20,6 +20,8 @@ export class AuthService {
    }
 
   login(credenciales:any):Observable<any>{
+    this.mailUsuarioLogueado = credenciales.email;
+    console.log("Mail usuario: " + this.mailUsuarioLogueado);
       return this.http.post(this.api, credenciales,{responseType:'text'}).pipe(map(data=>{
         sessionStorage.setItem('currentUser', JSON.stringify(data));
         this.currentUserSubject.next(data);
@@ -40,5 +42,9 @@ export class AuthService {
 
   get UserAutenticado(){
     return this.currentUserSubject.value;
+  }
+
+  get UsuarioLogueado(){
+    return this.mailUsuarioLogueado;
   }
 }

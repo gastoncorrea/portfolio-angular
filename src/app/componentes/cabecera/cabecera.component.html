@@ -6,16 +6,16 @@
   />
   <div class="w-25 insertar-arriba">
     <img
-      src="assets/img/fotoperfil.png"
+      [src]="cabecera.imagen_perfil"
       alt="foto-de-perfil"
       class="w-100 rounded-circle img-fluid"
     />
   </div>
   <div class="row container">
     <div class="col-sm-9 col-lg-8">
-      <h2>Gaston Correa</h2>
-      <p>Auxiliar administrativo</p>
-      <p>Tucumán (Argentina) <a href="#">más información</a></p>
+      <h2>{{cabecera.nombrePersona+" "+cabecera.apellidoPersona}}</h2>
+      <p>{{cabecera.experiencia[0].puesto}}</p>
+      <p>{{cabecera.residencia.localidad+"-"+cabecera.residencia.provincia+"-"+ "(" + cabecera.residencia.pais+")"}} <a href="#">más información</a></p>
     </div>
     <div class="col-sm-2 col-lg-2">
       <!-- abrir ventana modal para modificar datos de la persona -->
@@ -56,7 +56,7 @@
                   id="nombrePersona"
                   class="form-control"
                   formControlName="nombre"
-                />
+                  [ngModel]="cabecera.nombrePersona"                />
               </div>
               <!-- Validacion form Nombre -->
               <div *ngIf="Nombre?.errors && Nombre?.touched">
@@ -76,6 +76,7 @@
                   id="apellidoPersona"
                   class="form-control"
                   formControlName="apellido"
+                  [ngModel]="cabecera.apellidoPersona"
                 />
               </div>
               <!-- Validacion form apellido -->
@@ -97,6 +98,7 @@
                   id="perfilPersona"
                   class="form-control"
                   formControlName="imagen_perfil"
+                  [ngModel]="cabecera.imagen_perfil"
                 />
               </div>
               <!-- validacion form imagen de perfil -->
@@ -118,6 +120,7 @@
                   id="linkedinPersona"
                   class="form-control"
                   formControlName="url_linkedin"
+                  [ngModel]="cabecera.url_linkedin"
                 />
               </div>
               <!-- validacion form url de linkedin -->
@@ -139,6 +142,7 @@
                   id="celularPersona"
                   class="form-control"
                   formControlName="num_celular"
+                  [ngModel]="cabecera.num_celular"
                 />
               </div>
               <!-- validacion form celular -->
@@ -161,6 +165,7 @@
                   id="direccionResidencia"
                   class="form-control"
                   formControlName="direccion"
+                  [ngModel]="cabecera.residencia.direccion"
                 />
               </div>
               <!-- Validacion form direccion -->
@@ -175,13 +180,14 @@
               <!-- form Localidad -->
               <div class="mb-3">
                 <label class="form-label" for="localidadResidencia"
-                  >Apellido:</label
+                  >Localidad:</label
                 >
                 <input
                   type="text"
                   id="localidadResidencia"
                   class="form-control"
                   formControlName="localidad"
+                  [ngModel]="cabecera.residencia.localidad"
                 />
               </div>
               <!-- Validacion form localidad -->
@@ -196,13 +202,14 @@
               <!-- form imagen de provincia -->
               <div class="mb-3">
                 <label class="form-label" for="provinciaResidencia"
-                  >Imagen de perfil:</label
+                  >Provincia:</label
                 >
                 <input
                   type="text"
                   id="provinciaResidencia"
                   class="form-control"
                   formControlName="provincia"
+                  [ngModel]="cabecera.residencia.provincia"
                 />
               </div>
               <!-- validacion form provincia -->
@@ -217,13 +224,14 @@
               <!-- form pais -->
               <div class="mb-3">
                 <label class="form-label" for="paisResidencia"
-                  >Url de perfil Linkedin:</label
+                  >Pais:</label
                 >
                 <input
                   type="text"
                   id="paisResidencia"
                   class="form-control"
                   formControlName="pais"
+                  [ngModel]="cabecera.residencia.pais"
                 />
               </div>
               <!-- validacion form pais -->
@@ -238,13 +246,14 @@
               <!-- form nacionalidad -->
               <div class="mb-3">
                 <label class="form-label" for="nacionalidadResidencia"
-                  >Numero de celular:</label
+                  >Nacionalidad:</label
                 >
                 <input
                   type="text"
                   id="nacionalidadResidencia"
                   class="form-control"
                   formControlName="nacionalidad"
+                  [ngModel]="cabecera.residencia.nacionalidad"
                 />
               </div>
               <!-- validacion form nacionalidad -->
