@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
 export class AuthService {
 
   //api = "curriculum/persona";
-  api = "http://localhost:8080/curriculum/persona";
+  api = "http://localhost:8080/autenticacion/persona";
   currentUserSubject : BehaviorSubject<any>;
   token: any;
 
@@ -20,9 +20,9 @@ export class AuthService {
    }
 
   login(credenciales:any):Observable<any>{
-    
       return this.http.post(this.api, credenciales,{responseType:'text'}).pipe(map(data=>{
         sessionStorage.setItem('currentUser', JSON.stringify(data));
+        this.currentUserSubject.next(data);
         console.log("DATA:" + data);
         return data;
       }))
@@ -36,5 +36,9 @@ export class AuthService {
   //consultar si hay alguna sesion iniciada
   public get logIn(): boolean{
     return (localStorage.getItem('auth_token') !== null);
+  }
+
+  get UserAutenticado(){
+    return this.currentUserSubject.value;
   }
 }

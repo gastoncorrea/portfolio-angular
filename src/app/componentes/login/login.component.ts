@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core'; //importaciones propias de an
 //importaciones propias
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../servicios/auth.service';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +13,10 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
   //Variable de tipo FormGroup
   form: FormGroup;
+  //Variable que contiene el valor del input password
   contenedorDatosPassword: any;
+  //Variable que contiene el valor de email
+  valorEmail: String = '';
 
   //Cargar datos iniciales
   constructor(
@@ -32,12 +35,12 @@ export class LoginComponent implements OnInit {
     if (this.form.valid) {
       console.log('El boton submit del formulario funciona');
       //MANDAR DATOS VALIDADOS DESDE EL FORM AL BACKEND
-      this.authService.login(
-        this.form.value
-      ).subscribe(data=>
-        console.log('DATA:' + JSON.stringify(data)));
-        this.router.navigate(['/inicio']);
+      this.authService.login(this.form.value).subscribe((data) => {
+        console.log('DATA:' + JSON.stringify(data));
+      });
+      this.router.navigate(['/inicio']);
 
+      // this.valorEmail = this.form.value.email;
     } else {
       this.form.markAllAsTouched();
     }

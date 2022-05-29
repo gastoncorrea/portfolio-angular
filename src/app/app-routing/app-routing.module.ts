@@ -7,7 +7,7 @@ import {LoginComponent} from '../componentes/login/login.component';
 import { Error404Component } from '../componentes/error404/error404.component';
 
 const routes:Routes = [
-  {path: '', redirectTo: '/inicio', pathMatch: 'full'},
+  {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path:'inicio', component: CurriculumComponent},
   {path:'login', component: LoginComponent},
   {path:'**',component:Error404Component},

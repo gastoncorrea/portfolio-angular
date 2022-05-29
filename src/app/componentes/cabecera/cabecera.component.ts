@@ -101,9 +101,9 @@ export class CabeceraComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.portfolioService.obtenerDatos().subscribe(data => {
-    //   console.log(data);
-    //   this.cabecera = data;
-    // });
+     this.portfolioService.obtenerDatos().subscribe(data => {
+       console.log(data);
+       this.cabecera = data;
+     });
   }
 }

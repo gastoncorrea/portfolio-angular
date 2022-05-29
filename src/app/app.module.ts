@@ -2,8 +2,10 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing/app-routing.module';
-import {HttpClientModule } from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import {InterceptorService} from './servicios/interceptor.service';
 
 import { AppComponent } from './app.component';
 import { CabeceraComponent } from './componentes/cabecera/cabecera.component';
@@ -40,7 +42,8 @@ import { EducacionComponent } from './componentes/educacion/educacion.component'
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [PortfolioService],
+  providers: [PortfolioService,
+  {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
