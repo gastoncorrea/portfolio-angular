@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AptitudService} from '../../servicios/aptitud.service';
 
 @Component({
   selector: 'app-aptitudes',
@@ -8,11 +9,14 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./aptitudes.component.css']
 })
 export class AptitudesComponent implements OnInit {
+  cabecera: any;
+  
   form: FormGroup;
   valorNombre:any;
   valorNivel:any;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+              private aptitudService: AptitudService) {
     this.form = formBuilder.group({
       nombre:['',[Validators.required, Validators.maxLength(50)]],
       nivel:['',[Validators.required]]
@@ -29,6 +33,10 @@ export class AptitudesComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.aptitudService.obtenerDatos().subscribe(data => {
+      console.log("Educacion data" + data);
+      this.cabecera = data.aptitud;
+    });
   }
 
   get Nombre(){
