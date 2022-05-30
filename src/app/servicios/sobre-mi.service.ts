@@ -17,6 +17,6 @@ export class SobreMiService {
 
    obtenerDatos() : Observable<any> {
      console.log("Sobre MI SERVICE:"+this.email);
-   return this.http.get<any>(this.url + "curriculum/persona/"+this.email);
+   return this.http.get(this.url + "curriculum/persona/"+this.email);
    }
 }

@@ -42,7 +42,7 @@ export class EducacionComponent implements OnInit {
 
   ngOnInit(): void {
     this.educacionService.obtenerDatos().subscribe(data => {
-      console.log(data);
+      console.log("Educacion data" + data);
       this.cabecera = data.educacion;
     });
   }

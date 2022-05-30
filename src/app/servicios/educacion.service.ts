@@ -16,7 +16,7 @@ export class EducacionService {
   ) { }
 
    obtenerDatos() : Observable<any> {
-     console.log("*****"+this.email);
-   return this.http.get<any>(this.url + "curriculum/persona/"+this.email);
+     console.log("*****Educacion"+this.email);
+   return this.http.get(this.url + "curriculum/persona/"+this.email);
    }
 }

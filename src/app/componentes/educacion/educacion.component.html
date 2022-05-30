@@ -162,9 +162,9 @@
         class="w-25 me-3 img-fluid mantener-imagen"
       />
       <div>
-        <h3>{{cabe.nombre}}</h3>
-        <p class="leads">{{cabe.fecha.inicio | date}}</p>
-        <p class="leads">{{cabe.fecha.fin | date}}</p>
+        <h3>{{cabe.nombre_institucion}}</h3>
+        <p class="leads">{{cabe.fecha_inicio | date}}</p>
+        <p class="leads">{{cabe.fecha_fin | date}}</p>
         <p class="leads">Titulo: {{cabe.titulo}}</p>
       </div>
     </div>
@@ -212,7 +212,7 @@
                     id="nombreEducacion"
                     class="form-control"
                     formControlName="nombre_institucion"
-                    [ngModel]="cabe.nombre"
+                    [ngModel]="cabe.nombre_institucion"
                   />
                 </div>
                 <!-- validaciones form nombre -->
@@ -253,7 +253,7 @@
                     id="inicioEducacion"
                     class="form-control"
                     formControlName="fecha_inicio"
-                    [ngModel]="cabe.fecha_inicio"
+                    [ngModel]="cabe.fecha_inicio | date"
                   />
                 </div>
                 <!-- validacion form inicio -->
@@ -273,7 +273,7 @@
                     id="finEducacion"
                     class="form-control"
                     formControlName="fecha_fin"
-                    [ngModel]="cabe.fecha_fin"
+                    [ngModel]="cabe.fecha_fin | date"
                   />
                 </div>
                 <!-- validacion form fin -->
