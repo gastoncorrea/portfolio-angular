@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {ProyectoService} from '../../servicios/proyecto.service';
 
 @Component({
   selector: 'app-logros',
@@ -8,12 +9,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./logros.component.css']
 })
 export class LogrosComponent implements OnInit {
+  cabecera:any;
+
   form: FormGroup;
   valorNombre:any;
   valorDescripcion:any;
   valorUrl:any;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+              private proyectoService:ProyectoService) {
     this.form = this.formBuilder.group({
       nombre:['',[Validators.required, Validators.maxLength(30)]],
       descripcion:['',[Validators.required, Validators.maxLength(200)]],
@@ -22,6 +26,10 @@ export class LogrosComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.proyectoService.obtenerDatos().subscribe(data => {
+      console.log("Educacion data" + data);
+      this.cabecera = data.proyecto;
+    });
   }
 
   get Nombre(){
