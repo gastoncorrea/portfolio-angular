@@ -11,93 +11,112 @@ import { PortfolioService } from '../../servicios/portfolio.service';
 })
 export class CabeceraComponent implements OnInit {
   cabecera: any;
-  // formulario para persona
-  form: FormGroup;
-  // formulario para residencia
+  // formulario para Editar Persona y residencia
+  formEditar:FormGroup;
   // formResidencia: FormGroup;
 
-  // valor que se obtienen del get de los formularios
-  valorNombre:any;
-  valorApellido:any;
-  valorPerfil:any;
-  valorLinkedin:any;
-  valorCelular:any;
+  // valor que se obtienen del get de los formularios editar
+  valorNombreEditar:any;
+  valorApellidoEditar:any;
+  valorPerfilEditar:any;
+  valorLinkedinEditar:any;
+  valorCelularEditar:any;
 
-  valorDireccion:any;
-  valorLocalidad:any;
-  valorProvincia:any;
-  valorPais:any;
-  valorNacionalidad:any;
+  valorDireccionEditar:any;
+  valorLocalidadEditar:any;
+  valorProvinciaEditar:any;
+  valorPaisEditar:any;
+  valorNacionalidadEditar:any;
+
+  
 
 
   constructor(private portfolioService: PortfolioService,
               private formBuilder: FormBuilder) {
 
-                this.form = this.formBuilder.group({
-                  nombre: ['',[Validators.required, Validators.maxLength(50)]],
-                  apellido: ['',[Validators.required, Validators.maxLength(50)]],
-                  imagen_perfil: ['',[Validators.required, Validators.maxLength(100)]],
-                  url_linkedin: ['',[Validators.required, Validators.maxLength(100)]],
-                  num_celular: ['',[Validators.required, Validators.maxLength(20)]],
-                  direccion: ['',[Validators.required, Validators.maxLength(50)]],
-                  localidad: ['',[Validators.required, Validators.maxLength(50)]],
-                  provincia: ['',[Validators.required, Validators.maxLength(50)]],
-                  pais: ['',[Validators.required, Validators.maxLength(50)]],
-                  nacionalidad: ['',[Validators.required, Validators.maxLength(50)]]
+                this.formEditar = this.formBuilder.group({
+                  nombreEditar: ['',[Validators.required, Validators.maxLength(50)]],
+                  apellidoEditar: ['',[Validators.required, Validators.maxLength(50)]],
+                  imagen_perfilEditar: ['',[Validators.required, Validators.maxLength(100)]],
+                  url_linkedinEditar: ['',[Validators.required, Validators.maxLength(100)]],
+                  num_celularEditar: ['',[Validators.required, Validators.maxLength(20)]],
+                  direccionEditar: ['',[Validators.required, Validators.maxLength(50)]],
+                  localidadEditar: ['',[Validators.required, Validators.maxLength(50)]],
+                  provinciaEditar: ['',[Validators.required, Validators.maxLength(50)]],
+                  paisEditar: ['',[Validators.required, Validators.maxLength(50)]],
+                  nacionalidadEditar: ['',[Validators.required, Validators.maxLength(50)]]
                 })
-
-                // this.formResidencia = this.formBuilder.group({
-                  
-                // })
               }
   
+
   // metodos get para traer valores de form Persona
-  get Nombre(){
-    this.valorNombre = this.form.get('nombre');
-    return this.valorNombre;
+  get NombreEditar(){
+    this.valorNombreEditar = this.formEditar.get('nombreEditar');
+    return this.valorNombreEditar;
   }
-  get Apellido(){
-    this.valorApellido = this.form.get('apellido');
-    return this.valorApellido;
+  get ApellidoEditar(){
+    this.valorApellidoEditar = this.formEditar.get('apellidoEditar');
+    return this.valorApellidoEditar;
   }
-  get Perfil(){
-    this.valorPerfil = this.form.get('imagen_perfil');
-    return this.valorPerfil;
+  get PerfilEditar(){
+    this.valorPerfilEditar = this.formEditar.get('imagen_perfilEditar');
+    return this.valorPerfilEditar;
   }
-  get Url(){
-    this.valorLinkedin = this.form.get('url_linkedin');
-    return this.valorLinkedin;
+  get UrlEditar(){
+    this.valorLinkedinEditar = this.formEditar.get('url_linkedinEditar');
+    return this.valorLinkedinEditar;
   }
-  get Celular(){
-    this.valorCelular = this.form.get('num_celular');
-    return this.valorCelular;
+  get CelularEditar(){
+    this.valorCelularEditar = this.formEditar.get('num_celularEditar');
+    return this.valorCelularEditar;
   }
 
   // metodo para traer valores de form residencia
 
-  get Direccion(){
-    this.valorDireccion = this.form.get('direccion');
-    return this.valorDireccion;
+  get DireccionEditar(){
+    this.valorDireccionEditar = this.formEditar.get('direccionEditar');
+    return this.valorDireccionEditar;
   }
 
-  get Localidad(){
-    this.valorLocalidad = this.form.get('localidad');
-    return this.valorLocalidad;
+  get LocalidadEditar(){
+    this.valorLocalidadEditar = this.formEditar.get('localidadEditar');
+    return this.valorLocalidadEditar;
   }
 
-  get Provincia(){
-    this.valorProvincia = this.form.get('provincia');
-    return this.valorProvincia;
+  get ProvinciaEditar(){
+    this.valorProvinciaEditar = this.formEditar.get('provinciaEditar');
+    return this.valorProvinciaEditar;
   }
 
-  get Pais(){
-    this.valorPais = this.form.get('pais');
-    return this.valorPais;
+  get PaisEditar(){
+    this.valorPaisEditar = this.formEditar.get('paisEditar');
+    return this.valorPaisEditar;
   }
 
-  get Nacionalidad(){
-    this.valorNacionalidad = this.form.get('nacionalidad');
-    return this.valorNacionalidad;
+  get NacionalidadEditar(){
+    this.valorNacionalidadEditar = this.formEditar.get('nacionalidadEditar');
+    return this.valorNacionalidadEditar;
+  }
+
+  // funcion para enviar formulario para editar persona y residencia
+
+  enviar( id:number){
+  
+
+    if(this.formEditar.valid){
+
+     console.log("Form IMAGEN PERFIL URL " + this.formEditar.value.imagen_perfilEditar);
+      this.portfolioService.modificarPersona(this.formEditar.value, id).subscribe(data=>{
+        console.log("modificar Persona" + data);
+        alert(data);
+
+        this.portfolioService.obtenerDatos().subscribe(data => {
+          this.cabecera = data;
+        })
+
+        // LLamas funcion para obtener los datos modificados
+      })
+    }
   }
 
   ngOnInit(): void {

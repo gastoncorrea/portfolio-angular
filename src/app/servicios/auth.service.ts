@@ -20,8 +20,9 @@ export class AuthService {
    }
 
   login(credenciales:any):Observable<any>{
+    // guardo email de usuario registrado para luego usar sus datos desde la api
     this.mailUsuarioLogueado = credenciales.email;
-    console.log("Mail usuario: " + this.mailUsuarioLogueado);
+
       return this.http.post(this.api, credenciales,{responseType:'text'}).pipe(map(data=>{
         sessionStorage.setItem('currentUser', JSON.stringify(data));
         this.currentUserSubject.next(data);
