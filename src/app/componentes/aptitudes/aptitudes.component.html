@@ -128,49 +128,49 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form [formGroup]="form" (ngSubmit)="enviar($event)">
+            <form [formGroup]="formEditar" (ngSubmit)="enviar($event)">
               <!-- form nombre -->
               <div class="mb-3">
-                <label for="nombreSkills" class="label-control"
+                <label for="nombreSkillsEditar" class="label-control"
                   >Nombre de Skills que desea agregar:</label
                 >
                 <input
                   type="text"
                   class="form-control"
-                  id="nombreSkills"
-                  formControlName="nombre"
+                  id="nombreSkillsEditar"
+                  formControlName="nombreEditar"
                   [ngModel]="cabe.nombre"
                 />
               </div>
               <!-- validacion form nombre -->
-              <div *ngIf="Nombre?.errors && Nombre?.touched">
-                <p *ngIf="Nombre?.hasError('required')" class="error">
+              <div *ngIf="NombreEditar?.errors && NombreEditar?.touched">
+                <p *ngIf="NombreEditar?.hasError('required')" class="error">
                   El campo es requerido
                 </p>
-                <p *ngIf="Nombre?.errors?.maxlength" class="error">
+                <p *ngIf="NombreEditar?.errors?.maxlength" class="error">
                   El campo de contener menos de 50 caracteres
                 </p>
               </div>
               <!-- form nivel habilidad -->
               <div class="mb-3">
-                <label for="nivelSkills" class="label-control"
+                <label for="nivelSkillsEditar" class="label-control"
                   >Seleccione su nivel de skills</label
                 >
                 <select
                   class="form-select"
-                  formControlName="nivel"
-                  id="nivelSkills"
+                  formControlName="nivelEditar"
+                  id="nivelSkillsEditar"
                   [ngModel]="cabe.nivel"
                 >
                   <option [value]="25" selected>25%</option>
                   <option [ngValue]="50">50%</option>
-                  <option [ngValue]>75%</option>
+                  <option [ngValue]="75">75%</option>
                   <option [ngValue]="100">100%</option>
                 </select>
               </div>
               <!-- validacion forn nivel -->
-              <div *ngIf="Nivel?.errors && Nivel?.touched">
-                <p *ngIf="Nivel?.hasError('required')" class="error">
+              <div *ngIf="NivelEditar?.errors && NivelEditar?.touched">
+                <p *ngIf="NivelEditar?.hasError('required')" class="error">
                   El campo es obligatorio
                 </p>
               </div>

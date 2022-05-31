@@ -10,15 +10,26 @@ import {DatePipe} from '@angular/common';
   styleUrls: ['./experiencia-y-educacion.component.css']
 })
 export class ExperienciaYEducacionComponent implements OnInit {
+  // contiene los valores de experiencia traidos de la api
   cabecera: any;
 
   form: FormGroup;
+  // Formulario para editar Experiencia
+  formEditar : FormGroup;
+  // variable que contiene los estados de los input para agregar una nueva experiencia
   valorNombre:any;
   valorPuesto:any;
   valorLogo:any;
   valorInicio:any;
   valorFin: any;
   valorTotal:any;
+  // variable que contiene los estados de los input para editar una experiencia
+  valorNombreEditar:any;
+  valorPuestoEditar:any;
+  valorLogoEditar:any;
+  valorInicioEditar:any;
+  valorFinEditar: any;
+  valorTotalEditar:any;
 
   constructor(private formBuilder:FormBuilder,
               private experienciaService:ExperienciaService) {
@@ -29,6 +40,14 @@ export class ExperienciaYEducacionComponent implements OnInit {
       fecha_inicio:['',[Validators.required]],
       fecha_fin:['',[Validators.required]],
       tiempo_trab:['',[Validators.required, Validators.maxLength(50)]]
+    })
+    this.formEditar = formBuilder.group({
+      nombreEditar:['',[Validators.maxLength(50),Validators.required]],
+      puestoEditar:['',[Validators.maxLength(20),Validators.required]],
+      logoEditar:['',[Validators.maxLength(50)]],
+      fecha_inicioEditar:['',[Validators.required]],
+      fecha_finEditar:['',[Validators.required]],
+      tiempo_trabEditar:['',[Validators.required, Validators.maxLength(50)]]
     })
    }
 
@@ -78,5 +97,36 @@ export class ExperienciaYEducacionComponent implements OnInit {
   get Total(){
     this.valorTotal = this.form.get('tiempo_trab');
     return this.valorTotal;
+  }
+
+  // funciones que devuelven estados de los input del form para editar experiencia
+  get NombreEditar(){
+    this.valorNombreEditar = this.form.get('nombreEditar');
+    return this.valorNombreEditar;
+  }
+
+  get PuestoEditar(){
+    this.valorPuestoEditar = this.form.get('puestoEditar');
+    return this.valorPuestoEditar;
+  }
+
+  get LogoEditar(){
+    this.valorLogoEditar = this.form.get('logoEditar');
+    return this.valorLogoEditar;
+  }
+
+  get InicioEditar(){
+    this.valorInicioEditar = this.form.get('fecha_inicioEditar');
+    return this.valorInicioEditar;
+  }
+
+  get FinEditar(){
+    this.valorFinEditar = this.form.get('fecha_finEditar');
+    return this.valorFinEditar;
+  }
+
+  get TotalEditar(){
+    this.valorTotalEditar = this.form.get('tiempo_trabEditar');
+    return this.valorTotalEditar;
   }
 }

@@ -3,7 +3,7 @@
   <div class="d-flex justify-content-between">
     <div>
       <p>
-        {{cabecera}}
+        {{descripcion_mi}}
       </p>
     </div>
     <!-- boton que abre la ventana modal -->
@@ -36,9 +36,9 @@
               ></button>
             </div>
             <div class="modal-body">
-              <div class="input-group">
+              <div class="input-group" *ngIf="descripcion_mi">
                 <span class="input-group-text">Sobre mí:</span>
-                <textarea class="form-control" aria-label="With textarea"></textarea>
+                <textarea class="form-control" aria-label="With textarea" [(ngModel)]="descripcion_mi"></textarea>
               </div>
             </div>
             <div class="modal-footer">
@@ -49,7 +49,7 @@
               >
                 Close
               </button>
-              <button type="button" class="btn btn-primary">
+              <button type="button" (click)="enviar(descripcion_mi)" class="btn btn-primary">
                 Save changes
               </button>
             </div>

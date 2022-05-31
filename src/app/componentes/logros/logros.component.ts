@@ -10,11 +10,16 @@ import {ProyectoService} from '../../servicios/proyecto.service';
 })
 export class LogrosComponent implements OnInit {
   cabecera:any;
-
+  // form que conctienen los input para editar y agregar proyectos
   form: FormGroup;
+  formEditar:FormGroup;
+  // Variables que contienen estados de inputs de forms
   valorNombre:any;
   valorDescripcion:any;
   valorUrl:any;
+  valorNombreEditar:any;
+  valorDescripcionEditar:any;
+  valorUrlEditar:any;
 
   constructor(private formBuilder: FormBuilder,
               private proyectoService:ProyectoService) {
@@ -22,6 +27,11 @@ export class LogrosComponent implements OnInit {
       nombre:['',[Validators.required, Validators.maxLength(30)]],
       descripcion:['',[Validators.required, Validators.maxLength(200)]],
       url:['',[Validators.required, Validators.maxLength(50)]]
+    })
+    this.formEditar = this.formBuilder.group({
+      nombreEditar:['',[Validators.required, Validators.maxLength(30)]],
+      descripcionEditar:['',[Validators.required, Validators.maxLength(200)]],
+      urlEditar:['',[Validators.required, Validators.maxLength(50)]]
     })
    }
 
@@ -45,6 +55,20 @@ export class LogrosComponent implements OnInit {
   get Url(){
     this.valorUrl = this.form.get('url');
     return this.valorUrl;
+  }
+  get NombreEditar(){
+    this.valorNombreEditar = this.form.get('nombreEditar');
+    return this.valorNombreEditar;
+  }
+
+  get DescripcionEditar(){
+    this.valorDescripcionEditar = this.form.get('descripcionEditar');
+    return this.valorDescripcionEditar;
+  }
+
+  get UrlEditar(){
+    this.valorUrlEditar = this.form.get('urlEditar');
+    return this.valorUrlEditar;
   }
 
   enviar(e:Event){

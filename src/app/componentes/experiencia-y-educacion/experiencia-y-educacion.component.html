@@ -224,127 +224,127 @@
               ></button>
             </div>
             <div class="modal-body">
-              <form [formGroup]="form" (ngSubmit)="enviar($event)">
+              <form [formGroup]="formEditar" (ngSubmit)="enviar($event)">
                 <!-- form nombre empresa -->
                 <div class="mb-3">
-                  <label class="form-label" for="nombreEmpresa"
+                  <label class="form-label" for="nombreEmpresaEditar"
                     >Nombre empresa:</label
                   >
                   <input
                     type="text"
                     class="form-control"
-                    id="nombreEmpresa"
-                    formControlName="nombre"
+                    id="nombreEmpresaEditar"
+                    formControlName="nombreEditar"
                     [ngModel]="cabe.nombre"
                   />
                 </div>
                 <!-- validacion nombre empresa -->
-                <div *ngIf="Nombre?.errors && Nombre?.touched">
-                  <p *ngIf="Nombre?.hasError('required')" class="error">
+                <div *ngIf="NombreEditar?.errors && NombreEditar?.touched">
+                  <p *ngIf="NombreEditar?.hasError('required')" class="error">
                     El nombre de la empresa es requerido
                   </p>
-                  <p *ngIf="Nombre?.errors?.maxlength" class="error">
+                  <p *ngIf="NombreEditar?.errors?.maxlength" class="error">
                     Debe contener menos de 50 caracteres
                   </p>
                 </div>
                 <!-- form Puesto -->
                 <div class="mb-3">
-                  <label class="form-label" for="puestoEmpresa"
+                  <label class="form-label" for="puestoEmpresaEditar"
                     >Puesto que ocupó:</label
                   >
                   <input
                     type="text"
                     class="form-control"
-                    id="puestoEmpresa"
-                    formControlName="puesto"
+                    id="puestoEmpresaEditar"
+                    formControlName="puestoEditar"
                     [ngModel]="cabe.puesto"
                   />
                 </div>
                 <!-- Validacion Puesto -->
-                <div *ngIf="Puesto?.errors && Puesto?.touched">
-                  <p *ngIf="Puesto?.hasError('required')" class="error">
+                <div *ngIf="PuestoEditar?.errors && PuestoEditar?.touched">
+                  <p *ngIf="PuestoEditar?.hasError('required')" class="error">
                     El campo es requerido
                   </p>
-                  <p *ngIf="Puesto?.errors?.maxlength" class="error">
+                  <p *ngIf="PuestoEditar?.errors?.maxlength" class="error">
                     Debe contener menos de 20 caracteres
                   </p>
                 </div>
                 <!-- form Logo -->
                 <div class="mb-3">
-                  <label class="form-label" for="logoEmpresa"
+                  <label class="form-label" for="logoEmpresaEditar"
                     >URL logo de la empresa:</label
                   >
                   <input
                     type="text"
                     class="form-control"
-                    id="logoEmpresa"
-                    formControlName="logo"
+                    id="logoEmpresaEditar"
+                    formControlName="logoEditar"
                     [ngModel]="cabe.logo"
                   />
                 </div>
                 <!-- validacion Logo -->
-                <div *ngIf="Logo?.errors && Logo?.touched">
-                  <p *ngIf="Logo?.errors?.maxlength" class="error">
+                <div *ngIf="LogoEditar?.errors && LogoEditar?.touched">
+                  <p *ngIf="LogoEditar?.errors?.maxlength" class="error">
                     Debe contener menos de 50 caracteres
                   </p>
                 </div>
                 <!-- form Fecha de inicio -->
                 <div class="mb-3">
-                  <label class="form-label" for="inicioEmpresa"
+                  <label class="form-label" for="inicioEmpresaEditar"
                     >Fecha de inicio:</label
                   >
                   <input
                     type="date"
                     class="form-control"
-                    id="inicioEmpresa"
-                    formControlName="fecha_inicio"
+                    id="inicioEmpresaEditar"
+                    formControlName="fecha_inicioEditar"
                     [ngModel]="cabe.fecha_inicio | date"
                   />
                 </div>
                 <!-- Validacion Inicio -->
-                <div *ngIf="Inicio?.errors && Inicio?.touched">
-                  <p *ngIf="Inicio?.status === 'INVALID'" class="error">
+                <div *ngIf="InicioEditar?.errors && InicioEditar?.touched">
+                  <p *ngIf="InicioEditar?.status === 'INVALID'" class="error">
                     El campo es requerido
                   </p>
                 </div>
                 <!-- form fecha de finalizacion -->
                 <div class="mb-3">
-                  <label class="form-label" for="finEmpresa"
+                  <label class="form-label" for="finEmpresaEditar"
                     >Fecha de finalizacion:</label
                   >
                   <input
                     type="date"
                     class="form-control"
-                    id="finEmpresa"
-                    formControlName="fecha_fin"
+                    id="finEmpresaEditar"
+                    formControlName="fecha_finEditar"
                     [ngModel]="cabe.fecha_fin"
                   />
                 </div>
                 <!-- Validacion form fecha de finalizacion -->
-                <div *ngIf="Fin?.errors && Fin?.touched">
-                  <p *ngIf="Fin?.status === 'INVALID'" class="error">
+                <div *ngIf="FinEditar?.errors && FinEditar?.touched">
+                  <p *ngIf="FinEditar?.status === 'INVALID'" class="error">
                     El campo es requerido
                   </p>
                 </div>
                 <!-- form tiempo de trabajo -->
                 <div class="mb-3">
-                  <label class="form-label" for="tiempoEmpresa"
+                  <label class="form-label" for="tiempoEmpresaEditar"
                     >Tiempo trabajado:</label
                   >
                   <input
                     type="text"
                     class="form-control"
-                    id="tiempoEmpresa"
-                    formControlName="tiempo_trab"
+                    id="tiempoEmpresaEditar"
+                    formControlName="tiempo_trabEditar"
                     [ngModel]="cabe.tiempo_trab"
                   />
                 </div>
                 <!-- validacion form tiempo_trab -->
-                <div *ngIf="Total?.errors && Total?.touched">
-                  <p *ngIf="Total?.hasError('required')" class="error">
+                <div *ngIf="TotalEditar?.errors && TotalEditar?.touched">
+                  <p *ngIf="TotalEditar?.hasError('required')" class="error">
                     El campo es obligatorio
                   </p>
-                  <p *ngIf="Total?.errors?.maxlength" class="error">
+                  <p *ngIf="TotalEditar?.errors?.maxlength" class="error">
                     El campo debe tener menos de 50 caracteres
                   </p>
                 </div>
