@@ -8,8 +8,10 @@ import {AuthService} from './auth.service';
   providedIn: 'root'
 })
 export class EducacionService {
+
   url:String = "http://localhost:8080/";
   email = this.auth.UsuarioLogueado;
+
   constructor(
     private http:HttpClient,
     private auth:AuthService
@@ -18,5 +20,9 @@ export class EducacionService {
    obtenerDatos() : Observable<any> {
      console.log("*****Educacion"+this.email);
    return this.http.get(this.url + "curriculum/persona/"+this.email);
+   }
+
+   guardarNuevaEducacion(educacion:any) : Observable<any>{
+     return this.http.post(this.url + "educacion/guardar", educacion,{responseType:'text'});
    }
 }

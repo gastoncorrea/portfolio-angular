@@ -67,7 +67,7 @@
               <!-- validacion form logo-->
               <div *ngIf="Logo?.errors && Logo?.touched">
                 <p *ngIf="Logo?.errors?.maxlength" class="error">
-                  El numero de caracteres debe ser menor a 50
+                  El numero de caracteres debe ser menor a 200
                 </p>
               </div>
               <!-- form fecha inicio -->
@@ -128,6 +128,10 @@
                 <p *ngIf="Titulo?.errors?.maxlength" class="error">
                   El campo debe contener menos de 50 caracteres
                 </p>
+              </div >
+              <!-- valor oculto para completar el objeto y poder enviarlo al servidor -->
+              <div formGroupName="persona" *ngIf="persona">
+                <input type="hidden" id="idPersona" formControlName="idpersona" [ngModel]="persona.idPersona">
               </div>
               <div class="modal-footer">
                 <button
@@ -138,7 +142,7 @@
                   Cancelar
                 </button>
                 <button type="submit" class="btn btn-primary">
-                  Guardar Educación
+                  Enviar
                 </button>
               </div>
             </form>
@@ -147,7 +151,7 @@
       </div>
     </div>
   </div>
-  <div class="d-flex container justify-content-between mt-3" *ngFor="let cabe of cabecera">
+  <div class="d-flex container justify-content-between mt-3" *ngFor="let cabe of listaEducacion">
     <div class="d-flex">
       <img
         *ngIf="cabe.logo == ''"
@@ -212,7 +216,6 @@
                     id="nombreEducacionEditar"
                     class="form-control"
                     formControlName="nombre_institucionEditar"
-                    [ngModel]="cabe.nombre_institucion"
                   />
                 </div>
                 <!-- validaciones form nombre -->
@@ -314,7 +317,7 @@
                     Cancelar
                   </button>
                   <button type="submit" class="btn btn-primary">
-                    Guardar Educación
+                    Modificar
                   </button>
                 </div>
               </form>
