@@ -32,7 +32,7 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form [formGroup]="form" (ngSubmit)="enviar($event)">
+            <form [formGroup]="form" (ngSubmit)="enviarNuevaExperiencia($event)" *ngIf="cabecera">
               <!-- form nombre empresa -->
               <div class="mb-3">
                 <label class="form-label" for="nombreEmpresa"
@@ -81,7 +81,7 @@
                   >URL logo de la empresa:</label
                 >
                 <input
-                  type="text"
+                  type="url"
                   class="form-control"
                   id="logoEmpresa"
                   formControlName="logo"
@@ -150,6 +150,9 @@
                   El campo debe tener menos de 50 caracteres
                 </p>
               </div>
+              <div formGroupName="persona">
+                <input type="hidden" id="idpersona" formControlName="idpersona" [(ngModel)]="cabecera.idPersona">
+              </div>
               <div class="modal-footer">
                 <button
                   type="button"
@@ -166,7 +169,7 @@
       </div>
     </div>
   </div>
-  <div class="d-flex container justify-content-between mt-3" *ngFor="let cabe of cabecera">
+  <div class="d-flex container justify-content-between my-5" *ngFor="let cabe of experiencia">
     <div class="d-flex">
       <img
         *ngIf="cabe.logo == ''"
@@ -186,9 +189,6 @@
         <p class="leads">Duracion: {{cabe.tiempo_trab}}</p>
         <p>Desde: {{cabe.fecha_inicio | date}}</p>
         <p>Hasta: {{cabe.fecha_fin | date}}</p>
-        <ul>
-          <li><em>Arquitectura MERN</em></li>
-        </ul>
       </div>
     </div>
     <div class="d-flex align-self-start">
@@ -200,22 +200,24 @@
         class="btn"
         type="button"
         data-bs-toggle="modal"
-        data-bs-target="#modificarExperiencia"
+        data-bs-target="#experienciaid"
+        (click)="traerDatos(cabe)"
       >
         <i class="fas fa-pen"></i>
       </button>
       <!-- modal para modificar la experiencia laboral -->
       <div
+      
         class="modal fade"
-        id="modificarExperiencia"
+        id="experienciaid"
         tabindex="-1"
-        aria-labelledby="Experiencia"
+        aria-labelledby="experiencia"
         aria-hidden="true"
       >
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="Experiencia">Modificar experiencia laboral</h5>
+              <h5 class="modal-title" id="experiencia">Modificar experiencia laboral</h5>
               <button
                 type="button"
                 class="btn-close"
@@ -224,7 +226,8 @@
               ></button>
             </div>
             <div class="modal-body">
-              <form [formGroup]="formEditar" (ngSubmit)="enviar($event)">
+              <form [formGroup]="formEditar" (ngSubmit)="enviarFormEditar($event)">
+                <input type="hidden" formControlName="idExperienciaEditar" id="experiencia id" >
                 <!-- form nombre empresa -->
                 <div class="mb-3">
                   <label class="form-label" for="nombreEmpresaEditar"
@@ -235,7 +238,7 @@
                     class="form-control"
                     id="nombreEmpresaEditar"
                     formControlName="nombreEditar"
-                    [ngModel]="cabe.nombre"
+                    
                   />
                 </div>
                 <!-- validacion nombre empresa -->
@@ -257,7 +260,6 @@
                     class="form-control"
                     id="puestoEmpresaEditar"
                     formControlName="puestoEditar"
-                    [ngModel]="cabe.puesto"
                   />
                 </div>
                 <!-- Validacion Puesto -->
@@ -275,11 +277,11 @@
                     >URL logo de la empresa:</label
                   >
                   <input
-                    type="text"
+                    type="url"
                     class="form-control"
                     id="logoEmpresaEditar"
                     formControlName="logoEditar"
-                    [ngModel]="cabe.logo"
+
                   />
                 </div>
                 <!-- validacion Logo -->
@@ -298,7 +300,6 @@
                     class="form-control"
                     id="inicioEmpresaEditar"
                     formControlName="fecha_inicioEditar"
-                    [ngModel]="cabe.fecha_inicio | date"
                   />
                 </div>
                 <!-- Validacion Inicio -->
@@ -317,7 +318,6 @@
                     class="form-control"
                     id="finEmpresaEditar"
                     formControlName="fecha_finEditar"
-                    [ngModel]="cabe.fecha_fin"
                   />
                 </div>
                 <!-- Validacion form fecha de finalizacion -->
@@ -336,7 +336,6 @@
                     class="form-control"
                     id="tiempoEmpresaEditar"
                     formControlName="tiempo_trabEditar"
-                    [ngModel]="cabe.tiempo_trab"
                   />
                 </div>
                 <!-- validacion form tiempo_trab -->

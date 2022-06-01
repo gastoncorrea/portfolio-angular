@@ -110,11 +110,11 @@ export class CabeceraComponent implements OnInit {
         console.log("modificar Persona" + data);
         alert(data);
 
+        // LLamas funcion para obtener los datos modificados
         this.portfolioService.obtenerDatos().subscribe(data => {
           this.cabecera = data;
         })
 
-        // LLamas funcion para obtener los datos modificados
       })
     }
   }

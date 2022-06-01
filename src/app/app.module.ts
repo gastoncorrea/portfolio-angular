@@ -19,6 +19,7 @@ import { CurriculumComponent } from './componentes/curriculum/curriculum.compone
 import { LoginComponent } from './componentes/login/login.component';
 import { Error404Component } from './componentes/error404/error404.component';
 import { EducacionComponent } from './componentes/educacion/educacion.component';
+import { EditarExperienciaComponent } from './componentes/editar-experiencia/editar-experiencia.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { EducacionComponent } from './componentes/educacion/educacion.component'
     CurriculumComponent,
     LoginComponent,
     Error404Component,
-    EducacionComponent
+    EducacionComponent,
+    EditarExperienciaComponent
   ],
   imports: [
     BrowserModule,
