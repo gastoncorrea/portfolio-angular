@@ -92,7 +92,7 @@
       </div>
     </div>
   </div>
-  <div class="container my-4" *ngFor="let cabe of cabecera">
+  <div class="container my-4" *ngFor="let cabe of aptitudes">
     <div class="d-flex justify-content-between">
       <p class="text-center leads"><em>{{cabe.nombre}}</em></p>
       <div class="d-flex align-self-start">
@@ -105,6 +105,7 @@
           type="button"
           data-bs-toggle="modal"
           data-bs-target="#modificarAptitudes"
+          (click)="cargarDatosModal(cabe)"
         >
           <i class="fas fa-pen"></i>
         </button>
@@ -139,7 +140,6 @@
                   class="form-control"
                   id="nombreSkillsEditar"
                   formControlName="nombreEditar"
-                  [ngModel]="cabe.nombre"
                 />
               </div>
               <!-- validacion form nombre -->
@@ -160,9 +160,9 @@
                   class="form-select"
                   formControlName="nivelEditar"
                   id="nivelSkillsEditar"
-                  [ngModel]="cabe.nivel"
-                >
-                  <option [value]="25" selected>25%</option>
+                > 
+                  <option [ngValue]="" disabled>Elija cual cree que es su nivel en está habilidad</option>
+                  <option [ngValue]="25">25%</option>
                   <option [ngValue]="50">50%</option>
                   <option [ngValue]="75">75%</option>
                   <option [ngValue]="100">100%</option>
