@@ -10,7 +10,7 @@ import { EducacionService } from '../../servicios/educacion.service';
 })
 export class EducacionComponent implements OnInit {
   persona: any;
-  listaEducacion:any;
+  listaEducacion: any;
   // Formularios para agregar y editar educacion
   form: FormGroup;
   formEditar: FormGroup;
@@ -29,7 +29,7 @@ export class EducacionComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private educacionService: EducacionService
+    private educacionService: EducacionService,
   ) {
     this.form = formBuilder.group({
       nombre_institucion: ['', [Validators.required, Validators.maxLength(50)]],
@@ -38,16 +38,14 @@ export class EducacionComponent implements OnInit {
       fecha_fin: ['', [Validators.required]],
       titulo: ['', [Validators.required, Validators.maxLength(50)]],
       persona: this.formBuilder.group({
-        idpersona:['',[]]
-      })
+        idpersona: ['', []],
+      }),
     });
 
     this.formEditar = formBuilder.group({
-      nombre_institucionEditar: [
-        '',
-        [Validators.required, Validators.maxLength(50)],
-      ],
-      logoEditar: ['', [Validators.maxLength(50)]],
+      idEducacionEditar: ['', []],
+      nombre_institucionEditar: ['',[Validators.required, Validators.maxLength(50)]],
+      logoEditar: ['', [Validators.maxLength(200)]],
       fecha_inicioEditar: ['', [Validators.required]],
       fecha_finEditar: ['', [Validators.required]],
       tituloEditar: ['', [Validators.required, Validators.maxLength(50)]],
@@ -78,33 +76,35 @@ export class EducacionComponent implements OnInit {
     return this.valorTitulo;
   }
   get NombreEditar() {
-    this.valorNombreEditar = this.form.get('nombre_institucionEditar');
+    this.valorNombreEditar = this.formEditar.get('nombre_institucionEditar');
     return this.valorNombreEditar;
   }
 
   get LogoEditar() {
-    this.valorLogoEditar = this.form.get('logoEditar');
+    this.valorLogoEditar = this.formEditar.get('logoEditar');
     return this.valorLogoEditar;
   }
 
   get InicioEditar() {
-    this.valorInicioEditar = this.form.get('fecha_inicioEditar');
+    this.valorInicioEditar = this.formEditar.get('fecha_inicioEditar');
     return this.valorInicioEditar;
   }
 
   get FinEditar() {
-    this.valorFinEditar = this.form.get('fecha_finEditar');
+    this.valorFinEditar = this.formEditar.get('fecha_finEditar');
     return this.valorFinEditar;
   }
 
   get TituloEditar() {
-    this.valorTituloEditar = this.form.get('tituloEditar');
+    this.valorTituloEditar = this.formEditar.get('tituloEditar');
     return this.valorTituloEditar;
   }
-  
+
   ngOnInit(): void {
     this.educacionService.obtenerDatos().subscribe((data) => {
       console.log('Educacion data' + data);
+      console.log("DATOS QUE LLEGAN DE SERVIDOR EDUCACION ");
+      console.log(data.educacion);
       this.persona = data;
       this.listaEducacion = data.educacion;
     });
@@ -115,12 +115,45 @@ export class EducacionComponent implements OnInit {
     if (this.form.valid) {
       console.log('form educacion valido');
       console.log(this.form.value);
-      this.educacionService.guardarNuevaEducacion(this.form.value).subscribe( data =>{
-        alert(data);
-      })
+      this.educacionService
+        .guardarNuevaEducacion(this.form.value)
+        .subscribe((data) => {
+          alert(data);
+        });
     } else {
       this.form.markAllAsTouched();
     }
   }
 
+  enviarModificar(e:Event){
+    e.preventDefault;
+    console.log("ENVIANDO FORM PARA EDITAR CON ESTOS DATOS: ")
+    console.log(this.formEditar.value);
+    if(this.formEditar.valid){
+      this.educacionService.modificarEducacion(this.formEditar.value).subscribe(data => {
+        console.log("VALOR MODIFICADO DE EDUCACION: ");
+        console.log(data);
+      });
+    }else{
+      this.formEditar.markAllAsTouched();
+    }
+
+  }
+
+  cargarDatosModal(cabe:any){
+
+    this.formEditar.setValue({
+      idEducacionEditar:cabe.ideducacion,
+      nombre_institucionEditar:cabe.nombre_institucion,
+      logoEditar:cabe.logo,
+      fecha_inicioEditar:cabe.fecha_inicio,
+      fecha_finEditar:cabe.fecha_fin,
+      tituloEditar:cabe.titulo
+    })
+    console.log("VALOR DEL FORMULARIO CUANDO SE CARGAN AL PRESIONAR LAPIZ: ");
+    console.log(this.formEditar.value);
+    if (this.formEditar.invalid){
+      this.formEditar.markAllAsTouched();
+    }
+  }
 }

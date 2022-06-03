@@ -25,4 +25,16 @@ export class EducacionService {
    guardarNuevaEducacion(educacion:any) : Observable<any>{
      return this.http.post(this.url + "educacion/guardar", educacion,{responseType:'text'});
    }
+
+   modificarEducacion(educacion:any) : Observable<any>{
+    educacion.fecha_inicioEditar = new Date(educacion.fecha_inicioEditar);
+    educacion.fecha_finEditar = new Date();
+     console.log("EDUCACION SERVICE 1:");
+     console.log(educacion.fecha_inicioEditar);
+     console.log("EDUCACION SERVICE 2:");
+     console.log(educacion.fecha_finEditar);
+     return this.http.put(this.url + "educacion/modificar/" + 
+     `${educacion.idEducacionEditar}?nombre_institucion=${educacion.nombre_institucionEditar}&logo=${educacion.logoEditar}&fecha_inicio=${educacion.fecha_inicioEditar}&fecha_fin=${educacion.fecha_finEditar}&titulo=${educacion.tituloEditar}`
+     ,{});
+   }
 }

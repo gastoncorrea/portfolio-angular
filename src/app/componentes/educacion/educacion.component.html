@@ -111,7 +111,7 @@
               <!-- form titulo -->
               <div class="mb-3">
                 <label class="form-label" for="tituloEducacion"
-                  >Nombre de la Institución</label
+                  >Titulo de Egreso:</label
                 >
                 <input
                   type="text"
@@ -182,6 +182,7 @@
         type="button"
         data-bs-toggle="modal"
         data-bs-target="#modificarEducacion"
+        (click)="cargarDatosModal(cabe)"
       >
         <i class="fas fa-pen"></i>
       </button>
@@ -205,7 +206,9 @@
               ></button>
             </div>
             <div class="modal-body">
-              <form [formGroup]="formEditar" (ngSubmit)="enviar($event)">
+              <form [formGroup]="formEditar" (ngSubmit)="enviarModificar($event)">
+                <!-- form id Experiencia  -->
+                <input type="hidden" formControlName="idEducacionEditar">
                 <!-- form nombre -->
                 <div class="mb-3">
                   <label class="form-label" for="nombreEducacionEditar"
@@ -237,13 +240,12 @@
                     id="logoEducacionEditar"
                     class="form-control"
                     formControlName="logoEditar"
-                    [ngModel]="cabe.logo"
                   />
                 </div>
                 <!-- validacion form logo-->
                 <div *ngIf="LogoEditar?.errors && LogoEditar?.touched">
                   <p *ngIf="LogoEditar?.errors?.maxlength" class="error">
-                    El numero de caracteres debe ser menor a 50
+                    El numero de caracteres debe ser menor a 200
                   </p>
                 </div>
                 <!-- form fecha inicio -->
@@ -256,7 +258,6 @@
                     id="inicioEducacionEditar"
                     class="form-control"
                     formControlName="fecha_inicioEditar"
-                    [ngModel]="cabe.fecha_inicio | date"
                   />
                 </div>
                 <!-- validacion form inicio -->
@@ -276,7 +277,6 @@
                     id="finEducacionEditar"
                     class="form-control"
                     formControlName="fecha_finEditar"
-                    [ngModel]="cabe.fecha_fin | date"
                   />
                 </div>
                 <!-- validacion form fin -->
@@ -296,7 +296,6 @@
                     id="tituloEducacionEditar"
                     class="form-control"
                     formControlName="tituloEditar"
-                    [ngModel]="cabe.titulo"
                   />
                 </div>
                 <!--Validacion form titulo  -->

@@ -8,8 +8,13 @@ import {AuthService} from './auth.service';
   providedIn: 'root'
 })
 export class ExperienciaService {
+  // Url para traer datos del servidor
   url:String = "http://localhost:8080/";
+  //email del usuario logueado para hacer busqueda en base de datos (PODRIA SER MEJOR CON EL ID DE USUARIO? COMO LA TRAIGO?
+  //Resp => QUE USUARIO CONTENGA EL ID DE PERSONA EN LA BASE DE DATOS)
   email = this.auth.UsuarioLogueado;
+  //Modelo de datos Experiencia 
+  
   constructor(
     private http:HttpClient,
     private auth:AuthService
@@ -32,6 +37,8 @@ export class ExperienciaService {
   }
 
     agregarExperiencia(experiencia:any) : Observable<any> {
+      console.log("DATOS QUE SALEN DE EXPERIENCIA:")
+      console.log(experiencia);
       return this.http.post(this.url + "experiencia/guardar",experiencia,{responseType:"text"});
     }
 
