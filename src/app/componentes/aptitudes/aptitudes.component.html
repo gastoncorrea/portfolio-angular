@@ -62,9 +62,10 @@
                   formControlName="nivel"
                   id="nivelSkills"
                 >
-                  <option [ngValue]="25" selected>25%</option>
+                  <option value="" disabled  selected="selected">Seleccione el valor que cree que tiene en esta habilidad</option>
+                  <option [ngValue]="25" >25%</option>
                   <option [ngValue]="50">50%</option>
-                  <option [ngValue]>75%</option>
+                  <option [ngValue]="75">75%</option>
                   <option [ngValue]="100">100%</option>
                 </select>
               </div>
@@ -73,6 +74,10 @@
                 <p *ngIf="Nivel?.hasError('required')" class="error">
                   El campo es obligatorio
                 </p>
+              </div>
+              <!-- input que contiene id persona para poder guardar en base de datos -->
+              <div formGroupName="persona" *ngIf="persona">
+                <input type="hidden" formControlName="idpersona" [ngModel]="persona.idPersona">
               </div>
               <div class="modal-footer">
                 <button
@@ -196,7 +201,8 @@
     <div>
       <div class="progress mb-3">
         <div
-          class="progress-bar w-75"
+          class="progress-bar"
+          [ngClass]="{nivel25: cabe.nivel == 25 , nivel50: cabe.nivel == 50 , nivel75: cabe.nivel == 75, nivel100: cabe.nivel == 100}"
           role="progressbar"
           aria-valuemax="100"
           aria-valuemin="0"

@@ -27,6 +27,9 @@ export class AptitudesComponent implements OnInit {
     this.form = formBuilder.group({
       nombre: ['', [Validators.required, Validators.maxLength(50)]],
       nivel: ['', [Validators.required]],
+      persona: formBuilder.group({
+        idpersona:['',[]]
+      })
     });
     this.formEditar = formBuilder.group({
       nombreEditar: ['', [Validators.required, Validators.maxLength(50)]],
@@ -65,6 +68,9 @@ export class AptitudesComponent implements OnInit {
 
     if (this.form.valid) {
       console.log('form skill valido');
+      this.aptitudService.enviarDatos(this.form.value).subscribe(resp=>{
+        alert(resp);
+      })
     } else {
     }
   }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
+import { AuthService } from 'src/app/servicios/auth.service';
 import { PortfolioService } from '../../servicios/portfolio.service';
 
 @Component({
@@ -11,6 +12,7 @@ import { PortfolioService } from '../../servicios/portfolio.service';
 })
 export class CabeceraComponent implements OnInit {
   cabecera: any;
+  emailUsuario = this.credenciales.mailUsuarioLogueado;
   // formulario para Editar Persona y residencia
   formEditar:FormGroup;
   // formResidencia: FormGroup;
@@ -31,7 +33,9 @@ export class CabeceraComponent implements OnInit {
   
 
 
-  constructor(private portfolioService: PortfolioService,
+  constructor(
+              private credenciales: AuthService,
+              private portfolioService: PortfolioService,
               private formBuilder: FormBuilder) {
 
                 this.formEditar = this.formBuilder.group({
@@ -101,26 +105,22 @@ export class CabeceraComponent implements OnInit {
   // funcion para enviar formulario para editar persona y residencia
 
   enviar( id:number){
-  
-
     if(this.formEditar.valid){
 
-     console.log("Form IMAGEN PERFIL URL " + this.formEditar.value.imagen_perfilEditar);
       this.portfolioService.modificarPersona(this.formEditar.value, id).subscribe(data=>{
         console.log("modificar Persona" + data);
         alert(data);
-
         // LLamas funcion para obtener los datos modificados
-        this.portfolioService.obtenerDatos().subscribe(data => {
+        this.portfolioService.obtenerDatos(this.emailUsuario).subscribe(data => {
           this.cabecera = data;
         })
-
       })
     }
   }
 
   ngOnInit(): void {
-     this.portfolioService.obtenerDatos().subscribe(data => {
+
+     this.portfolioService.obtenerDatos(this.emailUsuario).subscribe(data => {
        console.log(data);
        this.cabecera = data;
      });

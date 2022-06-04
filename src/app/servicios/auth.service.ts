@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import {Observable, BehaviorSubject} from 'rxjs';
 import {map} from 'rxjs/operators';
@@ -8,11 +8,12 @@ import {Router} from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
+  @Output() disparadorCredenciales: EventEmitter<any> = new EventEmitter();
 
   //api = "curriculum/persona";
-  api = "http://localhost:8080/autenticacion/persona";
+  api = "http://localhost:8080/";
   currentUserSubject : BehaviorSubject<any>;
-  mailUsuarioLogueado:String = "";
+  mailUsuarioLogueado = "";
 
   constructor(private http: HttpClient, private router: Router) {
     console.log("El servicio de autenticacion esta corriendo");
@@ -23,7 +24,7 @@ export class AuthService {
     // guardo email de usuario registrado para luego usar sus datos desde la api
     this.mailUsuarioLogueado = credenciales.email;
 
-      return this.http.post(this.api, credenciales,{responseType:'text'}).pipe(map(data=>{
+      return this.http.post(this.api +"autenticacion/persona", credenciales,{responseType:'text'}).pipe(map(data=>{
         sessionStorage.setItem('currentUser', JSON.stringify(data));
         this.currentUserSubject.next(data);
         console.log("DATA:" + data);

@@ -16,4 +16,8 @@ export class AptitudService {
     console.log('*****Apttud' + this.email);
     return this.http.get(this.url + 'curriculum/persona/' + this.email);
   }
+
+  enviarDatos(aptitud:any):Observable<any>{
+    return this.http.post(this.url + 'aptitud/agregar',aptitud,{responseType:'text'});
+  }
 }

@@ -13,10 +13,9 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   //Variable de tipo FormGroup
   form: FormGroup;
+  
   //Variable que contiene el valor del input password
   contenedorDatosPassword: any;
-  //Variable que contiene el valor de email
-  valorEmail: String = '';
 
   //Cargar datos iniciales
   constructor(
@@ -39,8 +38,6 @@ export class LoginComponent implements OnInit {
         console.log('DATA:' + JSON.stringify(data));
       });
       this.router.navigate(['/inicio']);
-
-      // this.valorEmail = this.form.value.email;
     } else {
       this.form.markAllAsTouched();
     }
