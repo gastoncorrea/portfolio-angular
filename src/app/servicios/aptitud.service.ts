@@ -20,4 +20,8 @@ export class AptitudService {
   enviarDatos(aptitud:any):Observable<any>{
     return this.http.post(this.url + 'aptitud/agregar',aptitud,{responseType:'text'});
   }
+
+  modificarDatos(aptitud: any):Observable<any>{
+    return this.http.put(this.url + "aptitud/modificar/"+aptitud.idAptitudEditar + `?nombre=${aptitud.nombreEditar}&nivel=${(aptitud.nivelEditar)}`, {});
+  }
 }

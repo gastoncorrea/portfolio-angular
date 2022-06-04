@@ -32,6 +32,7 @@ export class AptitudesComponent implements OnInit {
       })
     });
     this.formEditar = formBuilder.group({
+      idAptitudEditar:['',[]],
       nombreEditar: ['', [Validators.required, Validators.maxLength(50)]],
       nivelEditar: ['', [Validators.required]],
     });
@@ -78,10 +79,23 @@ export class AptitudesComponent implements OnInit {
   cargarDatosModal(skill:any){
 
     this.formEditar.setValue({
+      idAptitudEditar:skill.id,
       nombreEditar:skill.nombre,
       nivelEditar:skill.nivel
     })
     console.log("Valor de formEditar APTITUDES:")
     console.log(this.formEditar.value)
+  }
+
+  enviarFormEditar(e:Event){
+    e.preventDefault();
+
+    if(this.formEditar.valid){
+      this.aptitudService.modificarDatos(this.formEditar.value).subscribe(resp=>{
+        alert("Usuario Modificado: ");
+      })
+    }else{
+      this.formEditar.markAllAsTouched();
+    }
   }
 }
