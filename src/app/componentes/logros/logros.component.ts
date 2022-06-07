@@ -33,22 +33,16 @@ export class LogrosComponent implements OnInit {
       })
     })
     this.formEditar = this.formBuilder.group({
+      idProyectoEditar:['',[]],
       nombreEditar:['',[Validators.required, Validators.maxLength(30)]],
       descripcionEditar:['',[Validators.required, Validators.maxLength(200)]],
       urlEditar:['',[Validators.required, Validators.maxLength(50)]]
     })
    }
 
-  ngOnInit(): void {
-    this.proyectoService.obtenerDatos().subscribe(data => {
-      console.log("Educacion data" + data);
-      this.persona = data;
-      this.proyectos = data.proyecto;
-    });
-  }
-
-  get Nombre(){
-    this.valorNombre = this.form.get('nombre');
+   
+   get Nombre(){
+     this.valorNombre = this.form.get('nombre');
     return this.valorNombre;
   }
 
@@ -76,6 +70,14 @@ export class LogrosComponent implements OnInit {
     return this.valorUrlEditar;
   }
 
+  ngOnInit(): void {
+    this.proyectoService.obtenerDatos().subscribe(data => {
+      console.log("Educacion data" + data);
+      this.persona = data;
+      this.proyectos = data.proyecto;
+    });
+  }
+
   enviar(e:Event){
     e.preventDefault();
     console.log(this.form.value);
@@ -86,6 +88,28 @@ export class LogrosComponent implements OnInit {
     }else{
       this.form.markAllAsTouched();
     }
+  }
+
+  editarProyecto(e:Event){
+    e.preventDefault();
+    console.log("VALOR DEL FORM EDITAR PROYECTO: ");
+    console.log(this.formEditar.value);
+    if(this.formEditar.valid){
+      this.proyectoService.modificarDatos(this.formEditar.value).subscribe(data=>{
+        alert(JSON.stringify(data));
+      })
+    }
+    
+  }
+
+  cargarModal(proyecto: any){
+
+    this.formEditar.setValue({
+      idProyectoEditar: proyecto.idproyecto,
+      nombreEditar: proyecto.nombre,
+      descripcionEditar: proyecto.descripcion,
+      urlEditar: proyecto.url
+    });
   }
 
 }

@@ -138,6 +138,7 @@
           type="button"
           data-bs-toggle="modal"
           data-bs-target="#modificarProyecto"
+          (click)="cargarModal(cabe)"
         >
           <i class="fas fa-pen"></i>
         </button>
@@ -161,7 +162,7 @@
                 ></button>
               </div>
               <div class="modal-body">
-                <form [formGroup]="formEditar" (ngSubmit)="enviar($event)">
+                <form [formGroup]="formEditar" (ngSubmit)="editarProyecto($event)">
                   <!-- form nombre-->
                   <div class="mb-3">
                     <label for="nombreProyectoEditar" class="form-label"
@@ -172,7 +173,6 @@
                       class="form-control"
                       id="nombreProyectoEditar"
                       formControlName="nombreEditar"
-                      [ngModel]="cabe.nombre"
                     />
                   </div>
                   <!-- validacion form nombre -->
@@ -194,7 +194,7 @@
                       class="form-control"
                       id="descripcionProyectoEditar"
                       formControlName="descripcionEditar"
-                      [ngModel]="cabe.descripcion"
+
                     />
                   </div>
                   <!-- validacion form descripcion -->
@@ -226,7 +226,6 @@
                       class="form-control"
                       id="urlProyectoEditar"
                       formControlName="urlEditar"
-                      [ngModel]="cabe.url"
                     />
                   </div>
                   <!-- validacion form url -->

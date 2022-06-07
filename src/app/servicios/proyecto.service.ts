@@ -21,4 +21,8 @@ export class ProyectoService {
   enviarDatos(proyecto:any):Observable<any>{
     return this.http.post(this.url + "proyecto/crear", proyecto,{responseType:'text'})
   }
+
+  modificarDatos(proyecto:any):Observable<any>{
+    return this.http.put(this.url + "proyecto/modificar/" + `${proyecto.idProyectoEditar}?nombre=${proyecto.nombreEditar}&descripcion=${proyecto.descripcionEditar}&url=${proyecto.urlEditar}`,{})
+  }
 }
