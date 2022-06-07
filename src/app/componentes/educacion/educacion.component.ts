@@ -156,4 +156,10 @@ export class EducacionComponent implements OnInit {
       this.formEditar.markAllAsTouched();
     }
   }
+
+  eliminar(id:any){
+    this.educacionService.eliminarEducacion(id).subscribe(data=>{
+      alert(data);
+    })
+  }
 }

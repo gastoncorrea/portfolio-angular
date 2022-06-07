@@ -102,6 +102,12 @@ export class LogrosComponent implements OnInit {
     
   }
 
+  eliminar(id:any){
+    this.proyectoService.eliminarProyecto(id).subscribe(data=>{
+      alert(data);
+    })
+  }
+
   cargarModal(proyecto: any){
 
     this.formEditar.setValue({

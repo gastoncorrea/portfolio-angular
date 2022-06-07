@@ -98,4 +98,10 @@ export class AptitudesComponent implements OnInit {
       this.formEditar.markAllAsTouched();
     }
   }
+
+  eliminar(id:any) {
+    this.aptitudService.eliminarAptitud(id).subscribe(resp=>{
+      alert(resp);
+    })
+  }
 }

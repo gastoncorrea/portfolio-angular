@@ -24,4 +24,8 @@ export class AptitudService {
   modificarDatos(aptitud: any):Observable<any>{
     return this.http.put(this.url + "aptitud/modificar/"+aptitud.idAptitudEditar + `?nombre=${aptitud.nombreEditar}&nivel=${(aptitud.nivelEditar)}`, {});
   }
+
+  eliminarAptitud(id:any):Observable<any>{
+    return this.http.delete(this.url + "aptitud/borrar/"+id,{responseType:'text'});
+  }
 }

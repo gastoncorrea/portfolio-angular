@@ -37,4 +37,8 @@ export class EducacionService {
      `${educacion.idEducacionEditar}?nombre_institucion=${educacion.nombre_institucionEditar}&logo=${educacion.logoEditar}&fecha_inicio=${educacion.fecha_inicioEditar}&fecha_fin=${educacion.fecha_finEditar}&titulo=${educacion.tituloEditar}`
      ,{});
    }
+
+   eliminarEducacion(id:any):Observable<any>{
+     return this.http.delete(this.url + "educacion/eliminar/"+id, {responseType:'text'} )
+   }
 }
