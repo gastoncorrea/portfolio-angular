@@ -17,4 +17,8 @@ export class ProyectoService {
     console.log('*****Apttud' + this.email);
     return this.http.get(this.url + 'curriculum/persona/' + this.email);
   }
+
+  enviarDatos(proyecto:any):Observable<any>{
+    return this.http.post(this.url + "proyecto/crear", proyecto,{responseType:'text'})
+  }
 }

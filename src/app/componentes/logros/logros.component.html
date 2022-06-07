@@ -94,6 +94,10 @@
                   El campo debe contener menos de 50 caracteres
                 </p>
               </div>
+              <!-- input para guardar el id persona en base de datos -->
+              <div formGroupName="persona" *ngIf="persona">
+                <input type="hidden" formControlName="idpersona" id="idPersona" [(ngModel)]="persona.idPersona">
+              </div>
               <!-- boton cerrar -->
               <button
                 type="button"
@@ -114,7 +118,7 @@
   <div class="container">
     <div
       class="d-flex justify-content-between my-4"
-      *ngFor="let cabe of cabecera"
+      *ngFor="let cabe of proyectos"
     >
       <div>
         <h3>

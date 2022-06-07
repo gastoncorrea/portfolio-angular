@@ -9,7 +9,8 @@ import {ProyectoService} from '../../servicios/proyecto.service';
   styleUrls: ['./logros.component.css']
 })
 export class LogrosComponent implements OnInit {
-  cabecera:any;
+  persona:any;
+  proyectos:any;
   // form que conctienen los input para editar y agregar proyectos
   form: FormGroup;
   formEditar:FormGroup;
@@ -26,7 +27,10 @@ export class LogrosComponent implements OnInit {
     this.form = this.formBuilder.group({
       nombre:['',[Validators.required, Validators.maxLength(30)]],
       descripcion:['',[Validators.required, Validators.maxLength(200)]],
-      url:['',[Validators.required, Validators.maxLength(50)]]
+      url:['',[Validators.required, Validators.maxLength(50)]],
+      persona: this.formBuilder.group({
+        idpersona:['',[]]
+      })
     })
     this.formEditar = this.formBuilder.group({
       nombreEditar:['',[Validators.required, Validators.maxLength(30)]],
@@ -38,7 +42,8 @@ export class LogrosComponent implements OnInit {
   ngOnInit(): void {
     this.proyectoService.obtenerDatos().subscribe(data => {
       console.log("Educacion data" + data);
-      this.cabecera = data.proyecto;
+      this.persona = data;
+      this.proyectos = data.proyecto;
     });
   }
 
@@ -73,8 +78,11 @@ export class LogrosComponent implements OnInit {
 
   enviar(e:Event){
     e.preventDefault();
+    console.log(this.form.value);
     if(this.form.valid){
-      console.log('funciona el boton');
+      this.proyectoService.enviarDatos(this.form.value).subscribe(resp=>{
+        alert(resp);
+      })
     }else{
       this.form.markAllAsTouched();
     }

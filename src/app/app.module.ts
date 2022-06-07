@@ -6,6 +6,7 @@ import {HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {InterceptorService} from './servicios/interceptor.service';
+import { GuardGuard } from './servicios/guard.guard';
 
 import { AppComponent } from './app.component';
 import { CabeceraComponent } from './componentes/cabecera/cabecera.component';
@@ -45,7 +46,8 @@ import { EditarExperienciaComponent } from './componentes/editar-experiencia/edi
     ReactiveFormsModule
   ],
   providers: [PortfolioService,
-  {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi:true}],
+  {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi:true},
+  GuardGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
