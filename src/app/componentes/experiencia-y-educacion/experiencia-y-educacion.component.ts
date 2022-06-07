@@ -166,6 +166,13 @@ export class ExperienciaYEducacionComponent implements OnInit {
     }
   }
 
+  eliminar(id:any){
+    this.experienciaService.eliminarExperiencia(id).subscribe(data=>{
+      alert(data);
+    })
+  }
+
+
   traerDatos(cabe:any){
     console.log(cabe.fecha_inicio);
     this.formEditar.setValue({idExperienciaEditar:cabe.idexp_laboral,nombreEditar:cabe.nombre,puestoEditar:cabe.puesto,logoEditar:cabe.logo,

@@ -42,7 +42,7 @@ export class ExperienciaService {
       return this.http.post(this.url + "experiencia/guardar",experiencia,{responseType:"text"});
     }
 
-    experiencia() : Observable<any> {
-      return this.http.get(this.url + "experiencia/traer");
+    eliminarExperiencia(id:any) :Observable<any>{
+      return this.http.delete(this.url + "experiencia/borrar/"+id,{responseType:"text"});
     }
 }
