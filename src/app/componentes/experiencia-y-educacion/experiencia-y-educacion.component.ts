@@ -21,6 +21,7 @@ export class ExperienciaYEducacionComponent implements OnInit {
   // variable que contiene los estados de los input para agregar una nueva experiencia
   valorNombre: any;
   valorPuesto: any;
+  valorDescripcion: any;
   valorLogo: any;
   valorInicio: any;
   valorFin: any;
@@ -28,6 +29,7 @@ export class ExperienciaYEducacionComponent implements OnInit {
   // variable que contiene los estados de los input para editar una experiencia
   valorNombreEditar: any;
   valorPuestoEditar: any;
+  valorDescripcionEditar: any;
   valorLogoEditar: any;
   valorInicioEditar: any;
   valorFinEditar: any;
@@ -40,6 +42,7 @@ export class ExperienciaYEducacionComponent implements OnInit {
     this.form = formBuilder.group({
       nombre: ['', [Validators.maxLength(50), Validators.required]],
       puesto: ['', [Validators.maxLength(20), Validators.required]],
+      descripcion:['', [Validators.required, Validators.maxLength(300)]],
       logo: ['', [Validators.maxLength(50)]],
       fecha_inicio: ['', [Validators.required]],
       fecha_fin: ['', [Validators.required]],
@@ -52,6 +55,7 @@ export class ExperienciaYEducacionComponent implements OnInit {
       idExperienciaEditar: ['',[]],
       nombreEditar: ['', [Validators.maxLength(50), Validators.required]],
       puestoEditar: ['', [Validators.maxLength(20), Validators.required]],
+      descripcionEditar: ['',[Validators.required,Validators.maxLength(300)]],
       logoEditar: ['', [Validators.maxLength(50)]],
       fecha_inicioEditar: ['', [Validators.required]],
       fecha_finEditar: ['', [Validators.required]],
@@ -66,6 +70,11 @@ export class ExperienciaYEducacionComponent implements OnInit {
   get Puesto() {
     this.valorPuesto = this.form.get('puesto');
     return this.valorPuesto;
+  }
+
+  get Descripcion() {
+    this.valorDescripcion = this.form.get('descripcion');
+    return this.valorDescripcion;
   }
 
   get Logo() {
@@ -98,6 +107,11 @@ export class ExperienciaYEducacionComponent implements OnInit {
   get PuestoEditar() {
     this.valorPuestoEditar = this.form.get('puestoEditar');
     return this.valorPuestoEditar;
+  }
+
+  get DescripcionEditar() {
+    this.valorDescripcionEditar = this.form.get('descripcionEditar');
+    return this.valorDescripcionEditar;
   }
 
   get LogoEditar() {
@@ -175,7 +189,7 @@ export class ExperienciaYEducacionComponent implements OnInit {
 
   traerDatos(cabe:any){
     console.log(cabe.fecha_inicio);
-    this.formEditar.setValue({idExperienciaEditar:cabe.idexp_laboral,nombreEditar:cabe.nombre,puestoEditar:cabe.puesto,logoEditar:cabe.logo,
+    this.formEditar.setValue({idExperienciaEditar:cabe.idexp_laboral,nombreEditar:cabe.nombre,puestoEditar:cabe.puesto,descripcionEditar:cabe.descripcion,logoEditar:cabe.logo,
       fecha_inicioEditar: cabe.fecha_inicio,fecha_finEditar:cabe.fecha_fin,tiempo_trabEditar:cabe.tiempo_trab});
     console.log(cabe);
     console.log(this.formEditar.value);

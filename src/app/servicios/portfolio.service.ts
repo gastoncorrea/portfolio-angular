@@ -19,7 +19,7 @@ export class PortfolioService {
     console.log('*****' + email);
     return this.http.get(this.url + 'curriculum/persona/' + email).pipe(map((data)=>{
       this.persona = JSON.stringify(data);
-      // this.email = JSON.stringify(data.usuario.email);
+
       console.log("NUEVO TIPO DE DATOS CON USUARIO");
       console.log(data);
       return data;

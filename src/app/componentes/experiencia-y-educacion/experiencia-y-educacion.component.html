@@ -75,6 +75,16 @@
                   Debe contener menos de 20 caracteres
                 </p>
               </div>
+              <!-- FOrm descripcion -->
+              <div class="mb-3">
+                <label class="form-label" for="descripcionEmpresa">Descripcion de las funciones de desempeño en la empresa:</label>
+                <input type="text" class="form-control" id="descripcionEmpresa" formControlName="descripcion">
+              </div>
+              <!-- validacion Descripcion -->
+              <div *ngIf="Descripcion?.errors && Descripcion.touched">
+                <p *ngIf="Descripcion?.hasError('required')" class="error">El campo es obligatorio</p>
+                <p *ngIf="Descripcion?.errors?.maxlength" class="error">El campo no puede superar los 300 caracteres</p>
+              </div>
               <!-- form Logo -->
               <div class="mb-3">
                 <label class="form-label" for="logoEmpresa"
@@ -272,6 +282,25 @@
                     Debe contener menos de 20 caracteres
                   </p>
                 </div>
+                <!-- Validacion Puesto -->
+              <div *ngIf="Puesto?.errors && Puesto?.touched">
+                <p *ngIf="Puesto?.hasError('required')" class="error">
+                  El campo es requerido
+                </p>
+                <p *ngIf="Puesto?.errors?.maxlength" class="error">
+                  Debe contener menos de 20 caracteres
+                </p>
+              </div>
+              <!-- FOrm descripcion -->
+              <div class="mb-3">
+                <label class="form-label" for="descripcionEmpresaEditar">Descripcion de las funciones de desempeño en la empresa:</label>
+                <input type="text" class="form-control" id="descripcionEmpresaEditar" formControlName="descripcionEditar">
+              </div>
+              <!-- validacion Descripcion -->
+              <div *ngIf="DescripcionEditar?.errors && DescripcionEditar?.touched">
+                <p *ngIf="DescripcionEditar?.hasError('required')" class="error">El campo es obligatorio</p>
+                <p *ngIf="DescripcionEditar?.errors?.maxlength" class="error">El campo no puede superar los 300 caracteres</p>
+              </div>
                 <!-- form Logo -->
                 <div class="mb-3">
                   <label class="form-label" for="logoEmpresaEditar"
