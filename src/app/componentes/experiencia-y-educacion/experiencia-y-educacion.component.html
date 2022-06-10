@@ -78,7 +78,7 @@
               <!-- FOrm descripcion -->
               <div class="mb-3">
                 <label class="form-label" for="descripcionEmpresa">Descripcion de las funciones de desempeño en la empresa:</label>
-                <input type="text" class="form-control" id="descripcionEmpresa" formControlName="descripcion">
+                <textarea type="text" class="form-control" id="descripcionEmpresa" formControlName="descripcion" aria-label="Description"></textarea>
               </div>
               <!-- validacion Descripcion -->
               <div *ngIf="Descripcion?.errors && Descripcion.touched">
@@ -160,6 +160,7 @@
                   El campo debe tener menos de 50 caracteres
                 </p>
               </div>
+              <!-- input que contiene el id persona para agregar a base de datos -->
               <div formGroupName="persona">
                 <input type="hidden" id="idpersona" formControlName="idpersona" [(ngModel)]="cabecera.idPersona">
               </div>
@@ -196,6 +197,7 @@
       <div>
         <h3>{{cabe.nombre}}</h3>
         <h6>{{cabe.puesto}}</h6>
+        <p class="leads">{{cabe.descripcion}}</p>
         <p class="leads">Duracion: {{cabe.tiempo_trab}}</p>
         <p>Desde: {{cabe.fecha_inicio | date}}</p>
         <p>Hasta: {{cabe.fecha_fin | date}}</p>
@@ -294,7 +296,7 @@
               <!-- FOrm descripcion -->
               <div class="mb-3">
                 <label class="form-label" for="descripcionEmpresaEditar">Descripcion de las funciones de desempeño en la empresa:</label>
-                <input type="text" class="form-control" id="descripcionEmpresaEditar" formControlName="descripcionEditar">
+                <textarea type="text" class="form-control" id="descripcionEmpresaEditar" formControlName="descripcionEditar" aria-label="Description"></textarea>
               </div>
               <!-- validacion Descripcion -->
               <div *ngIf="DescripcionEditar?.errors && DescripcionEditar?.touched">

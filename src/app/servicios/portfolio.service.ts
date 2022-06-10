@@ -9,15 +9,16 @@ import {map} from 'rxjs/operators';
 })
 export class PortfolioService {
   persona:any;
+  // traigo mail del usuario logueado que esta guardado en session storage
+  email = JSON.parse(sessionStorage.getItem('usuario')|| '');
   
   url: String = 'http://localhost:8080/';
   
 
   constructor(private http: HttpClient, private auth: AuthService) {}
 
-  obtenerDatos(email:any): Observable<any> {
-    console.log('*****' + email);
-    return this.http.get(this.url + 'curriculum/persona/' + email).pipe(map((data)=>{
+  obtenerDatos(): Observable<any> {
+    return this.http.get(this.url + 'curriculum/persona/' + this.email).pipe(map((data)=>{
       this.persona = JSON.stringify(data);
 
       console.log("NUEVO TIPO DE DATOS CON USUARIO");

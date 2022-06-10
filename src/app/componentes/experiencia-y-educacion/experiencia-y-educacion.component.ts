@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ExperienciaService } from '../../servicios/experiencia.service';
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-experiencia-y-educacion',
@@ -12,6 +11,7 @@ import { DatePipe } from '@angular/common';
 export class ExperienciaYEducacionComponent implements OnInit {
   // contiene los valores de experiencia traidos de la api
   cabecera: any;
+  emailUsuario: any;
 
   experiencia: any;
 
@@ -135,6 +135,7 @@ export class ExperienciaYEducacionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.experienciaService.obtenerDatos().subscribe((data) => {
       console.log(data);
       this.cabecera = data;
@@ -162,8 +163,8 @@ export class ExperienciaYEducacionComponent implements OnInit {
     e.preventDefault;
     if (this.form.valid) {
       console.log(
-        'Nueva Experiencia FORM idPersona:*****' +
-          this.form.value.persona.idPersona
+        'Nueva Experiencia FORM :*****' +
+          this.form.value
       );
       // llamada al servicio para agregar nueva experienciaService
       this.experienciaService
@@ -172,11 +173,11 @@ export class ExperienciaYEducacionComponent implements OnInit {
           alert(data);
         });
         this.form.reset();
-      this.experienciaService.obtenerDatos().subscribe((data) => {
-        console.log(data);
-        this.cabecera = data;
-        this.experiencia = data.experiencia;
-      });
+        this.experienciaService.obtenerDatos().subscribe((data) => {
+          console.log(data);
+          this.cabecera = data;
+          this.experiencia = data.experiencia;
+        });
     }
   }
 

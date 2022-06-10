@@ -12,7 +12,6 @@ import { PortfolioService } from '../../servicios/portfolio.service';
 })
 export class CabeceraComponent implements OnInit {
   cabecera: any;
-  emailUsuario = this.credenciales.mailUsuarioLogueado;
   // formulario para Editar Persona y residencia
   formEditar:FormGroup;
   // formResidencia: FormGroup;
@@ -111,7 +110,7 @@ export class CabeceraComponent implements OnInit {
         console.log("modificar Persona" + data);
         alert(data);
         // LLamas funcion para obtener los datos modificados
-        this.portfolioService.obtenerDatos(this.emailUsuario).subscribe(data => {
+        this.portfolioService.obtenerDatos().subscribe(data => {
           this.cabecera = data;
         })
       })
@@ -120,7 +119,7 @@ export class CabeceraComponent implements OnInit {
 
   ngOnInit(): void {
 
-     this.portfolioService.obtenerDatos(this.emailUsuario).subscribe(data => {
+     this.portfolioService.obtenerDatos().subscribe(data => {
        console.log(data);
        this.cabecera = data;
      });

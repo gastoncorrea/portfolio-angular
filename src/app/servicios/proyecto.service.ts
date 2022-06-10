@@ -10,7 +10,8 @@ import { AuthService } from './auth.service';
 })
 export class ProyectoService {
   url: String = 'http://localhost:8080/';
-  email = this.auth.UsuarioLogueado;
+  // traigo mail del usuario logueado que esta guardado en session storage
+  email = JSON.parse(sessionStorage.getItem('usuario')|| '');
   constructor(private http: HttpClient, private auth: AuthService) {}
 
   obtenerDatos(): Observable<any> {

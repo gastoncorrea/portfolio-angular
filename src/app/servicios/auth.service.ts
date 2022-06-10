@@ -22,10 +22,10 @@ export class AuthService {
 
   login(credenciales:any):Observable<any>{
     // guardo email de usuario registrado para luego usar sus datos desde la api
-    this.mailUsuarioLogueado = credenciales.email;
+    sessionStorage.setItem('usuario',JSON.stringify(credenciales.email));
 
       return this.http.post(this.api +"autenticacion/persona", credenciales,{responseType:'text'}).pipe(map(data=>{
-        sessionStorage.setItem('currentUser', JSON.stringify(data));
+        sessionStorage.setItem('currentUser', JSON.stringify(data));   
         this.currentUserSubject.next(data);
         console.log("DATA:" + data);
         return data;

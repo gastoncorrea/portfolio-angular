@@ -10,9 +10,8 @@ import {AuthService} from './auth.service';
 export class ExperienciaService {
   // Url para traer datos del servidor
   url:String = "http://localhost:8080/";
-  //email del usuario logueado para hacer busqueda en base de datos (PODRIA SER MEJOR CON EL ID DE USUARIO? COMO LA TRAIGO?
-  //Resp => QUE USUARIO CONTENGA EL ID DE PERSONA EN LA BASE DE DATOS)
-  email = this.auth.UsuarioLogueado;
+  // traigo mail del usuario logueado que esta guardado en session storage
+  email = JSON.parse(sessionStorage.getItem('usuario')|| '');
   //Modelo de datos Experiencia 
   
   constructor(
