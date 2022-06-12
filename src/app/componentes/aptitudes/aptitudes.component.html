@@ -7,6 +7,7 @@
       type="button"
       data-bs-toggle="modal"
       data-bs-target="#agregarHabilidad"
+      *ngIf="!this.authService.Usuario"
     >
       <i class="fas fa-plus"></i>
     </button>
@@ -102,7 +103,8 @@
       <p class="text-center leads"><em>{{cabe.nombre}}</em></p>
       <div class="d-flex align-self-start">
         <button class="btn pe-0"
-        (click)="eliminar(cabe.id)">
+        (click)="eliminar(cabe.id)"
+        *ngIf="!this.authService.Usuario">
           <i class="fas fa-trash-alt me-1"></i>
         </button>
         <!-- boton que abre la ventana modal -->
@@ -112,6 +114,7 @@
           data-bs-toggle="modal"
           data-bs-target="#modificarAptitudes"
           (click)="cargarDatosModal(cabe)"
+          *ngIf="!this.authService.Usuario"
         >
           <i class="fas fa-pen"></i>
         </button>
@@ -189,7 +192,7 @@
                   Close
                 </button>
                 <button type="submit" class="btn btn-primary">
-                  Guardar Skills
+                  Modificar
                 </button>
               </div>
             </form>

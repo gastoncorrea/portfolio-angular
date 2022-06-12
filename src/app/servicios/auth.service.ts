@@ -13,7 +13,7 @@ export class AuthService {
   //api = "curriculum/persona";
   api = "http://localhost:8080/";
   currentUserSubject : BehaviorSubject<any>;
-  mailUsuarioLogueado = "";
+  usuarioInvitado:boolean = true; 
 
   constructor(private http: HttpClient, private router: Router) {
     console.log("El servicio de autenticacion esta corriendo");
@@ -28,8 +28,19 @@ export class AuthService {
         sessionStorage.setItem('currentUser', JSON.stringify(data));   
         this.currentUserSubject.next(data);
         console.log("DATA:" + data);
+        console.log(this.usuarioInvitado);
         return data;
       }))
+  }
+
+  loginInvitado():Observable<any> {
+    sessionStorage.setItem('usuario',JSON.stringify("gastoncorrea90e@gmail.com"));
+   return this.http.get(this.api + "login/invitado",{responseType:'text'}).pipe(map(data=>{
+    sessionStorage.setItem('currentUser', JSON.stringify(data));   
+    this.currentUserSubject.next(data);
+    console.log("DATA:" + data);
+    return data;
+   }));
   }
 
   //cerrar sesion borro token del localstorage
@@ -46,7 +57,8 @@ export class AuthService {
     return this.currentUserSubject.value;
   }
 
-  get UsuarioLogueado(){
-    return this.mailUsuarioLogueado;
+  get Usuario(){
+    return this.usuarioInvitado;
   }
+
 }

@@ -4,14 +4,6 @@
     alt="imagen_de_ideas"
     class="w-100 img-fluid"
   />
-  <!-- <div class="w-25 insertar-arriba">
-    <img
-      *ngIf="!cabecera"
-      src="assets/img/"
-      alt="foto-de-perfil"
-      class="w-100 rounded-circle img-fluid"
-    />
-    </div> -->
     <div class="w-25 insertar-arriba" *ngIf="cabecera">
       <img
         [src]="cabecera.imagen_perfil"
@@ -23,6 +15,7 @@
     <div *ngIf="cabecera" class="col-sm-9 col-lg-8" >
       <h2>{{ cabecera.nombrePersona }} {{ " " + cabecera.apellidoPersona }}</h2>
       <p>{{ cabecera.experiencia[0].puesto }}</p>
+      <p>{{cabecera.usuario.email}}</p>
       <p>
         {{
           cabecera.residencia.localidad +
@@ -33,7 +26,7 @@
             cabecera.residencia.pais +
             ")"
         }}
-        <a href="#">más información</a>
+        <a href="https://www.linkedin.com/in/gast%C3%B3ncorrea/">más información de contacto</a>
       </p>
     </div>
     <div class="col-sm-2 col-lg-2">
@@ -43,6 +36,7 @@
         type="button"
         data-bs-toggle="modal"
         data-bs-target="#modificarPersona"
+        *ngIf="!this.authService.Usuario"
       >
         <i class="fas fa-pen"></i>
       </button>
@@ -59,7 +53,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="persona">Editar datos personales:</h5>
+            <h5 class="modal-title" id="persona">Modificar datos personales:</h5>
             <button
               type="button"
               class="btn-close"
@@ -74,7 +68,7 @@
             >
               <div class="mb-3">
                 <!-- form nombre -->
-                <label class="form-label" for="nombrePersona">Nombre:</label>
+                <label class="form-label" for="nombrePersona">Nombres:</label>
                 <input
                   type="text"
                   id="nombrePersona"
@@ -180,7 +174,6 @@
                   El campo no debe tener mas de 20 caracteres
                 </p>
               </div>
-              <h2>Editar datos de Residencia:</h2>
               <!-- form direccion -->
               <div class="mb-3">
                 <label class="form-label" for="direccionResidencia"
@@ -311,16 +304,5 @@
         </div>
       </div>
     </div>
-    <!-- <div class="row">
-      <div class="col-sm-12 col-lg-2">
-        <button class="btn btn-primary">Tengo interes en</button>
-      </div>
-      <div class="col-sm-12 col-lg-2">
-        <button class="btn">Tengo interes en</button>
-      </div>
-      <div class="col-sm-12 col-lg-2">
-        <button class="btn">Mas...</button>
-      </div>
-    </div> -->
   </div>
 </section>

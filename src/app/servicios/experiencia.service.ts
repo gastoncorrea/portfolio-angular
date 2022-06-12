@@ -30,7 +30,7 @@ export class ExperienciaService {
     console.log('EXPERIENCIA PUT' + experiencia.fecha_inicioEditar);
     console.log(experiencia);
     return this.http.put(
-      this.url +`experiencia/modificar/${experiencia.idExperienciaEditar}?nombre=${experiencia.nombreEditar}&puesto=${experiencia.puestoEditar}&logo=${experiencia.logoEditar}&fecha_inicio=${experiencia.fecha_inicioEditar}&fecha_fin=${experiencia.fecha_finEditar}&tiempo_trab=${experiencia.tiempo_trabEditar}`,
+      this.url +`experiencia/modificar/${experiencia.idExperienciaEditar}?nombre=${experiencia.nombreEditar}&puesto=${experiencia.puestoEditar}&descripcion=${experiencia.descripcionEditar}&logo=${experiencia.logoEditar}&fecha_inicio=${experiencia.fecha_inicioEditar}&fecha_fin=${experiencia.fecha_finEditar}&tiempo_trab=${experiencia.tiempo_trabEditar}`,
         {}
     );
   }

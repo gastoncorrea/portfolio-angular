@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { EducacionService } from '../../servicios/educacion.service';
+import { AuthService } from 'src/app/servicios/auth.service';
 
 @Component({
   selector: 'app-educacion',
@@ -30,6 +31,7 @@ export class EducacionComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private educacionService: EducacionService,
+    public authService:AuthService
   ) {
     this.form = formBuilder.group({
       nombre_institucion: ['', [Validators.required, Validators.maxLength(50)]],
@@ -120,6 +122,13 @@ export class EducacionComponent implements OnInit {
         .subscribe((data) => {
           alert(data);
         });
+        this.educacionService.obtenerDatos().subscribe((data) => {
+          console.log('Educacion data' + data);
+          console.log("DATOS QUE LLEGAN DE SERVIDOR EDUCACION ");
+          console.log(data.educacion);
+          this.persona = data;
+          this.listaEducacion = data.educacion;
+        });
     } else {
       this.form.markAllAsTouched();
     }
@@ -133,6 +142,13 @@ export class EducacionComponent implements OnInit {
       this.educacionService.modificarEducacion(this.formEditar.value).subscribe(data => {
         console.log("VALOR MODIFICADO DE EDUCACION: ");
         console.log(data);
+      });
+      this.educacionService.obtenerDatos().subscribe((data) => {
+        console.log('Educacion data' + data);
+        console.log("DATOS QUE LLEGAN DE SERVIDOR EDUCACION ");
+        console.log(data.educacion);
+        this.persona = data;
+        this.listaEducacion = data.educacion;
       });
     }else{
       this.formEditar.markAllAsTouched();
@@ -161,5 +177,12 @@ export class EducacionComponent implements OnInit {
     this.educacionService.eliminarEducacion(id).subscribe(data=>{
       alert(data);
     })
+    this.educacionService.obtenerDatos().subscribe((data) => {
+      console.log('Educacion data' + data);
+      console.log("DATOS QUE LLEGAN DE SERVIDOR EDUCACION ");
+      console.log(data.educacion);
+      this.persona = data;
+      this.listaEducacion = data.educacion;
+    });
   }
 }

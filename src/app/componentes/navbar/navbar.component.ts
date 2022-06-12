@@ -8,11 +8,17 @@ import {AuthService} from '../../servicios/auth.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+
   
-  token : boolean = false;
-  constructor(private authService: AuthService) { }
+
+  constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
+  }
+
+  cerrarSesion(){
+    this.authService.usuarioInvitado = true;
+      
   }
 
 }

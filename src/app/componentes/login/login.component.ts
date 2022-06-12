@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   //Variable de tipo FormGroup
   form: FormGroup;
+  credenciales:any;
   
   //Variable que contiene el valor del input password
   contenedorDatosPassword: any;
@@ -37,10 +38,21 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.form.value).subscribe((data) => {
         console.log('DATA:' + JSON.stringify(data));
       });
+      this.authService.usuarioInvitado = false;
       this.router.navigate(['/inicio']);
     } else {
       this.form.markAllAsTouched();
     }
+  }
+
+  invitado(){
+    this.authService.loginInvitado().subscribe(data => {
+      this.authService.usuarioInvitado = true;
+      console.log("USUARIO INVITADO TS: ");
+      console.log(data);
+    })
+    this.authService.Usuario;
+    this.router.navigate(['/inicio']);
   }
 
   ngOnInit(): void {}

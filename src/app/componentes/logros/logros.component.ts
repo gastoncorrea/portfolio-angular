@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {ProyectoService} from '../../servicios/proyecto.service';
+import { AuthService } from 'src/app/servicios/auth.service';
 
 @Component({
   selector: 'app-logros',
@@ -23,7 +24,8 @@ export class LogrosComponent implements OnInit {
   valorUrlEditar:any;
 
   constructor(private formBuilder: FormBuilder,
-              private proyectoService:ProyectoService) {
+              private proyectoService:ProyectoService,
+              public authService:AuthService) {
     this.form = this.formBuilder.group({
       nombre:['',[Validators.required, Validators.maxLength(30)]],
       descripcion:['',[Validators.required, Validators.maxLength(200)]],

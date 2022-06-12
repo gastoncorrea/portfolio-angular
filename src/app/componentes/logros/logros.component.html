@@ -7,6 +7,7 @@
       type="button"
       data-bs-toggle="modal"
       data-bs-target="#agregarProyecto"
+      *ngIf="!this.authService.Usuario"
     >
       <i class="fas fa-plus"></i>
     </button>
@@ -130,7 +131,8 @@
       </div>
       <div class="d-flex align-self-start">
         <button class="btn pe-0"
-        (click)="eliminar(cabe.idproyecto)">
+        (click)="eliminar(cabe.idproyecto)"
+        *ngIf="!this.authService.Usuario">
           <i class="fas fa-trash-alt me-1"></i>
         </button>
         <!-- boton abre la ventana modal para editar -->
@@ -140,6 +142,7 @@
           data-bs-toggle="modal"
           data-bs-target="#modificarProyecto"
           (click)="cargarModal(cabe)"
+          *ngIf="!this.authService.Usuario"
         >
           <i class="fas fa-pen"></i>
         </button>
@@ -247,7 +250,7 @@
                     Close
                   </button>
                   <button type="submit" class="btn btn-primary">
-                    Guardar Proyecto
+                   Modificar
                   </button>
                 </form>
               </div>

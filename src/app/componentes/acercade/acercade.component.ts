@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { SobreMiService } from '../../servicios/sobre-mi.service';
+import {AuthService} from '../../servicios/auth.service';
 
 @Component({
   selector: 'app-acercade',
@@ -22,13 +23,14 @@ export class AcercadeComponent implements OnInit {
 
   
 
-  constructor(private sobreMiService : SobreMiService) {}
+  constructor(private sobreMiService : SobreMiService,
+              public authService:AuthService) {}
 
   enviar(cabe:any){
 
     this.sobreMiService.modificarPersona(cabe,this.idPersona,this.nombrePersona,this.apellidoPersona,
       this.num_celular,this.imagen_perfil,this.url_linkedin).subscribe(data=>{
-      alert(data);
+      alert("Usuario Modificado correctamente");
 
       this.sobreMiService.obtenerDatos().subscribe(data => {
         console.log("DATOS PERSONA SOBRE MI: "+data);

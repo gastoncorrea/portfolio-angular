@@ -21,5 +21,6 @@
       <p *ngIf="Password?.hasError('required')" class="error">El campo es obligatorio</p>
       <p *ngIf="Password?.errors?.minlength" class="error">Debe contener mas de 8 caracteres</p>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary me-3">Submit</button>
+    <button type="button" class="btn btn-danger" (click)="invitado()">Entrar como invitado</button>
   </form>

@@ -33,9 +33,9 @@ export class CabeceraComponent implements OnInit {
 
 
   constructor(
-              private credenciales: AuthService,
               private portfolioService: PortfolioService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              public authService:AuthService) {
 
                 this.formEditar = this.formBuilder.group({
                   nombreEditar: ['',[Validators.required, Validators.maxLength(50)]],

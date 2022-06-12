@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ExperienciaService } from '../../servicios/experiencia.service';
+import { AuthService } from 'src/app/servicios/auth.service';
 
 @Component({
   selector: 'app-experiencia-y-educacion',
@@ -37,12 +38,13 @@ export class ExperienciaYEducacionComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private experienciaService: ExperienciaService
+    private experienciaService: ExperienciaService,
+    public authService:AuthService
   ) {
     this.form = formBuilder.group({
       nombre: ['', [Validators.maxLength(50), Validators.required]],
       puesto: ['', [Validators.maxLength(20), Validators.required]],
-      descripcion:['', [Validators.required, Validators.maxLength(300)]],
+      descripcion: ['', [Validators.required, Validators.maxLength(300)]],
       logo: ['', [Validators.maxLength(50)]],
       fecha_inicio: ['', [Validators.required]],
       fecha_fin: ['', [Validators.required]],
@@ -52,10 +54,10 @@ export class ExperienciaYEducacionComponent implements OnInit {
       }),
     });
     this.formEditar = formBuilder.group({
-      idExperienciaEditar: ['',[]],
+      idExperienciaEditar: ['', []],
       nombreEditar: ['', [Validators.maxLength(50), Validators.required]],
       puestoEditar: ['', [Validators.maxLength(20), Validators.required]],
-      descripcionEditar: ['',[Validators.required,Validators.maxLength(300)]],
+      descripcionEditar: ['', [Validators.required, Validators.maxLength(300)]],
       logoEditar: ['', [Validators.maxLength(50)]],
       fecha_inicioEditar: ['', [Validators.required]],
       fecha_finEditar: ['', [Validators.required]],
@@ -98,7 +100,7 @@ export class ExperienciaYEducacionComponent implements OnInit {
   }
 
   // funciones que devuelven estados de los input del form para editar experiencia
-  
+
   get NombreEditar() {
     this.valorNombreEditar = this.form.get('nombreEditar');
     return this.valorNombreEditar;
@@ -135,7 +137,6 @@ export class ExperienciaYEducacionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.experienciaService.obtenerDatos().subscribe((data) => {
       console.log(data);
       this.cabecera = data;
@@ -145,53 +146,65 @@ export class ExperienciaYEducacionComponent implements OnInit {
 
   enviarFormEditar(e: Event) {
     e.preventDefault();
-    // if (this.formEditar.valid) {
+    if (this.formEditar.valid) {
       console.log('formulario valido Editar EXPERIENCIA');
       console.log(this.formEditar.value);
       //llamada al servicio para enviar datos al servidor
       this.experienciaService
         .modificarExperiencia(this.formEditar.value)
-        .subscribe(data => {
+        .subscribe((data) => {
           alert('Experiencia Modificada');
         });
-    // } else {
-      // this.formEditar.markAllAsTouched();
-    // }
+      this.experienciaService.obtenerDatos().subscribe((data) => {
+        this.cabecera = data;
+        this.experiencia = data.experiencia;
+      });
+    } else {
+      this.formEditar.markAllAsTouched();
+    }
   }
 
   enviarNuevaExperiencia(e: Event) {
     e.preventDefault;
     if (this.form.valid) {
-      console.log(
-        'Nueva Experiencia FORM :*****' +
-          this.form.value
-      );
+      console.log('Nueva Experiencia FORM :*****' + this.form.value);
       // llamada al servicio para agregar nueva experienciaService
       this.experienciaService
         .agregarExperiencia(this.form.value)
         .subscribe((data) => {
           alert(data);
         });
-        this.form.reset();
-        this.experienciaService.obtenerDatos().subscribe((data) => {
-          console.log(data);
-          this.cabecera = data;
-          this.experiencia = data.experiencia;
-        });
+      this.form.reset();
+      this.experienciaService.obtenerDatos().subscribe((data) => {
+        console.log(data);
+        this.cabecera = data;
+        this.experiencia = data.experiencia;
+      });
     }
   }
 
-  eliminar(id:any){
-    this.experienciaService.eliminarExperiencia(id).subscribe(data=>{
+  eliminar(id: any) {
+    this.experienciaService.eliminarExperiencia(id).subscribe((data) => {
       alert(data);
-    })
+    });
+    this.experienciaService.obtenerDatos().subscribe((data) => {
+      this.cabecera = data;
+      this.experiencia = data.experiencia;
+    });
   }
 
-
-  traerDatos(cabe:any){
+  traerDatos(cabe: any) {
     console.log(cabe.fecha_inicio);
-    this.formEditar.setValue({idExperienciaEditar:cabe.idexp_laboral,nombreEditar:cabe.nombre,puestoEditar:cabe.puesto,descripcionEditar:cabe.descripcion,logoEditar:cabe.logo,
-      fecha_inicioEditar: cabe.fecha_inicio,fecha_finEditar:cabe.fecha_fin,tiempo_trabEditar:cabe.tiempo_trab});
+    this.formEditar.setValue({
+      idExperienciaEditar: cabe.idexp_laboral,
+      nombreEditar: cabe.nombre,
+      puestoEditar: cabe.puesto,
+      descripcionEditar: cabe.descripcion,
+      logoEditar: cabe.logo,
+      fecha_inicioEditar: cabe.fecha_inicio,
+      fecha_finEditar: cabe.fecha_fin,
+      tiempo_trabEditar: cabe.tiempo_trab,
+    });
     console.log(cabe);
     console.log(this.formEditar.value);
   }

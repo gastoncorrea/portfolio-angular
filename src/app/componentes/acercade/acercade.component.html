@@ -1,5 +1,5 @@
 <section class="border rounded my-3 p-2">
-  <h2>Acerca de</h2>
+  <h2>Acerca de mi</h2>
   <div class="d-flex justify-content-between">
     <div>
       <p>
@@ -13,6 +13,7 @@
         type="button"
         data-bs-toggle="modal"
         data-bs-target="#modificarSobreMi"
+        *ngIf="!this.authService.Usuario"
       >
         <i class="fas fa-pen ps-5"></i>
       </button>

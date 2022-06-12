@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AptitudService } from '../../servicios/aptitud.service';
+import { AuthService } from 'src/app/servicios/auth.service';
 
 @Component({
   selector: 'app-aptitudes',
@@ -22,9 +23,10 @@ export class AptitudesComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private aptitudService: AptitudService
+    private aptitudService: AptitudService,
+    public authService:AuthService
   ) {
-    this.form = formBuilder.group({
+    this.form = this.formBuilder.group({
       nombre: ['', [Validators.required, Validators.maxLength(50)]],
       nivel: ['', [Validators.required]],
       persona: formBuilder.group({

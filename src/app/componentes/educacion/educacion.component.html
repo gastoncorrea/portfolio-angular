@@ -7,6 +7,7 @@
       type="button"
       data-bs-toggle="modal"
       data-bs-target="#agregarEducacion"
+      *ngIf="!this.authService.Usuario"
     >
       <i class="fas fa-plus"></i>
     </button>
@@ -155,7 +156,7 @@
     <div class="d-flex">
       <img
         *ngIf="cabe.logo == ''"
-        src="assets/img/logo-utn.png"
+        src="https://i.pinimg.com/564x/ff/8e/04/ff8e0460d21b8ee1994ebb266d269f4d.jpgz"
         alt="logo-rolling-code-school"
         class="w-25 me-3 img-fluid mantener-imagen"
       />
@@ -167,14 +168,15 @@
       />
       <div>
         <h3>{{cabe.nombre_institucion}}</h3>
-        <p class="leads">{{cabe.fecha_inicio | date}}</p>
-        <p class="leads">{{cabe.fecha_fin | date}}</p>
-        <p class="leads">Titulo: {{cabe.titulo}}</p>
+        <p class="leads"><strong>Titulo: </strong> {{cabe.titulo}}</p>
+        <p class="leads"><strong>Desde: </strong>{{cabe.fecha_inicio | date}}</p>
+        <p class="leads"><strong>Hasta: </strong>{{cabe.fecha_fin | date}}</p>
       </div>
     </div>
     <div class="d-flex align-self-start">
       <button class="btn pe-0"
-      (click)="eliminar(cabe.ideducacion)">
+      (click)="eliminar(cabe.ideducacion)"
+      *ngIf="!this.authService.Usuario">
         <i class="fas fa-trash-alt me-1"></i>
       </button>
       <!-- boton que abre ventana modal -->
@@ -184,6 +186,7 @@
         data-bs-toggle="modal"
         data-bs-target="#modificarEducacion"
         (click)="cargarDatosModal(cabe)"
+        *ngIf="!this.authService.Usuario"
       >
         <i class="fas fa-pen"></i>
       </button>

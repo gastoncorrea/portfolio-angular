@@ -7,6 +7,7 @@
       type="button"
       data-bs-toggle="modal"
       data-bs-target="#agregarExperiencia"
+      *ngIf="!this.authService.Usuario"
     >
       <i class="fas fa-plus"></i>
     </button>
@@ -184,7 +185,7 @@
     <div class="d-flex">
       <img
         *ngIf="cabe.logo == ''"
-        src="assets/img/logo-rolling.png"
+        src="https://i.pinimg.com/564x/ff/8e/04/ff8e0460d21b8ee1994ebb266d269f4d.jpg"
         alt="logo-rolling-code-school"
         class="w-25 me-3 img-fluid mantener-imagen"
       />
@@ -198,14 +199,15 @@
         <h3>{{cabe.nombre}}</h3>
         <h6>{{cabe.puesto}}</h6>
         <p class="leads">{{cabe.descripcion}}</p>
-        <p class="leads">Duracion: {{cabe.tiempo_trab}}</p>
-        <p>Desde: {{cabe.fecha_inicio | date}}</p>
-        <p>Hasta: {{cabe.fecha_fin | date}}</p>
+        <p><strong>Duración:</strong> {{cabe.tiempo_trab}}</p>
+        <p><strong>Desde:</strong> {{cabe.fecha_inicio | date}}</p>
+        <p><strong>Hasta:</strong> {{cabe.fecha_fin | date}}</p>
       </div>
     </div>
     <div class="d-flex align-self-start">
       <button class="btn pe-0"
-      (click)="eliminar(cabe.idexp_laboral)">
+      (click)="eliminar(cabe.idexp_laboral)"
+      *ngIf="!this.authService.Usuario">
         <i class="fas fa-trash-alt me-1"></i>
       </button>
        <!-- boton que abre la ventana modal para modificar la experiencia laboral-->
@@ -215,6 +217,7 @@
         data-bs-toggle="modal"
         data-bs-target="#experienciaid"
         (click)="traerDatos(cabe)"
+        *ngIf="!this.authService.Usuario"
       >
         <i class="fas fa-pen"></i>
       </button>
