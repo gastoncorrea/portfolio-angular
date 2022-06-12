@@ -37,9 +37,14 @@ export class LoginComponent implements OnInit {
       //MANDAR DATOS VALIDADOS DESDE EL FORM AL BACKEND
       this.authService.login(this.form.value).subscribe((data) => {
         console.log('DATA:' + JSON.stringify(data));
+        if(data == 'FAIL'){
+          this.router.navigate(['/login']);
+          alert("El usuario no existe");
+        }else{
+          this.router.navigate(['/inicio']);
+          this.authService.usuarioInvitado = false;
+        }
       });
-      this.authService.usuarioInvitado = false;
-      this.router.navigate(['/inicio']);
     } else {
       this.form.markAllAsTouched();
     }
