@@ -7,7 +7,7 @@
     <div class="w-25 insertar-arriba" *ngIf="cabecera">
       <img
         [src]="cabecera.imagen_perfil"
-        alt="foto-de-perfil"
+        [alt]="cabecera.imagen_perfil"
         class="w-100 rounded-circle img-fluid"
       />
     </div>
@@ -64,8 +64,12 @@
           <div class="modal-body" >
             <form
               [formGroup]="formEditar"
-              (ngSubmit)="enviar(cabecera.idPersona)"
+              (ngSubmit)="enviar()"
             >
+            <!-- input que contiene id persona para poder modificarla -->
+              <input type="hidden" formControlName="idPersonaEditar" [(ngModel)]="cabecera.idPersona">
+            <!-- input que contiene descripcion para completar el objeto para poder modificarla -->
+              <input type="hidden" formControlName="descripcionEditar" [(ngModel)]="cabecera.descripcion_mi">
               <div class="mb-3">
                 <!-- form nombre -->
                 <label class="form-label" for="nombrePersona">Nombres:</label>
@@ -174,6 +178,8 @@
                   El campo no debe tener mas de 20 caracteres
                 </p>
               </div>
+              <!-- input contiene idResidencia para poder modificarla -->
+              <input type="hidden" formControlName="idResidenciaEditar" [(ngModel)]="cabecera.residencia.idresidencia">
               <!-- form direccion -->
               <div class="mb-3">
                 <label class="form-label" for="direccionResidencia"

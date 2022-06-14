@@ -28,12 +28,18 @@ export class PortfolioService {
   }
 
 
-  modificarPersona(persona: any, id: number): Observable<any> {
+  modificarPersona(persona: any): Observable<any> {
     console.log('NOMBRE' + persona.nombreEditar);
     return this.http.put(
       this.url +
-        `persona/modificar/${id}?imagen_perfil=${persona.imagen_perfilEditar}&descripcion_mi=${null}&url_linkedin=${persona.url_linkedinEditar}&nombre=${persona.nombreEditar}&apellido=${persona.apellidoEditar}&num_celular=${persona.num_celularEditar}`,
+        `persona/modificar/${persona.idPersonaEditar}?imagen_perfil=${persona.imagen_perfilEditar}&descripcion_mi=${persona.descripcionEditar}&url_linkedin=${persona.url_linkedinEditar}&nombre=${persona.nombreEditar}&apellido=${persona.apellidoEditar}&num_celular=${persona.num_celularEditar}`,
         {}
     );
+  }
+
+  modificarResidencia(residencia: any):Observable<any>{
+    console.log("RESIDENCIA FORM:")
+    console.log(residencia);
+    return this.http.put(this.url + `residencia/modificar/${residencia.idResidenciaEditar}?direccion=${residencia.direccionEditar}&localidad=${residencia.localidadEditar}&provincia=${residencia.provinciaEditar}&pais=${residencia.paisEditar}&nacionalidad=${residencia.nacionalidadEditar}`,{});
   }
 }

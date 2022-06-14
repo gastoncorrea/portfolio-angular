@@ -38,11 +38,14 @@ export class CabeceraComponent implements OnInit {
               public authService:AuthService) {
 
                 this.formEditar = this.formBuilder.group({
+                  idPersonaEditar:['',[]],
+                  descripcionEditar:['',[]],
                   nombreEditar: ['',[Validators.required, Validators.maxLength(50)]],
                   apellidoEditar: ['',[Validators.required, Validators.maxLength(50)]],
                   imagen_perfilEditar: ['',[Validators.required, Validators.maxLength(100)]],
                   url_linkedinEditar: ['',[Validators.required, Validators.maxLength(100)]],
                   num_celularEditar: ['',[Validators.required, Validators.maxLength(20)]],
+                  idResidenciaEditar:['',[]],
                   direccionEditar: ['',[Validators.required, Validators.maxLength(50)]],
                   localidadEditar: ['',[Validators.required, Validators.maxLength(50)]],
                   provinciaEditar: ['',[Validators.required, Validators.maxLength(50)]],
@@ -103,16 +106,22 @@ export class CabeceraComponent implements OnInit {
 
   // funcion para enviar formulario para editar persona y residencia
 
-  enviar( id:number){
+  enviar(){
     if(this.formEditar.valid){
 
-      this.portfolioService.modificarPersona(this.formEditar.value, id).subscribe(data=>{
-        console.log("modificar Persona" + data);
+      this.portfolioService.modificarPersona(this.formEditar.value).subscribe(data=>{
+        console.log("modificar Persona");
+        console.log( data);
         alert(data);
         // LLamas funcion para obtener los datos modificados
         this.portfolioService.obtenerDatos().subscribe(data => {
           this.cabecera = data;
         })
+      })
+      // funcion para modificar los datos de residencia de la persona
+      this.portfolioService.modificarResidencia(this.formEditar.value).subscribe(data=>{
+        console.log("Residencia modificada");
+        console.log(data);
       })
     }
   }
