@@ -12,7 +12,8 @@ export class PortfolioService {
   // traigo mail del usuario logueado que esta guardado en session storage
   email = JSON.parse(sessionStorage.getItem('usuario')|| '');
   
-  url: String = 'http://localhost:8080/';
+  // url: String = 'http://localhost:8080/';
+  url: String = ' https://stormy-harbor-23738.herokuapp.com/';
   
 
   constructor(private http: HttpClient, private auth: AuthService) {}
