@@ -11,7 +11,8 @@ export class AuthService {
   @Output() disparadorCredenciales: EventEmitter<any> = new EventEmitter();
 
   //api = "curriculum/persona";
-  api = "http://localhost:8080/";
+  // api = "http://localhost:8080/";
+  api = " https://stormy-harbor-23738.herokuapp.com/";
   currentUserSubject : BehaviorSubject<any>;
   usuarioInvitado:boolean = true; 
 
