@@ -132,7 +132,7 @@
               </div >
               <!-- valor oculto para completar el objeto y poder enviarlo al servidor -->
               <div formGroupName="persona" *ngIf="persona">
-                <input type="hidden" id="idPersona" formControlName="idpersona" [ngModel]="persona.idPersona">
+                <input type="hidden" id="idPersona" formControlName="idpersona" [(ngModel)]="persona.idPersona">
               </div>
               <div class="modal-footer">
                 <button
