@@ -41,7 +41,7 @@ export class ExperienciaYEducacionComponent implements OnInit {
     private experienciaService: ExperienciaService,
     public authService:AuthService
   ) {
-    this.form = formBuilder.group({
+    this.form = this.formBuilder.group({
       nombre: ['', [Validators.maxLength(50), Validators.required]],
       puesto: ['', [Validators.maxLength(20), Validators.required]],
       descripcion: ['', [Validators.required, Validators.maxLength(300)]],
@@ -53,7 +53,7 @@ export class ExperienciaYEducacionComponent implements OnInit {
         idpersona: ['', []],
       }),
     });
-    this.formEditar = formBuilder.group({
+    this.formEditar = this.formBuilder.group({
       idExperienciaEditar: ['', []],
       nombreEditar: ['', [Validators.maxLength(50), Validators.required]],
       puestoEditar: ['', [Validators.maxLength(20), Validators.required]],
