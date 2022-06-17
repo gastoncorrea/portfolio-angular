@@ -37,6 +37,7 @@
         data-bs-toggle="modal"
         data-bs-target="#modificarPersona"
         *ngIf="!this.authService.Usuario"
+        (click)="cargarModal(cabecera)"
       >
         <i class="fas fa-pen"></i>
       </button>
@@ -67,7 +68,7 @@
               (ngSubmit)="enviar()"
             >
             <!-- input que contiene id persona para poder modificarla -->
-              <input type="hidden" formControlName="idPersonaEditar" [(ngModel)]="cabecera.idPersona">
+              <input type="hidden" formControlName="idPersonaEditar" >
             <!-- input que contiene descripcion para completar el objeto para poder modificarla -->
               <input type="hidden" formControlName="descripcionEditar" [(ngModel)]="cabecera.descripcion_mi">
               <div class="mb-3">
@@ -78,7 +79,7 @@
                   id="nombrePersona"
                   class="form-control"
                   formControlName="nombreEditar"
-                  [(ngModel)]="cabecera.nombrePersona"
+                  
                 />
               </div>
               <!-- Validacion form Nombre -->
@@ -100,7 +101,7 @@
                   id="apellidoPersona"
                   class="form-control"
                   formControlName="apellidoEditar"
-                  [(ngModel)]="cabecera.apellidoPersona"
+                  
                 />
               </div>
               <!-- Validacion form apellido -->
@@ -122,7 +123,7 @@
                   id="perfilPersona"
                   class="form-control"
                   formControlName="imagen_perfilEditar"
-                  [(ngModel)]="cabecera.imagen_perfil"
+                  
                 />
               </div>
               <!-- validacion form imagen de perfil -->
@@ -144,7 +145,7 @@
                   id="linkedinPersona"
                   class="form-control"
                   formControlName="url_linkedinEditar"
-                  [(ngModel)]="cabecera.url_linkedin"
+                  
                 />
               </div>
               <!-- validacion form url de linkedin -->
@@ -166,7 +167,7 @@
                   id="celularPersona"
                   class="form-control"
                   formControlName="num_celularEditar"
-                  [(ngModel)]="cabecera.num_celular"
+                  
                 />
               </div>
               <!-- validacion form celular -->
@@ -179,7 +180,7 @@
                 </p>
               </div>
               <!-- input contiene idResidencia para poder modificarla -->
-              <input type="hidden" formControlName="idResidenciaEditar" [(ngModel)]="cabecera.residencia.idresidencia">
+              <input type="hidden" formControlName="idResidenciaEditar" >
               <!-- form direccion -->
               <div class="mb-3">
                 <label class="form-label" for="direccionResidencia"
@@ -190,7 +191,7 @@
                   id="direccionResidencia"
                   class="form-control"
                   formControlName="direccionEditar"
-                  [ngModel]="cabecera.residencia.direccion"
+                  
                 />
               </div>
               <!-- Validacion form direccion -->
@@ -212,7 +213,7 @@
                   id="localidadResidencia"
                   class="form-control"
                   formControlName="localidadEditar"
-                  [ngModel]="cabecera.residencia.localidad"
+                  
                 />
               </div>
               <!-- Validacion form localidad -->
@@ -234,7 +235,7 @@
                   id="provinciaResidencia"
                   class="form-control"
                   formControlName="provinciaEditar"
-                  [ngModel]="cabecera.residencia.provincia"
+                  
                 />
               </div>
               <!-- validacion form provincia -->
@@ -254,7 +255,7 @@
                   id="paisResidencia"
                   class="form-control"
                   formControlName="paisEditar"
-                  [ngModel]="cabecera.residencia.pais"
+                  
                 />
               </div>
               <!-- validacion form pais -->
@@ -276,7 +277,7 @@
                   id="nacionalidadResidencia"
                   class="form-control"
                   formControlName="nacionalidadEditar"
-                  [ngModel]="cabecera.residencia.nacionalidad"
+                  
                 />
               </div>
               <!-- validacion form nacionalidad -->

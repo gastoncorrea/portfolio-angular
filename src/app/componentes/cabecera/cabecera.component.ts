@@ -129,8 +129,27 @@ export class CabeceraComponent implements OnInit {
   ngOnInit(): void {
 
      this.portfolioService.obtenerDatos().subscribe(data => {
+        console.log("DATOS QUE LLEGAN A CABECERA");
        console.log(data);
        this.cabecera = data;
      });
+  }
+
+  cargarModal(datosPersona:any){
+    this.formEditar.setValue({
+                  idPersonaEditar: datosPersona.idPersona,
+                  descripcionEditar:datosPersona.descripcion_mi,
+                  nombreEditar: datosPersona.nombrePersona,
+                  apellidoEditar: datosPersona.apellidoPersona,
+                  imagen_perfilEditar: datosPersona.imagen_perfil,
+                  url_linkedinEditar: datosPersona.url_linkedin,
+                  num_celularEditar: datosPersona.num_celular,
+                  idResidenciaEditar:datosPersona.residencia.idresindecia,
+                  direccionEditar: datosPersona.residencia.direccion,
+                  localidadEditar: datosPersona.residencia.localidad,
+                  provinciaEditar: datosPersona.residencia.provincia,
+                  paisEditar: datosPersona.residencia.pais,
+                  nacionalidadEditar: datosPersona.residencia.nacionalidad
+    })
   }
 }
