@@ -35,7 +35,7 @@ export class AuthService {
   }
 
   loginInvitado():Observable<any> {
-    sessionStorage.setItem('usuario',JSON.stringify("gaston@gmail.com"));
+    sessionStorage.setItem('usuario',JSON.stringify("gastoncorrea90e@gmail.com"));
    return this.http.get(this.api + "login/invitado",{responseType:'text'}).pipe(map(data=>{
     sessionStorage.setItem('currentUser', JSON.stringify(data));   
     this.currentUserSubject.next(data);
