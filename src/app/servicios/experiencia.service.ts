@@ -26,7 +26,7 @@ export class ExperienciaService {
 
    modificarExperiencia(experiencia: any): Observable<any> {
     experiencia.fecha_inicioEditar = new Date(experiencia.fecha_inicioEditar);
-    experiencia.fecha_finEditar = new Date();
+    experiencia.fecha_finEditar = new Date(experiencia.fecha_inicioEditar);
     console.log('EXPERIENCIA PUT' + experiencia.fecha_inicioEditar);
     console.log(experiencia);
     return this.http.put(
