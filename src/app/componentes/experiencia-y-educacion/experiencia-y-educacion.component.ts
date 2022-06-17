@@ -154,13 +154,13 @@ export class ExperienciaYEducacionComponent implements OnInit {
       this.experienciaService
         .modificarExperiencia(this.formEditar.value)
         .subscribe((data) => {
-          alert("Experiencia Laboral modificada" + JSON.stringify(data));
+          alert("Experiencia Laboral modificada");
           
           this.experienciaService.obtenerDatos().subscribe((data) => {
             this.cabecera = data;
             this.experiencia = data.experiencia;
           });
-          
+
         });
       
     } else {
