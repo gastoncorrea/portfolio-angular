@@ -145,7 +145,7 @@ export class ExperienciaYEducacionComponent implements OnInit {
   }
 
   enviarFormEditar(e: Event) {
-    e.preventDefault();
+    e.preventDefault;
     console.log(this.formEditar.valid)
     if (this.formEditar.valid) {
       console.log('formulario valido Editar EXPERIENCIA');
@@ -154,7 +154,7 @@ export class ExperienciaYEducacionComponent implements OnInit {
       this.experienciaService
         .modificarExperiencia(this.formEditar.value)
         .subscribe((data) => {
-          alert('Experiencia Modificada');
+          alert(data);
         });
       this.experienciaService.obtenerDatos().subscribe((data) => {
         this.cabecera = data;
