@@ -154,18 +154,18 @@ export class ExperienciaYEducacionComponent implements OnInit {
       this.experienciaService
         .modificarExperiencia(this.formEditar.value)
         .subscribe((data) => {
-          alert("Experiencia Laboral modificada");
-          
-          this.experienciaService.obtenerDatos().subscribe((data) => {
-            this.cabecera = data;
-            this.experiencia = data.experiencia;
+          alert("Experiencia Laboral modificada" + JSON.stringify(data));
+          this.experienciaService.obtenerDatos().subscribe((resp) => {
+            this.cabecera = resp;
+            this.experiencia = resp.experiencia;
           });
-
         });
       
     } else {
       this.formEditar.markAllAsTouched();
     }
+
+   
   }
 
   enviarNuevaExperiencia(e: Event) {
@@ -177,24 +177,26 @@ export class ExperienciaYEducacionComponent implements OnInit {
         .agregarExperiencia(this.form.value)
         .subscribe((data) => {
           alert(data);
+
+          this.experienciaService.obtenerDatos().subscribe((data) => {
+            console.log(data);
+            this.cabecera = data;
+            this.experiencia = data.experiencia;
+          });
         });
-      this.form.reset();
-      this.experienciaService.obtenerDatos().subscribe((data) => {
-        console.log(data);
-        this.cabecera = data;
-        this.experiencia = data.experiencia;
-      });
     }
   }
 
   eliminar(id: any) {
     this.experienciaService.eliminarExperiencia(id).subscribe((data) => {
       alert(data);
+
+      this.experienciaService.obtenerDatos().subscribe((data) => {
+        this.cabecera = data;
+        this.experiencia = data.experiencia;
+      });
     });
-    this.experienciaService.obtenerDatos().subscribe((data) => {
-      this.cabecera = data;
-      this.experiencia = data.experiencia;
-    });
+    
   }
 
   traerDatos(cabe: any) {

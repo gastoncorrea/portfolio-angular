@@ -29,9 +29,10 @@
         <a href="https://www.linkedin.com/in/gast%C3%B3ncorrea/">más información de contacto</a>
       </p>
     </div>
-    <div class="col-sm-2 col-lg-2">
+    <div class="col-sm-2 col-lg-2" *ngIf="cabecera">
       <!-- abrir ventana modal para modificar datos de la persona -->
       <button
+        
         class="btn"
         type="button"
         data-bs-toggle="modal"
@@ -304,7 +305,7 @@
                 >
                   Cancelar
                 </button>
-                <button type="submit" class="btn btn-primary">Modificar</button>
+                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Modificar</button>
               </div>
             </form>
           </div>

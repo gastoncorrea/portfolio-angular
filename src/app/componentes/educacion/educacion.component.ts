@@ -121,13 +121,14 @@ export class EducacionComponent implements OnInit {
         .guardarNuevaEducacion(this.form.value)
         .subscribe((data) => {
           alert(data);
-        });
-        this.educacionService.obtenerDatos().subscribe((data) => {
-          console.log('Educacion data' + data);
-          console.log("DATOS QUE LLEGAN DE SERVIDOR EDUCACION ");
-          console.log(data.educacion);
-          this.persona = data;
-          this.listaEducacion = data.educacion;
+
+          this.educacionService.obtenerDatos().subscribe((data) => {
+            console.log('Educacion data' + data);
+            console.log("DATOS QUE LLEGAN DE SERVIDOR EDUCACION ");
+            console.log(data.educacion);
+            this.persona = data;
+            this.listaEducacion = data.educacion;
+          });
         });
     } else {
       this.form.markAllAsTouched();
@@ -141,19 +142,20 @@ export class EducacionComponent implements OnInit {
     if(this.formEditar.valid){
       this.educacionService.modificarEducacion(this.formEditar.value).subscribe(data => {
         console.log("VALOR MODIFICADO DE EDUCACION: ");
-        console.log(data);
+        alert("EDUCACION MODIFICADA CON EXITO"+JSON.stringify(data));
+
+        this.educacionService.obtenerDatos().subscribe((data) => {
+          console.log('Educacion data' + data);
+          console.log("DATOS QUE LLEGAN DE SERVIDOR EDUCACION ");
+          console.log(data.educacion);
+          this.persona = data;
+          this.listaEducacion = data.educacion;
+        });
       });
-      this.educacionService.obtenerDatos().subscribe((data) => {
-        console.log('Educacion data' + data);
-        console.log("DATOS QUE LLEGAN DE SERVIDOR EDUCACION ");
-        console.log(data.educacion);
-        this.persona = data;
-        this.listaEducacion = data.educacion;
-      });
+      
     }else{
       this.formEditar.markAllAsTouched();
     }
-
   }
 
   cargarDatosModal(cabe:any){
@@ -168,21 +170,20 @@ export class EducacionComponent implements OnInit {
     })
     console.log("VALOR DEL FORMULARIO CUANDO SE CARGAN AL PRESIONAR LAPIZ: ");
     console.log(this.formEditar.value);
-    if (this.formEditar.invalid){
-      this.formEditar.markAllAsTouched();
-    }
   }
 
   eliminar(id:any){
     this.educacionService.eliminarEducacion(id).subscribe(data=>{
       alert(data);
+
+      this.educacionService.obtenerDatos().subscribe((data) => {
+        console.log('Educacion data' + data);
+        console.log("DATOS QUE LLEGAN DE SERVIDOR EDUCACION ");
+        console.log(data.educacion);
+        this.persona = data;
+        this.listaEducacion = data.educacion;
+      });
     })
-    this.educacionService.obtenerDatos().subscribe((data) => {
-      console.log('Educacion data' + data);
-      console.log("DATOS QUE LLEGAN DE SERVIDOR EDUCACION ");
-      console.log(data.educacion);
-      this.persona = data;
-      this.listaEducacion = data.educacion;
-    });
+    
   }
 }

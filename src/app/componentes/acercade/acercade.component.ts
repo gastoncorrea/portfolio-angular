@@ -34,6 +34,7 @@ export class AcercadeComponent implements OnInit {
 
       this.sobreMiService.obtenerDatos().subscribe(data => {
         console.log("DATOS PERSONA SOBRE MI: "+data);
+        console.log(data);
         this.idPersona = data.idPersona;
         this.nombrePersona = data.nombrePersona;
         this.apellidoPersona = data.apellidoPersona;

@@ -26,6 +26,7 @@ export class LogrosComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private proyectoService:ProyectoService,
               public authService:AuthService) {
+
     this.form = this.formBuilder.group({
       nombre:['',[Validators.required, Validators.maxLength(30)]],
       descripcion:['',[Validators.required, Validators.maxLength(200)]],
@@ -84,9 +85,18 @@ export class LogrosComponent implements OnInit {
     e.preventDefault();
     console.log(this.form.value);
     if(this.form.valid){
+
       this.proyectoService.enviarDatos(this.form.value).subscribe(resp=>{
         alert(resp);
+
+        this.proyectoService.obtenerDatos().subscribe(data => {
+          console.log("Educacion data" + data);
+          this.persona = data;
+          this.proyectos = data.proyecto;
+        });
       })
+
+      
     }else{
       this.form.markAllAsTouched();
     }
@@ -99,6 +109,12 @@ export class LogrosComponent implements OnInit {
     if(this.formEditar.valid){
       this.proyectoService.modificarDatos(this.formEditar.value).subscribe(data=>{
         alert(JSON.stringify(data));
+
+        this.proyectoService.obtenerDatos().subscribe(data => {
+          console.log("Educacion data" + data);
+          this.persona = data;
+          this.proyectos = data.proyecto;
+        });
       })
     }
     
@@ -107,6 +123,12 @@ export class LogrosComponent implements OnInit {
   eliminar(id:any){
     this.proyectoService.eliminarProyecto(id).subscribe(data=>{
       alert(data);
+
+      this.proyectoService.obtenerDatos().subscribe(data => {
+        console.log("Educacion data" + data);
+        this.persona = data;
+        this.proyectos = data.proyecto;
+      });
     })
   }
 

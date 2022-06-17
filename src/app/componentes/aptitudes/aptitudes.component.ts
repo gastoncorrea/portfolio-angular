@@ -73,6 +73,12 @@ export class AptitudesComponent implements OnInit {
       console.log('form skill valido');
       this.aptitudService.enviarDatos(this.form.value).subscribe(resp=>{
         alert(resp);
+
+        this.aptitudService.obtenerDatos().subscribe((data) => {
+          console.log('Educacion data' + data);
+          this.persona = data;
+          this.aptitudes = data.aptitud;
+        });
       })
     } else {
     }
@@ -95,6 +101,12 @@ export class AptitudesComponent implements OnInit {
     if(this.formEditar.valid){
       this.aptitudService.modificarDatos(this.formEditar.value).subscribe(resp=>{
         alert("Usuario Modificado: ");
+
+        this.aptitudService.obtenerDatos().subscribe((data) => {
+          console.log('Educacion data' + data);
+          this.persona = data;
+          this.aptitudes = data.aptitud;
+        });
       })
     }else{
       this.formEditar.markAllAsTouched();
@@ -104,6 +116,12 @@ export class AptitudesComponent implements OnInit {
   eliminar(id:any) {
     this.aptitudService.eliminarAptitud(id).subscribe(resp=>{
       alert(resp);
+
+      this.aptitudService.obtenerDatos().subscribe((data) => {
+        console.log('Educacion data' + data);
+        this.persona = data;
+        this.aptitudes = data.aptitud;
+      });
     })
   }
 }

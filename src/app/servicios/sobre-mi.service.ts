@@ -32,7 +32,7 @@ export class SobreMiService {
     return this.http.put(
       this.url +
         `persona/modificar/${id}?imagen_perfil=${imagen}&descripcion_mi=${descripcion}&url_linkedin=${url}&nombre=${nombre}&apellido=${apellido}&num_celular=${celular}`,
-      {}
+      {},{responseType:'json'}
     );
   }
 }

@@ -112,19 +112,29 @@ export class CabeceraComponent implements OnInit {
       this.portfolioService.modificarPersona(this.formEditar.value).subscribe(data=>{
         console.log("modificar Persona");
         console.log( data);
-        alert(data);
+        alert("Datos personales modificado");
+
         // LLamas funcion para obtener los datos modificados
-        this.portfolioService.obtenerDatos().subscribe(data => {
-          this.cabecera = data;
-        })
-      })
+      this.portfolioService.obtenerDatos().subscribe(data => {
+        this.cabecera = data;
+    })
+    })
       // funcion para modificar los datos de residencia de la persona
       this.portfolioService.modificarResidencia(this.formEditar.value).subscribe(data=>{
         console.log("Residencia modificada");
         console.log(data);
-      })
-    }
+        alert("Datos de residencia modificados correctamente");
+
+        // LLamas funcion para obtener los datos modificados
+      this.portfolioService.obtenerDatos().subscribe(data => {
+        this.cabecera = data;
+    })
+      });
+
+  }else{
+    this.formEditar.markAllAsTouched();
   }
+}
 
   ngOnInit(): void {
 
@@ -136,6 +146,7 @@ export class CabeceraComponent implements OnInit {
   }
 
   cargarModal(datosPersona:any){
+    
     this.formEditar.setValue({
                   idPersonaEditar: datosPersona.idPersona,
                   descripcionEditar:datosPersona.descripcion_mi,
@@ -144,12 +155,14 @@ export class CabeceraComponent implements OnInit {
                   imagen_perfilEditar: datosPersona.imagen_perfil,
                   url_linkedinEditar: datosPersona.url_linkedin,
                   num_celularEditar: datosPersona.num_celular,
-                  idResidenciaEditar:datosPersona.residencia.idresindecia,
+                  idResidenciaEditar:datosPersona.residencia.idresidencia,
                   direccionEditar: datosPersona.residencia.direccion,
                   localidadEditar: datosPersona.residencia.localidad,
                   provinciaEditar: datosPersona.residencia.provincia,
                   paisEditar: datosPersona.residencia.pais,
                   nacionalidadEditar: datosPersona.residencia.nacionalidad
     })
+    console.log("DATOS QUE LLEGAN DESDE PLANTILLA A FORMeDITAR con setValue");
+    console.log(this.formEditar.value);
   }
 }

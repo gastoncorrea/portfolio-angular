@@ -24,7 +24,7 @@ export class ProyectoService {
   }
 
   modificarDatos(proyecto:any):Observable<any>{
-    return this.http.put(this.url + "proyecto/modificar/" + `${proyecto.idProyectoEditar}?nombre=${proyecto.nombreEditar}&descripcion=${proyecto.descripcionEditar}&url=${proyecto.urlEditar}`,{})
+    return this.http.put(this.url + "proyecto/modificar/" + `${proyecto.idProyectoEditar}?nombre=${proyecto.nombreEditar}&descripcion=${proyecto.descripcionEditar}&url=${proyecto.urlEditar}`,{},{responseType:'json'})
   }
 
   eliminarProyecto(id:any):Observable<any>{
