@@ -73,7 +73,7 @@
                   El campo es requerido
                 </p>
                 <p *ngIf="Puesto?.errors?.maxlength" class="error">
-                  Debe contener menos de 20 caracteres
+                  Debe contener menos de 50 caracteres
                 </p>
               </div>
               <!-- FOrm descripcion -->
@@ -162,7 +162,7 @@
                 </p>
               </div>
               <!-- input que contiene el id persona para agregar a base de datos -->
-              <div formGroupName="persona">
+              <div formGroupName="persona" *ngIf="cabecera">
                 <input type="hidden" id="idpersona" formControlName="idpersona" [(ngModel)]="cabecera.idPersona">
               </div>
               <div class="modal-footer">
@@ -284,7 +284,7 @@
                     El campo es requerido
                   </p>
                   <p *ngIf="PuestoEditar?.errors?.maxlength" class="error">
-                    Debe contener menos de 20 caracteres
+                    Debe contener menos de 50 caracteres
                   </p>
                 </div>
                 <!-- Validacion Puesto -->

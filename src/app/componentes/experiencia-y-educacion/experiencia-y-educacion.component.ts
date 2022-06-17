@@ -43,7 +43,7 @@ export class ExperienciaYEducacionComponent implements OnInit {
   ) {
     this.form = this.formBuilder.group({
       nombre: ['', [Validators.maxLength(50), Validators.required]],
-      puesto: ['', [Validators.maxLength(20), Validators.required]],
+      puesto: ['', [Validators.maxLength(50), Validators.required]],
       descripcion: ['', [Validators.required, Validators.maxLength(300)]],
       logo: ['', [Validators.maxLength(50)]],
       fecha_inicio: ['', [Validators.required]],
@@ -56,7 +56,7 @@ export class ExperienciaYEducacionComponent implements OnInit {
     this.formEditar = this.formBuilder.group({
       idExperienciaEditar: ['', []],
       nombreEditar: ['', [Validators.maxLength(50), Validators.required]],
-      puestoEditar: ['', [Validators.maxLength(20), Validators.required]],
+      puestoEditar: ['', [Validators.maxLength(50), Validators.required]],
       descripcionEditar: ['', [Validators.required, Validators.maxLength(300)]],
       logoEditar: ['', [Validators.maxLength(50)]],
       fecha_inicioEditar: ['', [Validators.required]],
@@ -146,6 +146,7 @@ export class ExperienciaYEducacionComponent implements OnInit {
 
   enviarFormEditar(e: Event) {
     e.preventDefault();
+    console.log(this.formEditar.valid)
     if (this.formEditar.valid) {
       console.log('formulario valido Editar EXPERIENCIA');
       console.log(this.formEditar.value);

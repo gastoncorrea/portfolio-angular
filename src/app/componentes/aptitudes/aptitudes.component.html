@@ -78,7 +78,7 @@
               </div>
               <!-- input que contiene id persona para poder guardar en base de datos -->
               <div formGroupName="persona" *ngIf="persona">
-                <input type="hidden" formControlName="idpersona" [ngModel]="persona.idPersona">
+                <input type="hidden" formControlName="idpersona" [(ngModel)]="persona.idPersona">
               </div>
               <div class="modal-footer">
                 <button

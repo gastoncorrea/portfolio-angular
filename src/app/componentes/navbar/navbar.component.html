@@ -23,14 +23,14 @@
                 ><i class="fab fa-linkedin fa-2x"></i
               ></a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="this.authService.Usuario">
               <button class="btn">
-                <a class="nav-link" routerLink="/login" routerLinkActive="active" *ngIf="this.authService.Usuario">Login</a>
+                <a class="nav-link" routerLink="/login" routerLinkActive="active" >Login{{this.authService.Usuario}}</a>
               </button>
             </li>
-            <li class="nav-item" >
+            <li class="nav-item" *ngIf="!this.authService.Usuario">
               <button class="btn">
-                <a class="nav-link" routerLink="/inicio" (click)="cerrarSesion()" routerLinkActive="active" *ngIf="!this.authService.Usuario">Logout</a>
+                <a class="nav-link" routerLink="/inicio" (click)="cerrarSesion()" routerLinkActive="active">Logout {{this.authService.Usuario}}</a>
               </button>
             </li>
           </ul>
