@@ -18,9 +18,7 @@ export class PortfolioService {
   constructor(private http: HttpClient, private auth: AuthService) {}
 
   obtenerDatos(): Observable<any> {
-    return this.http.get(this.url + 'curriculum/persona/' + this.email).pipe(map((data)=>{
-      return data;
-    }));
+    return this.http.get(this.url + 'curriculum/persona/' + this.email);
   }
 
 

@@ -9,7 +9,7 @@ import {GuardGuard} from '../servicios/guard.guard';
 
 const routes:Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
-  {path:'inicio', component: CurriculumComponent},
+  {path:'inicio', component: CurriculumComponent, canActivate:[GuardGuard]},
   {path:'login', component: LoginComponent},
   {path:'**',component:Error404Component},
 ];

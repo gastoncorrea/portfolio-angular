@@ -101,7 +101,7 @@ export class AptitudesComponent implements OnInit {
     if(this.formEditar.valid){
       // ENVIA EL FORM AL SERVICIO PARA GUARDAR EN BASE DE DATOS
       this.aptitudService.modificarDatos(this.formEditar.value).subscribe(resp=>{
-        alert("Usuario Modificado: ");
+        alert("APTITUD MODIFICADA");
 
         this.aptitudService.obtenerDatos().subscribe((data) => {
           this.persona = data;
