@@ -98,6 +98,8 @@ export class LogrosComponent implements OnInit {
           this.proyectos = data.proyecto;
         });
       });
+// metodo para limpiar campos de form luego de enviar form
+      this.form.reset();
     } else {
       this.form.markAllAsTouched();
     }

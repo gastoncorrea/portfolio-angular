@@ -80,6 +80,8 @@ export class AptitudesComponent implements OnInit {
           this.aptitudes = data.aptitud;
         });
       })
+// metodo para limpiar campos de form luego de enviar form
+      this.form.reset();
     } else {
     }
   }

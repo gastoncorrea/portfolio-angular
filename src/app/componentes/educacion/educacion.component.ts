@@ -130,6 +130,8 @@ export class EducacionComponent implements OnInit {
             this.listaEducacion = data.educacion;
           });
         });
+// metodo para limpiar campos de modal
+        this.form.reset();
     } else {
       this.form.markAllAsTouched();
     }

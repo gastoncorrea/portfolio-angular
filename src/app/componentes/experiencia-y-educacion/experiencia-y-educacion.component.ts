@@ -44,7 +44,7 @@ export class ExperienciaYEducacionComponent implements OnInit {
       nombre: ['', [Validators.maxLength(50), Validators.required]],
       puesto: ['', [Validators.maxLength(50), Validators.required]],
       descripcion: ['', [Validators.required, Validators.maxLength(300)]],
-      logo: ['', [Validators.maxLength(50)]],
+      logo: ['', [Validators.maxLength(150)]],
       fecha_inicio: ['', [Validators.required]],
       fecha_fin: ['', [Validators.required]],
       tiempo_trab: ['', [Validators.required, Validators.maxLength(50)]],
@@ -58,7 +58,7 @@ export class ExperienciaYEducacionComponent implements OnInit {
       nombreEditar: ['', [Validators.maxLength(50), Validators.required]],
       puestoEditar: ['', [Validators.maxLength(50), Validators.required]],
       descripcionEditar: ['', [Validators.required, Validators.maxLength(300)]],
-      logoEditar: ['', [Validators.maxLength(50)]],
+      logoEditar: ['', [Validators.maxLength(150)]],
       fecha_inicioEditar: ['', [Validators.required]],
       fecha_finEditar: ['', [Validators.required]],
       tiempo_trabEditar: ['', [Validators.required, Validators.maxLength(50)]],
@@ -147,7 +147,7 @@ export class ExperienciaYEducacionComponent implements OnInit {
   }
   // ENVIAR FORMULARIO PARA EDITAR UNA EXPERIENCIA LABORAL
   enviarFormEditar(e: Event) {
-    e.preventDefault;
+    e.preventDefault();
     if (this.formEditar.valid) {
       //llamada al servicio para enviar datos al servidor
       this.experienciaService
@@ -179,6 +179,8 @@ export class ExperienciaYEducacionComponent implements OnInit {
             this.experiencia = data.experiencia;
           });
         });
+
+        this.form.reset();
     }
   }
   // ELIMINAR UNA EXPERIENCIA LABORAL
