@@ -12,7 +12,7 @@ export class ExperienciaService {
   url:String = "https://stormy-harbor-23738.herokuapp.com/";
   // traigo mail del usuario logueado que esta guardado en session storage
   email = JSON.parse(sessionStorage.getItem('usuario')|| '');
-  //Modelo de datos Experiencia 
+  
   
   constructor(
     private http:HttpClient,
@@ -20,15 +20,13 @@ export class ExperienciaService {
   ) { }
 
    obtenerDatos() : Observable<any> {
-     console.log("*****"+this.email);
    return this.http.get(this.url + "curriculum/persona/"+this.email);
    }
 
    modificarExperiencia(experiencia: any): Observable<any> {
+    // MODIFICAR FORMATO FECHA PARA PODER ENVIAR AL SERVIDOR
     experiencia.fecha_inicioEditar = new Date(experiencia.fecha_inicioEditar);
     experiencia.fecha_finEditar = new Date(experiencia.fecha_finEditar);
-    console.log('EXPERIENCIA PUT' + experiencia.fecha_inicioEditar);
-    console.log(experiencia);
     return this.http.put(
       this.url +`experiencia/modificar/${experiencia.idExperienciaEditar}?nombre=${experiencia.nombreEditar}&puesto=${experiencia.puestoEditar}&descripcion=${experiencia.descripcionEditar}&logo=${experiencia.logoEditar}&fecha_inicio=${experiencia.fecha_inicioEditar}&fecha_fin=${experiencia.fecha_finEditar}&tiempo_trab=${experiencia.tiempo_trabEditar}`,
         {},{responseType:"json"}
@@ -36,8 +34,7 @@ export class ExperienciaService {
   }
 
     agregarExperiencia(experiencia:any) : Observable<any> {
-      console.log("DATOS QUE SALEN DE EXPERIENCIA:")
-      console.log(experiencia);
+      
       return this.http.post(this.url + "experiencia/guardar",experiencia,{responseType:"text"});
     }
 

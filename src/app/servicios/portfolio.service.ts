@@ -8,7 +8,6 @@ import {map} from 'rxjs/operators';
   providedIn: 'root',
 })
 export class PortfolioService {
-  persona:any;
   // traigo mail del usuario logueado que esta guardado en session storage
   email = JSON.parse(sessionStorage.getItem('usuario')|| '');
   
@@ -20,17 +19,13 @@ export class PortfolioService {
 
   obtenerDatos(): Observable<any> {
     return this.http.get(this.url + 'curriculum/persona/' + this.email).pipe(map((data)=>{
-      this.persona = JSON.stringify(data);
-
-      console.log("NUEVO TIPO DE DATOS CON USUARIO");
-      console.log(data);
       return data;
     }));
   }
 
 
   modificarPersona(persona: any): Observable<any> {
-    console.log('NOMBRE' + persona.nombreEditar);
+    
     return this.http.put(
       this.url +
         `persona/modificar/${persona.idPersonaEditar}?imagen_perfil=${persona.imagen_perfilEditar}&descripcion_mi=${persona.descripcionEditar}&url_linkedin=${persona.url_linkedinEditar}&nombre=${persona.nombreEditar}&apellido=${persona.apellidoEditar}&num_celular=${persona.num_celularEditar}`,
@@ -39,8 +34,7 @@ export class PortfolioService {
   }
 
   modificarResidencia(residencia: any):Observable<any>{
-    console.log("RESIDENCIA FORM:")
-    console.log(residencia);
+    
     return this.http.put(this.url + `residencia/modificar/${residencia.idResidenciaEditar}?direccion=${residencia.direccionEditar}&localidad=${residencia.localidadEditar}&provincia=${residencia.provinciaEditar}&pais=${residencia.paisEditar}&nacionalidad=${residencia.nacionalidadEditar}`,{});
   }
 }

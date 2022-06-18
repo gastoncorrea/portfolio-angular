@@ -14,7 +14,6 @@ export class AptitudService {
   constructor(private http: HttpClient, private auth: AuthService) {}
 
   obtenerDatos(): Observable<any> {
-    console.log('*****Apttud' + this.email);
     return this.http.get(this.url + 'curriculum/persona/' + this.email);
   }
 

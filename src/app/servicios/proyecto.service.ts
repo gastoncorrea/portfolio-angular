@@ -9,13 +9,13 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class ProyectoService {
+  // URL PARA CONECTAR CON SERVIDOR
   url: String = 'https://stormy-harbor-23738.herokuapp.com/';
   // traigo mail del usuario logueado que esta guardado en session storage
   email = JSON.parse(sessionStorage.getItem('usuario')|| '');
   constructor(private http: HttpClient, private auth: AuthService) {}
 
   obtenerDatos(): Observable<any> {
-    console.log('*****Apttud' + this.email);
     return this.http.get(this.url + 'curriculum/persona/' + this.email);
   }
 
