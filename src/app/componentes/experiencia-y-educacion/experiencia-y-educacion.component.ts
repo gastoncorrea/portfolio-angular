@@ -140,7 +140,7 @@ export class ExperienciaYEducacionComponent implements OnInit {
   // RECARGAR DATOS AL INICIAR COMPONENTE
   ngOnInit(): void {
     this.experienciaService.obtenerDatos().subscribe((data) => {
-      console.log(data);
+      
       this.cabecera = data;
       this.experiencia = data.experiencia;
     });
