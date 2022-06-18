@@ -33,8 +33,6 @@ export class AcercadeComponent implements OnInit {
       alert("Usuario Modificado correctamente");
 
       this.sobreMiService.obtenerDatos().subscribe(data => {
-        console.log("DATOS PERSONA SOBRE MI: "+data);
-        console.log(data);
         this.idPersona = data.idPersona;
         this.nombrePersona = data.nombrePersona;
         this.apellidoPersona = data.apellidoPersona;
@@ -48,7 +46,6 @@ export class AcercadeComponent implements OnInit {
 
   ngOnInit(): void {
     this.sobreMiService.obtenerDatos().subscribe(data => {
-      console.log("DATOS PERSONA SOBRE MI: "+data);
       this.idPersona = data.idPersona;
       this.nombrePersona = data.nombrePersona;
       this.apellidoPersona = data.apellidoPersona;

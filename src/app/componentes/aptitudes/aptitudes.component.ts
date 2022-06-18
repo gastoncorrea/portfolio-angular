@@ -59,23 +59,23 @@ export class AptitudesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // funcion que trae los datos del servidor
     this.aptitudService.obtenerDatos().subscribe((data) => {
-      console.log('Educacion data' + data);
       this.persona = data;
       this.aptitudes = data.aptitud;
     });
   }
 
   enviar(e: Event) {
+
     e.preventDefault();
 
     if (this.form.valid) {
-      console.log('form skill valido');
+      // FUNCION QUE GUARDA DATOS EN BASE DE DATOS APTITUD
       this.aptitudService.enviarDatos(this.form.value).subscribe(resp=>{
         alert(resp);
 
         this.aptitudService.obtenerDatos().subscribe((data) => {
-          console.log('Educacion data' + data);
           this.persona = data;
           this.aptitudes = data.aptitud;
         });
@@ -85,25 +85,23 @@ export class AptitudesComponent implements OnInit {
   }
 
   cargarDatosModal(skill:any){
-
+    // CARGA EL MODAL CON LOS DATOS DE UNA APTITUD
     this.formEditar.setValue({
       idAptitudEditar:skill.id,
       nombreEditar:skill.nombre,
       nivelEditar:skill.nivel
     })
-    console.log("Valor de formEditar APTITUDES:")
-    console.log(this.formEditar.value)
   }
 
   enviarFormEditar(e:Event){
     e.preventDefault();
 
     if(this.formEditar.valid){
+      // ENVIA EL FORM AL SERVICIO PARA GUARDAR EN BASE DE DATOS
       this.aptitudService.modificarDatos(this.formEditar.value).subscribe(resp=>{
         alert("Usuario Modificado: ");
 
         this.aptitudService.obtenerDatos().subscribe((data) => {
-          console.log('Educacion data' + data);
           this.persona = data;
           this.aptitudes = data.aptitud;
         });
@@ -114,11 +112,12 @@ export class AptitudesComponent implements OnInit {
   }
 
   eliminar(id:any) {
+    // ELIMINAR UNA APTITUD
     this.aptitudService.eliminarAptitud(id).subscribe(resp=>{
       alert(resp);
 
       this.aptitudService.obtenerDatos().subscribe((data) => {
-        console.log('Educacion data' + data);
+        
         this.persona = data;
         this.aptitudes = data.aptitud;
       });

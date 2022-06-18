@@ -10,7 +10,9 @@ import { AuthService } from 'src/app/servicios/auth.service';
   styleUrls: ['./educacion.component.css'],
 })
 export class EducacionComponent implements OnInit {
+  // VARIABLE QUE GUARDA LOS DATOS QUE LLEGAN DEL SERVIDOR
   persona: any;
+  // VARIABLE QUE GUARDA LA LISTA DE EDUCACION QUE LLEGA DEL SERVIDOR
   listaEducacion: any;
   // Formularios para agregar y editar educacion
   form: FormGroup;
@@ -31,8 +33,9 @@ export class EducacionComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private educacionService: EducacionService,
-    public authService:AuthService
+    public authService: AuthService
   ) {
+    // FORMULARIO PARA GUARDAR UNA NUEVA EDUCACION
     this.form = formBuilder.group({
       nombre_institucion: ['', [Validators.required, Validators.maxLength(50)]],
       logo: ['', [Validators.maxLength(200)]],
@@ -43,16 +46,20 @@ export class EducacionComponent implements OnInit {
         idpersona: ['', []],
       }),
     });
-
+    // FORMULARIO PARA MODIFICAR UNA EDUCACION
     this.formEditar = formBuilder.group({
       idEducacionEditar: ['', []],
-      nombre_institucionEditar: ['',[Validators.required, Validators.maxLength(50)]],
+      nombre_institucionEditar: [
+        '',
+        [Validators.required, Validators.maxLength(50)],
+      ],
       logoEditar: ['', [Validators.maxLength(200)]],
       fecha_inicioEditar: ['', [Validators.required]],
       fecha_finEditar: ['', [Validators.required]],
       tituloEditar: ['', [Validators.required, Validators.maxLength(50)]],
     });
   }
+  // METODO GET PARA TRAER VALORES DE CADA INPUT Y VERIFICAR SI SON VALIDOS
   get Nombre() {
     this.valorNombre = this.form.get('nombre_institucion');
     return this.valorNombre;
@@ -103,29 +110,22 @@ export class EducacionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // FUNCION QUE HACE PETICION AL SERVICO PARA TRAER DATOS DEL SERVIDOR
     this.educacionService.obtenerDatos().subscribe((data) => {
-      console.log('Educacion data' + data);
-      console.log("DATOS QUE LLEGAN DE SERVIDOR EDUCACION ");
-      console.log(data.educacion);
       this.persona = data;
       this.listaEducacion = data.educacion;
     });
   }
-
+  // FUNCION PARA ENVIAR NUEVA EDUCACION AL SERVIDOR
   enviar(e: Event) {
     e.preventDefault();
     if (this.form.valid) {
-      console.log('form educacion valido');
-      console.log(this.form.value);
       this.educacionService
         .guardarNuevaEducacion(this.form.value)
         .subscribe((data) => {
           alert(data);
-
+          // FUNCION PARA RECARGAR DATOS LUEGO DE ENVIAR FORM
           this.educacionService.obtenerDatos().subscribe((data) => {
-            console.log('Educacion data' + data);
-            console.log("DATOS QUE LLEGAN DE SERVIDOR EDUCACION ");
-            console.log(data.educacion);
             this.persona = data;
             this.listaEducacion = data.educacion;
           });
@@ -134,56 +134,45 @@ export class EducacionComponent implements OnInit {
       this.form.markAllAsTouched();
     }
   }
-
-  enviarModificar(e:Event){
+  // FUNCION PARA MODIFICAR UNA EDUCACION
+  enviarModificar(e: Event) {
     e.preventDefault;
-    console.log("ENVIANDO FORM PARA EDITAR CON ESTOS DATOS: ")
-    console.log(this.formEditar.value);
-    if(this.formEditar.valid){
-      this.educacionService.modificarEducacion(this.formEditar.value).subscribe(data => {
-        console.log("VALOR MODIFICADO DE EDUCACION: ");
-        alert("EDUCACION MODIFICADA CON EXITO"+JSON.stringify(data));
+    if (this.formEditar.valid) {
+      this.educacionService
+        .modificarEducacion(this.formEditar.value)
+        .subscribe((data) => {
+          alert('EDUCACION MODIFICADA CON EXITO');
 
-        this.educacionService.obtenerDatos().subscribe((data) => {
-          console.log('Educacion data' + data);
-          console.log("DATOS QUE LLEGAN DE SERVIDOR EDUCACION ");
-          console.log(data.educacion);
-          this.persona = data;
-          this.listaEducacion = data.educacion;
+          this.educacionService.obtenerDatos().subscribe((data) => {
+            //  FUNCION PARA RECUPERAR DATOS LUEGO DE MODIFICAR EDUCACION
+            this.persona = data;
+            this.listaEducacion = data.educacion;
+          });
         });
-      });
-      
-    }else{
+    } else {
       this.formEditar.markAllAsTouched();
     }
   }
-
-  cargarDatosModal(cabe:any){
-
+  // FUNCION QUE CARGA DATOS EN EL MODAL PARA MODIFICAR UNA EXPERIENCIA
+  cargarDatosModal(cabe: any) {
     this.formEditar.setValue({
-      idEducacionEditar:cabe.ideducacion,
-      nombre_institucionEditar:cabe.nombre_institucion,
-      logoEditar:cabe.logo,
-      fecha_inicioEditar:cabe.fecha_inicio,
-      fecha_finEditar:cabe.fecha_fin,
-      tituloEditar:cabe.titulo
-    })
-    console.log("VALOR DEL FORMULARIO CUANDO SE CARGAN AL PRESIONAR LAPIZ: ");
-    console.log(this.formEditar.value);
+      idEducacionEditar: cabe.ideducacion,
+      nombre_institucionEditar: cabe.nombre_institucion,
+      logoEditar: cabe.logo,
+      fecha_inicioEditar: cabe.fecha_inicio,
+      fecha_finEditar: cabe.fecha_fin,
+      tituloEditar: cabe.titulo,
+    });
   }
-
-  eliminar(id:any){
-    this.educacionService.eliminarEducacion(id).subscribe(data=>{
+  // ELIMINAR UNA EDUCACION
+  eliminar(id: any) {
+    this.educacionService.eliminarEducacion(id).subscribe((data) => {
       alert(data);
-
+      // RECARGAR DATOS LUEGO DE ELIMINAR
       this.educacionService.obtenerDatos().subscribe((data) => {
-        console.log('Educacion data' + data);
-        console.log("DATOS QUE LLEGAN DE SERVIDOR EDUCACION ");
-        console.log(data.educacion);
         this.persona = data;
         this.listaEducacion = data.educacion;
       });
-    })
-    
+    });
   }
 }

@@ -12,8 +12,6 @@ import { AuthService } from 'src/app/servicios/auth.service';
 export class ExperienciaYEducacionComponent implements OnInit {
   // contiene los valores de experiencia traidos de la api
   cabecera: any;
-  emailUsuario: any;
-
   experiencia: any;
 
   form: FormGroup;
@@ -39,8 +37,9 @@ export class ExperienciaYEducacionComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private experienciaService: ExperienciaService,
-    public authService:AuthService
+    public authService: AuthService
   ) {
+    // FORM PARA GUARDAR UNA NUEVA EXPERIENCIA LABORAL
     this.form = this.formBuilder.group({
       nombre: ['', [Validators.maxLength(50), Validators.required]],
       puesto: ['', [Validators.maxLength(50), Validators.required]],
@@ -53,6 +52,7 @@ export class ExperienciaYEducacionComponent implements OnInit {
         idpersona: ['', []],
       }),
     });
+    // FORM PARA EDITAR UNA EXPERIENCIA LABORAL
     this.formEditar = this.formBuilder.group({
       idExperienciaEditar: ['', []],
       nombreEditar: ['', [Validators.maxLength(50), Validators.required]],
@@ -64,6 +64,8 @@ export class ExperienciaYEducacionComponent implements OnInit {
       tiempo_trabEditar: ['', [Validators.required, Validators.maxLength(50)]],
     });
   }
+
+  // METODOS GET PARA RECUPERAR VALOR DE INPUTS DE FORM
   get Nombre() {
     this.valorNombre = this.form.get('nombre');
     return this.valorNombre;
@@ -135,7 +137,7 @@ export class ExperienciaYEducacionComponent implements OnInit {
     this.valorTotalEditar = this.form.get('tiempo_trabEditar');
     return this.valorTotalEditar;
   }
-
+  // RECARGAR DATOS AL INICIAR COMPONENTE
   ngOnInit(): void {
     this.experienciaService.obtenerDatos().subscribe((data) => {
       console.log(data);
@@ -143,64 +145,55 @@ export class ExperienciaYEducacionComponent implements OnInit {
       this.experiencia = data.experiencia;
     });
   }
-
+  // ENVIAR FORMULARIO PARA EDITAR UNA EXPERIENCIA LABORAL
   enviarFormEditar(e: Event) {
     e.preventDefault;
-    console.log(this.formEditar.valid)
     if (this.formEditar.valid) {
-      console.log('formulario valido Editar EXPERIENCIA');
-      console.log(this.formEditar.value);
       //llamada al servicio para enviar datos al servidor
       this.experienciaService
         .modificarExperiencia(this.formEditar.value)
         .subscribe((data) => {
-          alert("Experiencia Laboral modificada" + JSON.stringify(data));
+          alert('Experiencia Laboral modificada');
+          // RECUPERAR DATOS LUEGO DE MODIFICAR EXPERIENCIA LABORAL
           this.experienciaService.obtenerDatos().subscribe((resp) => {
             this.cabecera = resp;
             this.experiencia = resp.experiencia;
           });
         });
-      
     } else {
       this.formEditar.markAllAsTouched();
     }
-
-   
   }
-
+  // ENVIAR FORM PARA GUARDAR UNA NUEVA EXPERIENCIA LABORAL
   enviarNuevaExperiencia(e: Event) {
     e.preventDefault;
     if (this.form.valid) {
-      console.log('Nueva Experiencia FORM :*****' + this.form.value);
       // llamada al servicio para agregar nueva experienciaService
       this.experienciaService
         .agregarExperiencia(this.form.value)
         .subscribe((data) => {
           alert(data);
-
+          // RECUPERAR DATOS LUEGO DE GUARDAR UNA NUEVA EXPERIENCIA
           this.experienciaService.obtenerDatos().subscribe((data) => {
-            console.log(data);
             this.cabecera = data;
             this.experiencia = data.experiencia;
           });
         });
     }
   }
-
+  // ELIMINAR UNA EXPERIENCIA LABORAL
   eliminar(id: any) {
     this.experienciaService.eliminarExperiencia(id).subscribe((data) => {
       alert(data);
-
+      // RECUPERAR DATOS LUEGO DE ELIMINAR UNA EXPERIENCIA LABORAL
       this.experienciaService.obtenerDatos().subscribe((data) => {
         this.cabecera = data;
         this.experiencia = data.experiencia;
       });
     });
-    
   }
-
+  // CARGAR MODAL CON DATOS DE UNA EXPERIENCIA LABORAL
   traerDatos(cabe: any) {
-    console.log(cabe.fecha_inicio);
     this.formEditar.setValue({
       idExperienciaEditar: cabe.idexp_laboral,
       nombreEditar: cabe.nombre,
@@ -211,7 +204,5 @@ export class ExperienciaYEducacionComponent implements OnInit {
       fecha_finEditar: cabe.fecha_fin,
       tiempo_trabEditar: cabe.tiempo_trab,
     });
-    console.log(cabe);
-    console.log(this.formEditar.value);
   }
 }

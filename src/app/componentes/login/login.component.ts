@@ -13,8 +13,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   //Variable de tipo FormGroup
   form: FormGroup;
-  credenciales:any;
-  
+
   //Variable que contiene el valor del input password
   contenedorDatosPassword: any;
 
@@ -24,23 +23,22 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router
   ) {
+    // FORM PARA AUTORIZAR ACCESO
     this.form = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
-
+  // FUNCION PARA ENVIAR FORM PARA AUTENTICACION AL SERVIDOR
   onEnviar(e: Event) {
     e.preventDefault;
     if (this.form.valid) {
-      console.log('El boton submit del formulario funciona');
       //MANDAR DATOS VALIDADOS DESDE EL FORM AL BACKEND
       this.authService.login(this.form.value).subscribe((data) => {
-        console.log('DATA:' + JSON.stringify(data));
-        if(data == 'FAIL'){
+        if (data == 'FAIL') {
           this.router.navigate(['/login']);
-          alert("El usuario no existe");
-        }else{
+          alert('El usuario no existe');
+        } else {
           this.router.navigate(['/inicio']);
           this.authService.usuarioInvitado = false;
         }
@@ -49,13 +47,11 @@ export class LoginComponent implements OnInit {
       this.form.markAllAsTouched();
     }
   }
-
-  invitado(){
-    this.authService.loginInvitado().subscribe(data => {
+  // FUNCION PARA INGRESAR COMO INVITADO
+  invitado() {
+    this.authService.loginInvitado().subscribe((data) => {
       this.authService.usuarioInvitado = true;
-      console.log("USUARIO INVITADO TS: ");
-      console.log(data);
-    })
+    });
     this.authService.Usuario;
     this.router.navigate(['/inicio']);
   }
