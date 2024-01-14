@@ -9,7 +9,7 @@ import {AuthService} from './auth.service';
 })
 export class ExperienciaService {
   // Url para traer datos del servidor
-  url:String = "https://stormy-harbor-23738.herokuapp.com/";
+  url:String = "https://portfolio-web-ijdn.onrender.com";
   // traigo mail del usuario logueado que esta guardado en session storage
   email = JSON.parse(sessionStorage.getItem('usuario')|| '');
   

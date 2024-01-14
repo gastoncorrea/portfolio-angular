@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   // URL PARA CONECTARSE CON SERVIDOR
-  api = ' https://stormy-harbor-23738.herokuapp.com/';
+  api = 'https://portfolio-web-ijdn.onrender.com';
   currentUserSubject: BehaviorSubject<any>;
   usuarioInvitado: boolean = true;
 
