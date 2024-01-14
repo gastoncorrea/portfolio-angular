@@ -12,7 +12,7 @@ export class PortfolioService {
   email = JSON.parse(sessionStorage.getItem('usuario')|| '');
   
   // url: String = 'http://localhost:8080/';
-  url: String = 'https://portfolio-web-ijdn.onrender.com';
+  url: String = 'https://portfolio-web-ijdn.onrender.com/';
   
 
   constructor(private http: HttpClient, private auth: AuthService) {}

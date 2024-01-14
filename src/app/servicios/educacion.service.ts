@@ -9,7 +9,7 @@ import {AuthService} from './auth.service';
 })
 export class EducacionService {
 // URL PARA CONECTARSE A SERVIDOR
-  url:String = "https://portfolio-web-ijdn.onrender.com";
+  url:String = "https://portfolio-web-ijdn.onrender.com/";
   // traigo mail del usuario logueado que esta guardado en session storage
   email = JSON.parse(sessionStorage.getItem('usuario')|| '');
 
